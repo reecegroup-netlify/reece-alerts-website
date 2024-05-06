@@ -13,9 +13,10 @@ export function PostPage({ data }) {
       <article>
         <PostHeader
           title={post.title}
-          coverImage={post.coverImage}
-          date={post.date}
-          author={post.author}
+          // coverImage={post.coverImage}
+          updated={post.updated}
+          posted={post.posted}
+          // author={post.author}
         />
         <PostBody content={post.content} />
       </article>

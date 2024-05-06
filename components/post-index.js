@@ -14,9 +14,10 @@ export function PostIndex({ data }) {
       {heroPost && (
         <HeroPost
           title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
+          // coverImage={heroPost.coverImage}
+          published={heroPost.published}
+          updated={heroPost.updated}
+          // author={heroPost.author}
           slug={heroPost.slug}
           excerpt={heroPost.excerpt}
         />

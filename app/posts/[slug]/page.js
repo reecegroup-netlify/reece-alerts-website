@@ -30,7 +30,7 @@ const PAGE_CONTENT_QUERY = `
         value
         blocks {
           __typename
-          ...on ImageBlockRecord {
+          ...on ImageInternalBlockRecord {
             id
             image {
               responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
@@ -40,43 +40,16 @@ const PAGE_CONTENT_QUERY = `
           }
         }
       }
-      date
-      ogImage: coverImage{
-        url(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 })
-      }
-      coverImage {
-        responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-        picture {
-          responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100}) {
-            ...responsiveImageFragment
-          }
-        }
-      }
+      updated: _publishedAt
+      posted: _firstPublishedAt
     }
 
-    morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {
+    morePosts: allPosts(orderBy: _firstPublishedAt_DESC, first: 2, filter: {slug: {neq: $slug}}) {
       title
       slug
       excerpt
-      date
-      coverImage {
-        responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-        picture {
-          responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100}) {
-            ...responsiveImageFragment
-          }
-        }
-      }
+      updated: _publishedAt
+      posted: _firstPublishedAt
     }
   }
 
@@ -101,6 +74,10 @@ export default async function Page({ params }) {
 
   const pageRequest = getPageRequest(params.slug);
   const data = await performRequest(pageRequest);
+
+  console.log('params.slug', params.slug);
+  console.log('pageRequest', pageRequest);
+  console.log('data', data);
 
   if (isEnabled) {
     return (
