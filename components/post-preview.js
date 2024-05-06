@@ -26,11 +26,19 @@ export default function PostPreview({
           {title}
         </Link>
       </h3>
-      <div className="text-lg mb-4">
-        Published: <DateTime dateString={published} />
-        <br /> Updated: <DateTime dateString={updated} />
-      </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+      <div>
+        <div className="">
+          <dl>
+            <dt className="text-xs tracking-wide mb-2 uppercase">Posted</dt>
+            <dd className="text-sm mb-5"><DateTime dateString={published} /></dd>
+            <dt className="text-xs tracking-wide mb-2 uppercase">Updated</dt>
+            <dd className="text-sm mb-5"><DateTime dateString={updated} /></dd>
+            <dt className="text-xs tracking-wide mb-2 uppercase">Status</dt>
+            <dd className="text-sm mb-5">Status</dd>
+          </dl>
+        </div>
+      </div>
       {/* <Avatar name={author.name} picture={author.picture} /> */}
     </div>
   );
