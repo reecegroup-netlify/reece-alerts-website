@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
           <main>
-            <Container>{children}</Container>
+            {children}
           </main>
         </div>
         <Footer />
