@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 import ButtonBack from "./button-back";
+import ButtonSort from "./button-sort";
 
 export default function HeaderNav() {
   const pathname = usePathname();
@@ -16,13 +16,7 @@ export default function HeaderNav() {
           </li>
         )}
         <li>
-          <a
-            href="https://tailwindui.com/?ref=top"
-            className="border rounded-lg px-4 py-2 hover:text-sky-500 dark:hover:text-sky-400 flex items-center space-x-2"
-          >
-            <span>Sort</span>
-            <ArrowsUpDownIcon className="w-4 h-4" />
-          </a>
+          <ButtonSort />
         </li>
       </ul>
     </nav>
