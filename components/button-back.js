@@ -19,11 +19,11 @@ export default function ButtonBack({ fallback = defaultFallback }) {
   return (
     <button
       type="button"
-      className="border rounded-lg px-4 py-2 hover:text-sky-500 dark:hover:text-sky-400 flex items-center space-x-2"
+      className="border border-[#D9D9D9] rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 text-sm font-normal tracking-wide inline-flex items-center sm:space-x-2"
       onClick={handleBack}
     >
-      <ArrowLeftIcon className="w-4 h-4" />
-      <span>Back</span>
+      <ArrowLeftIcon className="size-4" />
+      <span className="sr-only sm:not-sr-only">Back</span>
     </button>
   );
 }

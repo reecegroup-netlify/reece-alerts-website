@@ -15,9 +15,11 @@ export default function HeaderNav() {
             <ButtonBack />
           </li>
         )}
+        {pathname === "/" && (
         <li>
           <ButtonSort />
         </li>
+        )}
       </ul>
     </nav>
   );

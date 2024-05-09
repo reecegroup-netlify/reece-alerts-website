@@ -65,7 +65,7 @@ export default function PostPreview({
         <span className="relative">
           Read more<span className="sr-only">, {title}</span>
         </span>
-        <ChevronRightIcon className="size-4 h-4 w-4 relative overflow-visible mt-px ml-1" />
+        <ChevronRightIcon className="size-4 relative overflow-visible mt-px ml-1" />
       </Link>
     </article>
   );

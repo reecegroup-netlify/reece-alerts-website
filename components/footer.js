@@ -3,7 +3,7 @@ import IconRSS from "media/icon-rss@2x.png";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "./logo";
-import siteBrandBar from "media/site-brand-bar@2x.png";
+import BarBrand from "./bar-brand";
 
 export default function Footer() {
   return (
@@ -58,17 +58,17 @@ export default function Footer() {
 
               {/* footer - top - buttons */}
               <div className="sm:justify-self-end sm:row-start-2 md:row-auto">
-                <a
-                  href="https://tailwindui.com/?ref=top"
-                  className="border border-[#D9D9D9] rounded-full p-2 pr-5 text-sm font-medium tracking-wide inline-flex items-center space-x-2.5"
+                <Link
+                  href="/"
+                  className="border border-[#D9D9D9] rounded-full p-1.5 sm:p-2 pr-4 sm:pr-5 text-sm font-medium tracking-wide inline-flex items-center space-x-2 sm:space-x-2.5"
                 >
                   <Image
                     src={IconRSS}
                     alt="RSS icon"
-                    className="size-[32px] w-[32px] h-[32px]"
+                    className="size-[28px] md:size-[30px] lg:size-[32px]"
                   />
                   <span>Subscribe to RSS</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -106,15 +106,7 @@ export default function Footer() {
       </div>
 
       {/* footer - brand bar */}
-      <div className="h-4 sm:h-5 md:h-6m lg:h-7 overflow-hidden">
-        <Image
-          src={siteBrandBar}
-          width={3580}
-          height={60}
-          className="min-w-full max-w-none w-auto h-full"
-          alt="Pattern of vertical stripes in navy blue and light grey"
-        />
-      </div>
+      <BarBrand />
     </footer>
   );
 }
