@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
 import siteBrandBar from "media/site-brand-bar@2x.png";
 import Container from "./container";
 import Logo from "./logo";
-import BackButton from "./back-button";
+import HeaderNav from "./header-nav";
 
 export default function Header() {
+
   return (
     <>
       {/* top bar - brand bar */}
@@ -44,22 +44,7 @@ export default function Header() {
 
                 {/* header - navigation */}
                 <div className="relative hidden lg:flex items-center ml-auto">
-                  <nav className="text-sm leading-snug dark:text-slate-200">
-                    <ul className="flex space-x-4">
-                      <li>
-                        <BackButton />
-                      </li>
-                      <li>
-                        <a
-                          href="https://tailwindui.com/?ref=top"
-                          className="border rounded-lg px-4 py-2 hover:text-sky-500 dark:hover:text-sky-400 flex items-center space-x-2"
-                        >
-                          <span>Sort</span>
-                          <ArrowsUpDownIcon className="w-4 h-4" />
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                  <HeaderNav />
                 </div>
               </div>
             </div>
