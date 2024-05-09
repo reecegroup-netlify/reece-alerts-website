@@ -1,29 +1,120 @@
 import Container from "./container";
+import IconRSS from "media/icon-rss@2x.png";
+import Image from "next/image";
+import Link from "next/link";
+import Logo from "./logo";
+import siteBrandBar from "media/site-brand-bar@2x.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Statically Generated with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://www.datocms.com/docs/next-js"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Read Documentation
-            </a>
-            <a
-              href="https://github.com/datocms/nextjs-demo"
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
+    <footer className="bg-white">
+      {/* footer - top */}
+      <div className="py-16 sm:py-20">
+        <Container>
+          <div className="grid gap-4 sm:gap-6">
+            {/* footer - top - logo */}
+            <h3>
+              <Link href="/" className="inline-block">
+                <Logo className="w-[82px] h-auto" />
+              </Link>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-none sm:grid-flow-col sm:auto-cols-auto gap-4 sm:gap-6">
+              {/* footer - top - site description */}
+              <div className="sm:col-span-2 md:col-auto">
+                <div className="max-w-[344px]">
+                  <p className="text-sm leading-normal">
+                    Incident & Alert Communications is efficitur ornare euismod.
+                    In at viverra turpis. Morbi cursus sapien nisi. Sed vitae
+                    rutrum massa, vitae semper est. Nunc suscipit, magna sed
+                    luctus tempus.
+                  </p>
+                </div>
+              </div>
+
+              {/* footer - top - links */}
+              <div className="md:col-auto flow-root">
+                <div className="max-w-[344px] -m-1 flex flex-col items-start">
+                  <Link
+                    href="https://www.datocms.com/docs/next-js"
+                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                  >
+                    Reece Workplace
+                  </Link>
+                  <Link
+                    href="https://github.com/datocms/nextjs-demo"
+                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                  >
+                    Reece Information Centre
+                  </Link>
+                  <Link
+                    href="https://github.com/datocms/nextjs-demo"
+                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                  >
+                    Contact People Service
+                  </Link>
+                </div>
+              </div>
+
+              {/* footer - top - buttons */}
+              <div className="sm:justify-self-end sm:row-start-2 md:row-auto">
+                <a
+                  href="https://tailwindui.com/?ref=top"
+                  className="border border-[#D9D9D9] rounded-full p-2 pr-5 text-sm font-medium tracking-wide inline-flex items-center space-x-2.5"
+                >
+                  <Image
+                    src={IconRSS}
+                    alt="RSS icon"
+                    className="size-[32px] w-[32px] h-[32px]"
+                  />
+                  <span>Subscribe to RSS</span>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
+
+      {/* footer -  bottom */}
+      <div className="py-5 sm:py-6 border-t border-[#D9D9D9]">
+        <Container>
+          <div className="flex flex-row justify-between">
+            <div className="text-xs">Copyright &copy; 2024, Reece Ltd.</div>
+
+            <div className="flow-root">
+              <div className="flex flex-row -m-1 space-x-1.5">
+                <Link
+                  href="//www.reece.com.au/privacy"
+                  className="text-xs hover:underline p-1"
+                  target="_blank"
+                  title="Reece Privacy Policy (opens in new tab)"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="//help.reece.com.au"
+                  className="text-xs hover:underline p-1"
+                  target="_blank"
+                  title="Reece Help Centre (opens in new tab)"
+                >
+                  Help
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* footer - brand bar */}
+      <div className="h-4 sm:h-5 md:h-6m lg:h-7 overflow-hidden">
+        <Image
+          src={siteBrandBar}
+          width={3580}
+          height={60}
+          className="min-w-full max-w-none w-auto h-full"
+          alt="Pattern of vertical stripes in navy blue and light grey"
+        />
+      </div>
     </footer>
   );
 }

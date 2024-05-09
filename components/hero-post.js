@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function HeroPost({
   title,
   // coverImage,
-  published,
+  posted,
   updated,
   excerpt,
   // author,
@@ -29,8 +29,16 @@ export default function HeroPost({
             </Link>
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
-            Published: <DateTime dateString={published} />
-            <br /> Updated: <DateTime dateString={updated} />
+            {posted && (
+              <>
+                Posted: <DateTime dateTimeString={posted} />
+              </>
+            )}
+            {updated && (
+              <>
+                <br /> Updated: <DateTime dateTimeString={updated} />
+              </>
+            )}
           </div>
         </div>
         <div>

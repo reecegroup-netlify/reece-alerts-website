@@ -6,7 +6,7 @@ import PostTitle from "./post-title";
 export default function PostHeader({
   title,
   // coverImage,
-  published,
+  posted,
   updated,
   // author,
 }) {
@@ -27,8 +27,16 @@ export default function PostHeader({
           <Avatar name={author.name} picture={author.picture} />
         </div> */}
         <div className="mb-6 text-lg">
-          Published: <DateTime dateString={published} />
-          <br /> Updated: <DateTime dateString={updated} />
+          {posted && (
+            <>
+              Posted: <DateTime dateTimeString={posted} />
+            </>
+          )}
+          {updated && (
+            <>
+              <br /> Updated: <DateTime dateTimeString={updated} />
+            </>
+          )}
         </div>
       </div>
     </>

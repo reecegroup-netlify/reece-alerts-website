@@ -11,10 +11,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className="color-[#575756]">
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
-          <main>
+          <main className="bg-[#F4F5F6]">
             {children}
           </main>
         </div>
