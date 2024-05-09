@@ -8,7 +8,7 @@ export default function Logo({ className }) {
         className={className}
         viewBox="0 0 110 41"
       >
-        <g clip-path="url(#a)">
+        <g clipPath="url(#a)">
           <mask
             id="b"
             style={{ maskType: "luminance" }}

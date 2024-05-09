@@ -26,7 +26,7 @@ export default function PostPreview({
           r="4.5"
           stroke="currentColor"
           className="fill-white dark:fill-slate-900"
-          stroke-width="2"
+          strokeWidth="2"
         ></circle>
       </svg>
       <div className="relative">
