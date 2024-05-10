@@ -16,9 +16,9 @@ export default function HeaderNav() {
           </li>
         )}
         {pathname === "/" && (
-        <li>
-          <ButtonSort />
-        </li>
+          <li>
+            <ButtonSort />
+          </li>
         )}
       </ul>
     </nav>

@@ -12,14 +12,14 @@ export default function ButtonSort({ fallback = defaultFallback }) {
         <span className="sr-only sm:not-sr-only">Sort</span>
         <ArrowsUpDownIcon className="size-4" />
       </MenuButton>
-      <MenuItems anchor="bottom end">
+      <MenuItems anchor="bottom end" className="border border-[#D9D9D9] rounded-lg bg-white mt-4 py-2 z-50">
         <MenuItem>
-          <a className="block font-sm data-[focus]:bg-blue-100" href="/asc">
+          <a className="block text-sm px-3 pr-10 py-1 data-[focus]:bg-blue-100" href="/asc">
             Newest to oldest
           </a>
         </MenuItem>
         <MenuItem>
-          <a className="block font-sm data-[focus]:bg-blue-100" href="/desc">
+          <a className="block text-sm px-3 pr-10 py-1 data-[focus]:bg-blue-100" href="/desc">
           Oldest to newest
           </a>
         </MenuItem>
