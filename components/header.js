@@ -11,7 +11,7 @@ export default function Header() {
       <BarBrand />
 
       {/* header */}
-      <div className="sticky top-0 z-40 w-full border-b border-[#F4F5F6] backdrop-blur flex-none transition-colors duration-500 lg:z-50 bg-white supports-backdrop-blur:bg-white/90 dark:bg-transparent">
+      <div className="sm:sticky top-0 z-40 w-full border-b border-[#F4F5F6] backdrop-blur flex-none transition-colors duration-500 lg:z-50 bg-white supports-backdrop-blur:bg-white/90">
         <Container>
           <div className="max-w-8xl mx-auto">
             <div className="py-4 sm:py-5 grid grid-flow-col auto-cols-auto gap-4 sm:gap-6 items-center">

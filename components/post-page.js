@@ -9,7 +9,6 @@ export function PostPage({ data }) {
 
   return (
     <>
-      <Header />
       <article>
         <PostHeader
           title={post.title}

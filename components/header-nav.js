@@ -8,7 +8,7 @@ export default function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="text-sm leading-snug dark:text-slate-200">
+    <nav className="text-sm leading-snug">
       <ul className="flex space-x-4">
         {pathname !== "/" && (
           <li>

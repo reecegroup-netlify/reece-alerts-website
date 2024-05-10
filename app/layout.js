@@ -2,6 +2,7 @@ import "./globals.css";
 
 import Alert from "@/components/alert";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 import { draftMode } from "next/headers";
 
@@ -10,12 +11,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="color-[#575756]">
+      <body className="bg-[#F4F5F6] color-[#575756]">
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
-          <main className="bg-[#F4F5F6]">
-            {children}
-          </main>
+          <Header />
+          <main className="my-8 sm:my-9 md:my-10">{children}</main>
         </div>
         <Footer />
       </body>
