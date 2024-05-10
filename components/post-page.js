@@ -1,11 +1,11 @@
 import Header from "./header";
-import MoreStories from "./more-stories";
+import PostList from "./post-list";
 import PostBody from "./post-body";
 import PostHeader from "./post-header";
 import SectionSeparator from "./section-separator";
 
 export function PostPage({ data }) {
-  const { post, morePosts } = data;
+  const { post, posts } = data;
 
   return (
     <>
@@ -20,7 +20,7 @@ export function PostPage({ data }) {
         <PostBody content={post.content} />
       </article>
       <SectionSeparator />
-      {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      {posts.length > 0 && <PostList posts={posts} />}
     </>
   );
 }

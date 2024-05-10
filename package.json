@@ -7,7 +7,7 @@
     "start": "next start",
     "export": "next build && next export",
     "analyze": "cross-env ANALYZE=true next build",
-    "lint": "next lint --fix --dir app --dir components --dir lib",
+    "lint": "next lint --fix --dir app --dir components --dir layouts --dir lib",
     "prepare": "husky"
   },
   "dependencies": {

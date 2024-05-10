@@ -11,7 +11,7 @@ export interface PaginationProps {
   currentPage: number
 }
 
-interface MoreStoriesProps {
+interface PostListProps {
   posts: any[];
   initialDisplayPosts?: any[];
   pagination?: PaginationProps;
@@ -44,7 +44,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   )
 }
 
-export default function MoreStories({ posts, initialDisplayPosts, pagination }: MoreStoriesProps) {
+export default function PostList({ posts, initialDisplayPosts, pagination }: PostListProps) {
   
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =

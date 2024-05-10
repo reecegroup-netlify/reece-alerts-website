@@ -65,7 +65,7 @@ const securityHeaders = [
       reactStrictMode: true,
       pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
       eslint: {
-        dirs: ['app', 'components', 'media'],
+        dirs: ['app', 'components', 'layouts', 'media'],
       },
       images: {
         remotePatterns: [

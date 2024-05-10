@@ -8,9 +8,9 @@ import { DraftPostPage } from '@/components/draft-post-page';
 import { PostPage } from '@/components/post-page';
 
 export async function generateStaticParams() {
-  const { allPosts } = await performRequest({ query: `{ allPosts { slug } }` });
+  const { posts } = await performRequest({ query: `{ posts: allPosts { slug } }` });
 
-  return allPosts.map(({ slug }) => slug);
+  return posts.map(({ slug }) => slug);
 }
 
 const PAGE_CONTENT_QUERY = `
@@ -44,7 +44,7 @@ const PAGE_CONTENT_QUERY = `
       posted: _firstPublishedAt
     }
 
-    morePosts: allPosts(orderBy: _firstPublishedAt_DESC, first: 2, filter: {slug: {neq: $slug}}) {
+    posts: allPosts(orderBy: _firstPublishedAt_DESC, first: 2, filter: {slug: {neq: $slug}}) {
       title
       slug
       excerpt

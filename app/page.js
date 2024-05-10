@@ -5,7 +5,7 @@ import { performRequest } from "@/lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 
 import { DraftPostIndex } from "@/components/draft-post-index";
-import { PostIndex } from "@/components/post-index";
+import { PostListLayout } from "layouts/PostListLayout";
 
 const PAGE_CONTENT_QUERY = `
   {
@@ -19,7 +19,7 @@ const PAGE_CONTENT_QUERY = `
         ...metaTagsFragment
       }
     }
-    allPosts(orderBy: _firstPublishedAt_DESC, first: 20) {
+    posts: allPosts(orderBy: _firstPublishedAt_DESC, first: 20) {
       title
       updated: _publishedAt
       posted: _firstPublishedAt
@@ -70,5 +70,5 @@ export default async function Page() {
     );
   }
 
-  return <PostIndex data={data} />;
+  return <PostListLayout data={data} />;
 }
