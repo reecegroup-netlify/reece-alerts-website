@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import ButtonBack from "./button-back.js";
+import ButtonBack from "./ButtonBack";
 import ButtonSort from "./ButtonSort";
 
 export default function HeaderNav() {
