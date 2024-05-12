@@ -5,14 +5,14 @@ import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 
 const defaultFallback = "/"; // Default fallback path if no history is present
 
-export default function ButtonBack({ fallback = defaultFallback }) {
+export default function ButtonBack(fallback: string = defaultFallback) {
   const router = useRouter();
 
   function handleBack() {
     if (window.history.length > 1) {
       router.back();
     } else {
-      router.push(fallback | "/");
+      router.push(fallback);
     }
   }
 
