@@ -18,7 +18,7 @@ const POST_LIST_QUERY = `
 `
 
 const PAGE_QUERY = `
-  query PostListPaginated($first: IntType, $skip: IntType) {
+  query PostListPaginated($first: IntType, $orderBy: [PostModelOrderBy], $skip: IntType) {
     site: _site {
       favicon: faviconMetaTags {
         ...metaTagsFragment
@@ -31,7 +31,7 @@ const PAGE_QUERY = `
       }
     }
 
-    initialDisplayPosts: allPosts(orderBy: _firstPublishedAt_DESC, first: $first, skip: $skip ) {
+    initialDisplayPosts: allPosts(orderBy: $orderBy, first: $first, skip: $skip ) {
       title
       updated: _publishedAt
       posted: _firstPublishedAt
@@ -47,7 +47,7 @@ const PAGE_QUERY = `
       }
     }
 
-    allPosts(orderBy: _firstPublishedAt_DESC ) {
+    allPosts(orderBy: $orderBy ) {
       title
       updated: _publishedAt
       posted: _firstPublishedAt
@@ -71,7 +71,7 @@ function getPostsRequest() {
   return { query: POST_LIST_QUERY, includeDrafts: false }
 }
 
-function getPageRequest(currentPage: number) {
+function getPageRequest(currentPage: number, orderDirection: 'ASC' | 'DESC' = 'DESC') {
   const { isEnabled } = draftMode();
 
   return { 
@@ -79,7 +79,8 @@ function getPageRequest(currentPage: number) {
     includeDrafts: isEnabled, 
     variables: { 
       first: POSTS_PER_PAGE,
-      skip: currentPage - 1
+      orderBy: `_firstPublishedAt_${orderDirection}`,
+      skip: (currentPage - 1) * POSTS_PER_PAGE
     } 
   };
 }
@@ -99,11 +100,14 @@ export const generateStaticParams = async () => {
 //   return toNextMetadata([...site.favicon, ...blog.seo]);
 // }
 
-export default async function Page({params}) {
+export default async function Page({params, searchParams}) {
   const { isEnabled } = draftMode();
   const { page: currentPage } = params;
+  
+  const { sort } = searchParams;
+  const sortDirection = sort && sort === 'asc' ? 'ASC' : 'DESC';
 
-  const pageRequest = getPageRequest(currentPage);
+  const pageRequest = getPageRequest(currentPage, sortDirection);
   const data = await performRequest(pageRequest);
   const {allPosts, initialDisplayPosts} = data;
 
