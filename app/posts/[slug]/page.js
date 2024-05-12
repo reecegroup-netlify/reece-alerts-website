@@ -20,6 +20,7 @@ const PAGE_CONTENT_QUERY = `
         ...metaTagsFragment
       }
     }
+    
     post(filter: {slug: {eq: $slug}}) {
       seo: _seoMetaTags {
         ...metaTagsFragment
@@ -73,11 +74,11 @@ export default async function Page({ params }) {
   const { isEnabled } = draftMode();
 
   const pageRequest = getPageRequest(params.slug);
-  const data = await performRequest(pageRequest);
+  const {posts} = await performRequest(pageRequest);
 
   console.log('params.slug', params.slug);
   console.log('pageRequest', pageRequest);
-  console.log('data', data);
+  console.log('posts', posts);
 
   if (isEnabled) {
     return (
@@ -92,5 +93,5 @@ export default async function Page({ params }) {
     );
   }
 
-  return <PostPage data={data} />;
+  return <PostPage posts={posts} />;
 }

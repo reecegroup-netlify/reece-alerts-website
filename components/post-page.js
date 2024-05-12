@@ -1,5 +1,5 @@
 import Header from "./header";
-import PostList from "./post-list";
+import PostList from "./PostList";
 import PostBody from "./post-body";
 import PostHeader from "./post-header";
 import SectionSeparator from "./section-separator";

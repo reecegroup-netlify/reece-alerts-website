@@ -6,7 +6,7 @@ const dedupedFetch = cache(
     includeDrafts = false,
     excludeInvalid = false,
     visualEditingBaseUrl = null,
-    revalidate = false,
+    revalidate = 0,
   ) => {
     const headers = {
       Authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
@@ -49,8 +49,8 @@ export async function performRequest({
   variables = {},
   includeDrafts = false,
   excludeInvalid = false,
-  visualEditingBaseUrl,
-  revalidate,
+  visualEditingBaseUrl = null,
+  revalidate = 0,
 }) {
   const { data } = await dedupedFetch(
     JSON.stringify({ query, variables, revalidate }),
