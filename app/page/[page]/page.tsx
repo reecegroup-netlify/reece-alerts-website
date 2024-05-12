@@ -100,7 +100,10 @@ export const generateStaticParams = async () => {
 //   return toNextMetadata([...site.favicon, ...blog.seo]);
 // }
 
-export default async function Page({params, searchParams}) {
+export default async function Page({params, searchParams}: {
+  params: { page: number }
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
   const { isEnabled } = draftMode();
   const { page: currentPage } = params;
   
