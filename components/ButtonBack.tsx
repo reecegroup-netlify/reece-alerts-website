@@ -5,7 +5,7 @@ import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 
 const defaultFallback = "/"; // Default fallback path if no history is present
 
-export default function ButtonBack(fallback: string = defaultFallback) {
+export default function ButtonBack({fallback = defaultFallback}) {
   const router = useRouter();
 
   function handleBack() {
