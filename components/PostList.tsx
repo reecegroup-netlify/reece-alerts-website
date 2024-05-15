@@ -4,31 +4,34 @@ import { usePathname } from "next/navigation";
 import Container from "./container";
 import Link from "next/link";
 import Panel from "./panel";
-import PostPreview from "./post-preview";
 import DateTime from "./date-time";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export interface PaginationProps {
-  totalPages: number
+  totalPosts: number
+  postsPerPage: number
   currentPage: number
 }
 
 interface PostListProps {
   posts: any[];
-  initialDisplayPosts?: any[];
-  pagination?: PaginationProps;
+  pagination: PaginationProps;
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
+function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) {
   const pathname = usePathname();
   const basePath = pathname.split('/')[1]
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const shownPostsStart = (currentPage * postsPerPage) - postsPerPage + 1;
+  const shownPostsEnd = currentPage * postsPerPage;
   const prevPage = currentPage - 1 > 0;
   const nextPage = currentPage + 1 <= totalPages
 
-  console.log(pathname, basePath)
-
   return (
-    <div>
+    <div className="mt-10">
+      <div className="grid">
+        <p>Showing <strong>{shownPostsStart}</strong> to <strong>{shownPostsEnd}</strong>{totalPages > 1 && <> of <strong>{totalPosts}</strong> posts</>}</p>
+      </div>
       <nav>
         {!prevPage && (
           <button disabled={!prevPage}>Prev</button>
@@ -36,7 +39,6 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
         {prevPage && (
           <Link href={currentPage -1 === 1 ? `/${basePath}` : `/${basePath}/page/${currentPage - 1}`} rel="prev">Prev</Link>
         )}
-        <span>{currentPage} of {totalPages}</span>
         {!nextPage && (
           <button disabled={!nextPage}>Next</button>
         )}
@@ -48,18 +50,13 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   )
 }
 
-export default function PostList({ posts, initialDisplayPosts, pagination }: PostListProps) {
-  
-  // If initialDisplayPosts exist, display it if no searchValue is specified
-  const displayPosts =
-    initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
-
+export default function PostList({ posts, pagination }: PostListProps) {
   return (
     <section>
       <Container>
         <Panel>
           <ul className="space-y-16">
-            {displayPosts.map((post) => (
+            {posts.map((post) => (
               <article className="relative group min-h-[192px]" key={post.slug}>
                 <div className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50"></div>
                 <svg
@@ -116,9 +113,7 @@ export default function PostList({ posts, initialDisplayPosts, pagination }: Pos
               </article>
             ))}
           </ul>
-          {pagination && pagination.totalPages > 1 && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-      )}
+        <Pagination {...pagination} />        
         </Panel>
       </Container>
     </section>

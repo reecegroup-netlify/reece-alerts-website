@@ -7,7 +7,9 @@ import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import { DraftPostIndex } from "@/components/draft-post-index";
 import { PostListLayout } from "layouts/PostListLayout";
 
-const POSTS_PER_PAGE = 2
+const DEFAULT_POSTS_PER_PAGE = 2
+const DEFAULT_POSTS_SORT_BY = 'firstPublishedAt'
+const DEFAULT_POSTS_SORT_DIRECTION = 'DESC'
 
 const POST_LIST_QUERY = `
   query PostList {
@@ -71,16 +73,16 @@ function getPostsRequest() {
   return { query: POST_LIST_QUERY, includeDrafts: false }
 }
 
-function getPageRequest(currentPage: number, orderDirection: 'ASC' | 'DESC' = 'DESC') {
+function getPageRequest(currentPage: number, orderDirection: 'ASC' | 'DESC' = DEFAULT_POSTS_SORT_DIRECTION) {
   const { isEnabled } = draftMode();
 
   return { 
     query: PAGE_QUERY, 
     includeDrafts: isEnabled, 
     variables: { 
-      first: POSTS_PER_PAGE,
-      orderBy: `_firstPublishedAt_${orderDirection}`,
-      skip: (currentPage - 1) * POSTS_PER_PAGE
+      first: DEFAULT_POSTS_PER_PAGE,
+      orderBy: `_${DEFAULT_POSTS_SORT_BY}_${orderDirection}`,
+      skip: (currentPage - 1) * DEFAULT_POSTS_PER_PAGE
     }
   };
 }
@@ -88,7 +90,7 @@ function getPageRequest(currentPage: number, orderDirection: 'ASC' | 'DESC' = 'D
 export const generateStaticParams = async () => {
   const { allPosts } = await performRequest(getPostsRequest());
 
-  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+  const totalPages = Math.ceil(allPosts.length / DEFAULT_POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
 
   return paths
@@ -108,7 +110,8 @@ export default async function Page({params, searchParams}: {
   const { page: currentPage } = params;
   
   const { sort } = searchParams;
-  const sortDirection = sort && sort === 'asc' ? 'ASC' : 'DESC';
+
+  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC';  
 
   const pageRequest = getPageRequest(currentPage, sortDirection);
   const data = await performRequest(pageRequest);
@@ -116,7 +119,7 @@ export default async function Page({params, searchParams}: {
 
   const pagination = {
     currentPage: currentPage,
-    totalPages: Math.ceil(allPosts.length / POSTS_PER_PAGE)
+    totalPages: Math.ceil(allPosts.length / DEFAULT_POSTS_PER_PAGE)
   }
 
   // const initialDisplayPosts = allPosts.slice(

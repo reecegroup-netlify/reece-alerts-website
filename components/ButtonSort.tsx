@@ -34,8 +34,8 @@ export default function ButtonSort({ fallback = defaultFallback }) {
         <MenuItem>
           <Link
             href={
-              // <pathname>?sort=asc
-              pathname + '?' + createQueryString('sort', 'asc')
+              // <pathname>?sort=ASC
+              pathname + '?' + createQueryString('sort', 'ASC')
             }
             className="block text-sm px-3 pr-10 py-1 data-[focus]:bg-blue-100"
           >
@@ -45,8 +45,8 @@ export default function ButtonSort({ fallback = defaultFallback }) {
         <MenuItem>
           <Link
             href={
-              // <pathname>?sort=desc
-              pathname + '?' + createQueryString('sort', 'desc')
+              // <pathname>?sort=DESC
+              pathname + '?' + createQueryString('sort', 'DESC')
             } 
             className="block text-sm px-3 pr-10 py-1 data-[focus]:bg-blue-100"
           >

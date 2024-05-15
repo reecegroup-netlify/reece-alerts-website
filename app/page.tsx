@@ -6,6 +6,7 @@ import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 
 import { DraftPostIndex } from "@/components/draft-post-index";
 import { PostListLayout } from "layouts/PostListLayout";
+import { PaginationProps } from "@/components/PostList";
 
 const POSTS_PER_PAGE = 2
 
@@ -23,7 +24,7 @@ const PAGE_QUERY = `
       }
     }
 
-    initialDisplayPosts: allPosts(orderBy: $orderBy, first: $first, skip: $skip ) {
+    posts: allPosts(orderBy: $orderBy, first: $first, skip: $skip ) {
       title
       updated: _publishedAt
       posted: _firstPublishedAt
@@ -83,15 +84,14 @@ export default async function Page() {
   const { isEnabled } = draftMode();
 
   const pageRequest = getPageRequest();
-  const data = await performRequest(pageRequest);
+  const { posts, allPosts } = await performRequest(pageRequest);
 
-  console.log('data', data)
-  
-  const { allPosts, initialDisplayPosts } = data
+  console.log(posts)
 
-  const pagination = {
-    currentPage: 1,
-    totalPages: Math.ceil(allPosts.length / POSTS_PER_PAGE)
+  const pagination: PaginationProps = {
+    totalPosts: allPosts.length,
+    postsPerPage: POSTS_PER_PAGE,
+    currentPage: 1
   }
 
   // if (isEnabled) {
@@ -107,5 +107,5 @@ export default async function Page() {
   //   );
   // }
 
-  return <PostListLayout posts={allPosts} initialDisplayPosts={initialDisplayPosts} pagination={pagination} />;
+  return <PostListLayout posts={posts} pagination={pagination} />;
 }
