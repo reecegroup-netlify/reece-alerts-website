@@ -81,7 +81,7 @@ function getPageRequest(currentPage: number, orderDirection: 'ASC' | 'DESC' = 'D
       first: POSTS_PER_PAGE,
       orderBy: `_firstPublishedAt_${orderDirection}`,
       skip: (currentPage - 1) * POSTS_PER_PAGE
-    } 
+    }
   };
 }
 

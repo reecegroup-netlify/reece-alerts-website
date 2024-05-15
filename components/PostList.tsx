@@ -82,7 +82,7 @@ export default function PostList({ posts, initialDisplayPosts, pagination }: Pos
                   <div className="mt-4 sm:mt-5 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-3">
                     <p>{post.excerpt}</p>
                   </div>
-                  <dl className="mt-4 sm:mt-5 grid grid-cols-[max-content_auto] grid-rows-3 row-start-2 gap-x-4 gap-y-2 items-center sm:absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
+                  <dl className="mt-4 sm:mt-5 grid grid-cols-[max-content_auto] grid-rows-3 row-start-2 gap-x-4 gap-y-2 items-center lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
                     {post.posted && (
                       <>
                         <dt className="text-xs tracking-wide sm:mb-2 uppercase">Posted</dt>
