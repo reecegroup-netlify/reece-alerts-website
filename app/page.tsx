@@ -7,72 +7,10 @@ import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 import { DraftPostIndex } from "@/components/draft-post-index";
 import { PostListLayout } from "layouts/PostListLayout";
 import { PaginationProps } from "@/components/PostList";
+import { config } from "@/lib/config";
+import { getPostsPaginated, getPostsAll } from "@/lib/queries";
 
-const POSTS_PER_PAGE = 2
-
-const PAGE_QUERY = `
-  query PostListPaginated($first: IntType, $orderBy: [PostModelOrderBy], $skip: IntType) {
-    site: _site {
-      favicon: faviconMetaTags {
-        ...metaTagsFragment
-      }
-    }
-
-    blog {
-      seo: _seoMetaTags {
-        ...metaTagsFragment
-      }
-    }
-
-    posts: allPosts(orderBy: $orderBy, first: $first, skip: $skip ) {
-      title
-      updated: _publishedAt
-      posted: _firstPublishedAt
-      slug
-      excerpt
-      category {
-        iconName
-        iconColour {
-          hex
-        }
-        name
-        slug
-      }
-    }
-
-    allPosts(orderBy: $orderBy ) {
-      title
-      updated: _publishedAt
-      posted: _firstPublishedAt
-      slug
-      excerpt
-      category {
-        iconName
-        iconColour {
-          hex
-        }
-        name
-        slug
-      }
-    }
-  }
-
-  ${metaTagsFragment}
-`;
-
-function getPageRequest(currentPage: number = 1, orderDirection = 'ASC') {
-  const { isEnabled } = draftMode();
-
-  return { 
-    query: PAGE_QUERY, 
-    includeDrafts: isEnabled, 
-    variables: { 
-      first: POSTS_PER_PAGE,
-      orderBy: `_firstPublishedAt_${orderDirection}`,
-      skip: (currentPage - 1) * POSTS_PER_PAGE
-    } 
-  };
-}
+const { POSTS_PER_PAGE } = config
 
 // export async function generateMetadata() {
 //   const data = await performRequest(getPageRequest());
@@ -81,15 +19,16 @@ function getPageRequest(currentPage: number = 1, orderDirection = 'ASC') {
 // }
 
 export default async function Page() {
-  const { isEnabled } = draftMode();
+  const { isEnabled: includeDrafts } = draftMode();
 
-  const pageRequest = getPageRequest();
-  const { posts, allPosts } = await performRequest(pageRequest);
+  const currentPage = 1;
 
-  console.log(posts)
+  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage));
+  const { postsAll } = await performRequest(getPostsAll());
+
 
   const pagination: PaginationProps = {
-    totalPosts: allPosts.length,
+    totalPosts: postsAll.length,
     postsPerPage: POSTS_PER_PAGE,
     currentPage: 1
   }
@@ -107,5 +46,5 @@ export default async function Page() {
   //   );
   // }
 
-  return <PostListLayout posts={posts} pagination={pagination} />;
+  return <PostListLayout posts={postsPaginated} pagination={pagination} />;
 }
