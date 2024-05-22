@@ -1,5 +1,5 @@
-import Container from "../components/container";
-import Panel from "../components/panel";
+import Container from "../components/Container";
+import Panel from "../components/Panel";
 import { Post } from "@/components/Post";
 
 export function PostLayout({ post}) {

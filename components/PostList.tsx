@@ -1,9 +1,9 @@
 "use client"
 
 import { usePathname } from "next/navigation";
-import Container from "./container";
+import Container from "./Container";
 import Link from "next/link";
-import Panel from "./panel";
+import Panel from "./Panel";
 import DateTime from "./date-time";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
@@ -12,11 +12,6 @@ export interface PaginationProps {
   totalPosts: number
   postsPerPage: number
   currentPage: number
-}
-
-interface PostListProps {
-  posts: any[];
-  pagination: PaginationProps;
 }
 
 function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) {
@@ -74,6 +69,11 @@ function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) 
       </div>
     </div>
   )
+}
+
+interface PostListProps {
+  posts: any[];
+  pagination: PaginationProps;
 }
 
 export default function PostList({ posts, pagination }: PostListProps) {

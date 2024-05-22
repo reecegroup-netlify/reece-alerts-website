@@ -1,10 +1,14 @@
 import { StructuredText, Image as DatocmsImage } from 'react-datocms';
 import DateTime from "./date-time";
+import Container from './Container';
+import Panel from './Panel';
 
 export function Post({ post }) {
 
   return (
       <article>
+        <Container>
+          <Panel>
         <div className="py-10 px-4 md:px-6">
           <div className="relative py-2.5 md:py-4 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
 
@@ -71,6 +75,8 @@ export function Post({ post }) {
               </div>
               
           </div>
+          </Panel>
+        </Container>
       </article>
   );
 }

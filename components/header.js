@@ -1,5 +1,5 @@
 import BarBrand from "./bar-brand";
-import Container from "./container";
+import Container from "./Container";
 import HeaderNav from "./HeaderNav.tsx";
 import Link from "next/link";
 import Logo from "./logo";

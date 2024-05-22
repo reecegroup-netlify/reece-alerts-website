@@ -1,4 +1,4 @@
-import Container from "./container";
+import Container from "./Container";
 import IconRSS from "media/icon-rss@2x.png";
 import Image from "next/image";
 import Link from "next/link";
