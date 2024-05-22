@@ -4,8 +4,7 @@ import { toNextMetadata } from "react-datocms";
 import { performRequest } from "@/lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
 
-import { DraftPostPage } from '@/components/draft-post-page';
-import { PostPage } from '@/components/post-page';
+import { PostLayout } from '@/layouts/PostLayout';
 
 export async function generateStaticParams() {
   const { posts } = await performRequest({ query: `{ posts: allPosts { slug } }` });
@@ -74,24 +73,24 @@ export default async function Page({ params }) {
   const { isEnabled } = draftMode();
 
   const pageRequest = getPageRequest(params.slug);
-  const {posts} = await performRequest(pageRequest);
+  const { post } = await performRequest(pageRequest);
 
   console.log('params.slug', params.slug);
   console.log('pageRequest', pageRequest);
-  console.log('posts', posts);
+  console.log('post', post);
 
-  if (isEnabled) {
-    return (
-      <DraftPostPage
-        subscription={{
-          ...pageRequest,
-          initialData: data,
-          token: process.env.NEXT_DATOCMS_API_TOKEN,
-          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-        }}
-      />
-    );
-  }
+  // if (isEnabled) {
+  //   return (
+  //     <DraftPostPage
+  //       subscription={{
+  //         ...pageRequest,
+  //         initialData: data,
+  //         token: process.env.NEXT_DATOCMS_API_TOKEN,
+  //         environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
+  //       }}
+  //     />
+  //   );
+  // }
 
-  return <PostPage posts={posts} />;
+  return <PostLayout post={post} />;
 }
