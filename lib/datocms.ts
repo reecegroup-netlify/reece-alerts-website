@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import { cache } from 'react'
 
 const dedupedFetch = cache(
   async (
@@ -6,7 +6,7 @@ const dedupedFetch = cache(
     includeDrafts = false,
     excludeInvalid = false,
     visualEditingBaseUrl = null,
-    revalidate = 0,
+    revalidate = 0
   ) => {
     const headers = {
       Authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
@@ -21,28 +21,24 @@ const dedupedFetch = cache(
       ...(process.env.NEXT_DATOCMS_ENVIRONMENT
         ? { 'X-Environment': process.env.NEXT_DATOCMS_ENVIRONMENT }
         : {}),
-    };
+    }
 
     const response = await fetch('https://graphql.datocms.com/', {
       method: 'POST',
       headers,
       body,
       next: { revalidate },
-    });
+    })
 
-    const responseBody = await response.json();
+    const responseBody = await response.json()
 
     if (!response.ok) {
-      throw new Error(
-        `${response.status} ${response.statusText}: ${JSON.stringify(
-          responseBody,
-        )}`,
-      );
+      throw new Error(`${response.status} ${response.statusText}: ${JSON.stringify(responseBody)}`)
     }
 
-    return responseBody;
-  },
-);
+    return responseBody
+  }
+)
 
 export async function performRequest({
   query,
@@ -57,8 +53,8 @@ export async function performRequest({
     includeDrafts,
     excludeInvalid,
     visualEditingBaseUrl,
-    revalidate,
-  );
+    revalidate
+  )
 
-  return data;
+  return data
 }

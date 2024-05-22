@@ -1,14 +1,14 @@
-import { draftMode } from "next/headers";
-import { toNextMetadata } from "react-datocms";
+import { draftMode } from 'next/headers'
+import { toNextMetadata } from 'react-datocms'
 
-import { performRequest } from "@/lib/datocms";
-import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
+import { performRequest } from '@/lib/datocms'
+import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
 
-import { DraftPostIndex } from "@/components/draft-post-index";
-import { PostListLayout } from "layouts/PostListLayout";
-import { PaginationProps } from "@/components/PostList";
-import { config } from "@/lib/config";
-import { getPostsPaginated, getPostsAll } from "@/lib/queries";
+import { DraftPostIndex } from '@/components/draft-post-index'
+import { PostListLayout } from 'layouts/PostListLayout'
+import { PaginationProps } from '@/components/PostList'
+import { config } from '@/lib/config'
+import { getPostsPaginated, getPostsAll } from '@/lib/queries'
 
 const { POSTS_PER_PAGE } = config
 
@@ -19,18 +19,17 @@ const { POSTS_PER_PAGE } = config
 // }
 
 export default async function Page() {
-  const { isEnabled: includeDrafts } = draftMode();
+  const { isEnabled: includeDrafts } = draftMode()
 
-  const currentPage = 1;
+  const currentPage = 1
 
-  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage));
-  const { postsAll } = await performRequest(getPostsAll());
-
+  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage))
+  const { postsAll } = await performRequest(getPostsAll())
 
   const pagination: PaginationProps = {
     totalPosts: postsAll.length,
     postsPerPage: POSTS_PER_PAGE,
-    currentPage: 1
+    currentPage: 1,
   }
 
   // if (isEnabled) {
@@ -46,5 +45,5 @@ export default async function Page() {
   //   );
   // }
 
-  return <PostListLayout posts={postsPaginated} pagination={pagination} />;
+  return <PostListLayout posts={postsPaginated} pagination={pagination} />
 }

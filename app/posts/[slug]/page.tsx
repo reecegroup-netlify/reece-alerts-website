@@ -1,15 +1,15 @@
 import { draftMode } from 'next/headers'
-import { toNextMetadata } from "react-datocms";
+import { toNextMetadata } from 'react-datocms'
 
-import { performRequest } from "@/lib/datocms";
-import { metaTagsFragment, responsiveImageFragment } from "@/lib/fragments";
+import { performRequest } from '@/lib/datocms'
+import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
 
-import { PostLayout } from '@/layouts/PostLayout';
+import { PostLayout } from '@/layouts/PostLayout'
 
 export async function generateStaticParams() {
-  const { posts } = await performRequest({ query: `{ posts: allPosts { slug } }` });
+  const { posts } = await performRequest({ query: `{ posts: allPosts { slug } }` })
 
-  return posts.map(({ slug }) => slug);
+  return posts.map(({ slug }) => slug)
 }
 
 const PAGE_CONTENT_QUERY = `
@@ -55,29 +55,29 @@ const PAGE_CONTENT_QUERY = `
 
   ${responsiveImageFragment}
   ${metaTagsFragment}
-`;
+`
 
 function getPageRequest(slug) {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = draftMode()
 
-  return { query: PAGE_CONTENT_QUERY, includeDrafts: isEnabled, variables: { slug } };
+  return { query: PAGE_CONTENT_QUERY, includeDrafts: isEnabled, variables: { slug } }
 }
 
 export async function generateMetadata({ params }) {
   const { site, post } = await performRequest(getPageRequest(params.slug))
 
-  return toNextMetadata([ ...site.favicon, ...post.seo ])
+  return toNextMetadata([...site.favicon, ...post.seo])
 }
 
 export default async function Page({ params }) {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = draftMode()
 
-  const pageRequest = getPageRequest(params.slug);
-  const { post } = await performRequest(pageRequest);
+  const pageRequest = getPageRequest(params.slug)
+  const { post } = await performRequest(pageRequest)
 
-  console.log('params.slug', params.slug);
-  console.log('pageRequest', pageRequest);
-  console.log('post', post);
+  console.log('params.slug', params.slug)
+  console.log('pageRequest', pageRequest)
+  console.log('post', post)
 
   // if (isEnabled) {
   //   return (
@@ -92,5 +92,5 @@ export default async function Page({ params }) {
   //   );
   // }
 
-  return <PostLayout post={post} />;
+  return <PostLayout post={post} />
 }

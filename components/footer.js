@@ -1,9 +1,9 @@
-import Container from "./Container";
-import IconRSS from "media/icon-rss@2x.png";
-import Image from "next/image";
-import Link from "next/link";
-import Logo from "./logo";
-import BarBrand from "./bar-brand";
+import Container from './Container'
+import IconRSS from 'media/icon-rss@2x.png'
+import Image from 'next/image'
+import Link from 'next/link'
+import Logo from './logo'
+import BarBrand from './bar-brand'
 
 export default function Footer() {
   return (
@@ -15,41 +15,40 @@ export default function Footer() {
             {/* footer - top - logo */}
             <h3>
               <Link href="/" className="inline-block">
-                <Logo className="w-[82px] h-auto" />
+                <Logo className="h-auto w-[82px]" />
               </Link>
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-none sm:grid-flow-col sm:auto-cols-auto gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:auto-cols-auto sm:grid-flow-col sm:grid-cols-none sm:gap-6">
               {/* footer - top - site description */}
               <div className="sm:col-span-2 md:col-auto">
                 <div className="max-w-[344px]">
                   <p className="text-sm leading-normal">
-                    Incident & Alert Communications is efficitur ornare euismod.
-                    In at viverra turpis. Morbi cursus sapien nisi. Sed vitae
-                    rutrum massa, vitae semper est. Nunc suscipit, magna sed
-                    luctus tempus.
+                    Incident & Alert Communications is efficitur ornare euismod. In at viverra
+                    turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc
+                    suscipit, magna sed luctus tempus.
                   </p>
                 </div>
               </div>
 
               {/* footer - top - links */}
-              <div className="md:col-auto flow-root">
-                <div className="max-w-[344px] -m-1 flex flex-col items-start">
+              <div className="flow-root md:col-auto">
+                <div className="-m-1 flex max-w-[344px] flex-col items-start">
                   <Link
                     href="https://www.datocms.com/docs/next-js"
-                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
                   >
                     Reece Workplace
                   </Link>
                   <Link
                     href="https://github.com/datocms/nextjs-demo"
-                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
                   >
                     Reece Information Centre
                   </Link>
                   <Link
                     href="https://github.com/datocms/nextjs-demo"
-                    className="text-sm text-[#003057] font-medium hover:underline p-1"
+                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
                   >
                     Contact People Service
                   </Link>
@@ -57,10 +56,10 @@ export default function Footer() {
               </div>
 
               {/* footer - top - buttons */}
-              <div className="sm:justify-self-end sm:row-start-2 md:row-auto">
+              <div className="sm:row-start-2 sm:justify-self-end md:row-auto">
                 <Link
                   href="/"
-                  className="border border-[#D9D9D9] rounded-full p-1.5 sm:p-2 pr-4 sm:pr-5 text-sm font-medium tracking-wide inline-flex items-center space-x-2 sm:space-x-2.5"
+                  className="inline-flex items-center space-x-2 rounded-full border border-[#D9D9D9] p-1.5 pr-4 text-sm font-medium tracking-wide sm:space-x-2.5 sm:p-2 sm:pr-5"
                 >
                   <Image
                     src={IconRSS}
@@ -76,16 +75,16 @@ export default function Footer() {
       </div>
 
       {/* footer -  bottom */}
-      <div className="py-5 sm:py-6 border-t border-[#D9D9D9]">
+      <div className="border-t border-[#D9D9D9] py-5 sm:py-6">
         <Container>
           <div className="flex flex-row justify-between">
             <div className="text-xs">Copyright &copy; 2024, Reece Ltd.</div>
 
             <div className="flow-root">
-              <div className="flex flex-row -m-1 space-x-1.5">
+              <div className="-m-1 flex flex-row space-x-1.5">
                 <Link
                   href="//www.reece.com.au/privacy"
-                  className="text-xs hover:underline p-1"
+                  className="p-1 text-xs hover:underline"
                   target="_blank"
                   title="Reece Privacy Policy (opens in new tab)"
                 >
@@ -93,7 +92,7 @@ export default function Footer() {
                 </Link>
                 <Link
                   href="//help.reece.com.au"
-                  className="text-xs hover:underline p-1"
+                  className="p-1 text-xs hover:underline"
                   target="_blank"
                   title="Reece Help Centre (opens in new tab)"
                 >
@@ -108,5 +107,5 @@ export default function Footer() {
       {/* footer - brand bar */}
       <BarBrand />
     </footer>
-  );
+  )
 }

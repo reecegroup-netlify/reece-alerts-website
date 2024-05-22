@@ -11,7 +11,7 @@ export default function Logo({ className }) {
         <g clipPath="url(#a)">
           <mask
             id="b"
-            style={{ maskType: "luminance" }}
+            style={{ maskType: 'luminance' }}
             maskUnits="userSpaceOnUse"
             x="0"
             y="0"
@@ -38,5 +38,5 @@ export default function Logo({ className }) {
         </defs>
       </svg>
     </>
-  );
+  )
 }

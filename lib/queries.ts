@@ -1,6 +1,6 @@
-import { draftMode } from "next/headers";
-import { metaTagsFragment } from "./fragments";
-import { config } from "./config";
+import { draftMode } from 'next/headers'
+import { metaTagsFragment } from './fragments'
+import { config } from './config'
 
 const { POSTS_PER_PAGE, POSTS_SORT_BY } = config
 
@@ -36,18 +36,22 @@ const POSTS_PAGINATED_QUERY = `
   }
 
   ${metaTagsFragment}
-`;
+`
 
-export function getPostsPaginated(includeDrafts: boolean = false, currentPage: number, orderDirection: 'ASC' | 'DESC' = 'DESC') {
-  return { 
-    query: POSTS_PAGINATED_QUERY, 
-    includeDrafts: includeDrafts, 
-    variables: { 
+export function getPostsPaginated(
+  includeDrafts: boolean = false,
+  currentPage: number,
+  orderDirection: 'ASC' | 'DESC' = 'DESC'
+) {
+  return {
+    query: POSTS_PAGINATED_QUERY,
+    includeDrafts: includeDrafts,
+    variables: {
       first: POSTS_PER_PAGE,
       orderBy: `_${POSTS_SORT_BY}_${orderDirection}`,
-      skip: (currentPage - 1) * POSTS_PER_PAGE
-    }
-  };
+      skip: (currentPage - 1) * POSTS_PER_PAGE,
+    },
+  }
 }
 
 const POSTS_ALL_QUERY = `
@@ -82,14 +86,17 @@ const POSTS_ALL_QUERY = `
   }
 
   ${metaTagsFragment}
-`;
+`
 
-export function getPostsAll(includeDrafts: boolean = false, orderDirection: 'ASC' | 'DESC' = 'DESC') {
-  return { 
-    query: POSTS_ALL_QUERY, 
-    includeDrafts: includeDrafts, 
-    variables: { 
+export function getPostsAll(
+  includeDrafts: boolean = false,
+  orderDirection: 'ASC' | 'DESC' = 'DESC'
+) {
+  return {
+    query: POSTS_ALL_QUERY,
+    includeDrafts: includeDrafts,
+    variables: {
       orderBy: `_${POSTS_SORT_BY}_${orderDirection}`,
-    }
-  };
+    },
+  }
 }

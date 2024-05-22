@@ -1,19 +1,18 @@
-import { draftMode } from "next/headers";
-import { toNextMetadata } from "react-datocms";
+import { draftMode } from 'next/headers'
+import { toNextMetadata } from 'react-datocms'
 
-import { performRequest } from "@/lib/datocms";
+import { performRequest } from '@/lib/datocms'
 
-import { DraftPostIndex } from "@/components/draft-post-index";
-import { PostListLayout } from "layouts/PostListLayout";
-import { PaginationProps } from "@/components/PostList";
-import { config } from "@/lib/config";
-import { getPostsPaginated, getPostsAll } from "@/lib/queries";
-
+import { DraftPostIndex } from '@/components/draft-post-index'
+import { PostListLayout } from 'layouts/PostListLayout'
+import { PaginationProps } from '@/components/PostList'
+import { config } from '@/lib/config'
+import { getPostsPaginated, getPostsAll } from '@/lib/queries'
 
 const { POSTS_PER_PAGE } = config
 
 export const generateStaticParams = async () => {
-  const { postsAll } = await performRequest(getPostsAll());
+  const { postsAll } = await performRequest(getPostsAll())
 
   const totalPages = Math.ceil(postsAll.length / POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
@@ -27,22 +26,27 @@ export const generateStaticParams = async () => {
 //   return toNextMetadata([...site.favicon, ...blog.seo]);
 // }
 
-export default async function Page({params, searchParams}: {
+export default async function Page({
+  params,
+  searchParams,
+}: {
   params: { page: number }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const { isEnabled: includeDrafts } = draftMode();
+  const { isEnabled: includeDrafts } = draftMode()
 
-  const { page: currentPage } = params;
-  const { sort } = searchParams;
-  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC';  
-  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage, sortDirection));
-  const { postsAll } = await performRequest(getPostsAll());
+  const { page: currentPage } = params
+  const { sort } = searchParams
+  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
+  const { postsPaginated } = await performRequest(
+    getPostsPaginated(includeDrafts, currentPage, sortDirection)
+  )
+  const { postsAll } = await performRequest(getPostsAll())
 
   const pagination: PaginationProps = {
     totalPosts: postsAll.length,
     postsPerPage: POSTS_PER_PAGE,
-    currentPage: currentPage
+    currentPage: currentPage,
   }
 
   // if (isEnabled) {
@@ -58,5 +62,5 @@ export default async function Page({params, searchParams}: {
   //   );
   // }
 
-  return <PostListLayout posts={postsPaginated} pagination={pagination} />;
+  return <PostListLayout posts={postsPaginated} pagination={pagination} />
 }

@@ -1,3 +1,3 @@
 export default function Panel({ children }) {
-  return <div className="bg-white rounded-[10px]">{children}</div>;
+  return <div className="rounded-[10px] bg-white">{children}</div>
 }
