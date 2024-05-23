@@ -2,10 +2,11 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import DateTime from './DateTime'
+import MetaDateTime from './MetaDateTime'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
+import MetaCategory from './MetaCategory'
 
 export interface PaginationProps {
   totalPosts: number
@@ -155,7 +156,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                   <>
                     <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
                     <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <DateTime dateTime={post.posted} />
+                      <MetaDateTime dateTime={post.posted} />
                     </dd>
                   </>
                 )}
@@ -165,12 +166,12 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                       Updated
                     </dt>
                     <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <DateTime dateTime={post.updated} />
+                      <MetaDateTime dateTime={post.updated} />
                     </dd>
                   </>
                 )}
                 <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Status</dt>
-                <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">Status</dd>
+                <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6"><MetaCategory {...post.category} /></dd>
               </dl>
 
               {/* excerpt */}

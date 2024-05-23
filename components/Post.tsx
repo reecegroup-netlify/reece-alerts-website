@@ -1,5 +1,6 @@
 import { StructuredText, Image as DatocmsImage } from 'react-datocms'
-import DateTime from './DateTime'
+import MetaDateTime from './MetaDateTime'
+import MetaCategory from './MetaCategory'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
   post: any
@@ -40,7 +41,7 @@ export function Post({ post, ...props }: PostProps) {
                 <>
                   <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
                   <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <DateTime dateTime={post.posted} />
+                    <MetaDateTime dateTime={post.posted} />
                   </dd>
                 </>
               )}
@@ -48,12 +49,14 @@ export function Post({ post, ...props }: PostProps) {
                 <>
                   <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Updated</dt>
                   <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <DateTime dateTime={post.updated} />
+                    <MetaDateTime dateTime={post.updated} />
                   </dd>
                 </>
               )}
               <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Status</dt>
-              <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">Status</dd>
+              <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
+                <MetaCategory {...post.category} />
+              </dd>
             </dl>
 
             {/* content */}

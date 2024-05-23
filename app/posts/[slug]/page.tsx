@@ -40,6 +40,14 @@ const PAGE_CONTENT_QUERY = `
           }
         }
       }
+      category {
+        iconName
+        iconColour {
+          hex
+        }
+        name
+        slug
+      }
       updated: _publishedAt
       posted: _firstPublishedAt
     }
