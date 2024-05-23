@@ -12,7 +12,7 @@ export default function HeaderNav() {
   return (
     <nav className="text-sm leading-snug">
       <ul className="flex space-x-4">
-        {pathname !== '/' && (
+        {pathname !== '/' || !pathname.startsWith('/page') && (
           <li>
             <ButtonBack />
           </li>
