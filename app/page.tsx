@@ -2,7 +2,6 @@ import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
 
 import { performRequest } from '@/lib/datocms'
-import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
 
 import { DraftPostIndex } from '@/components/draft-post-index'
 import { PostListLayout } from 'layouts/PostListLayout'

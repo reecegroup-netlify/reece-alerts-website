@@ -2,11 +2,10 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import MetaDateTime from './MetaDateTime'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
-import MetaCategory from './MetaCategory'
+import MetaList from './MetaList'
 
 export interface PaginationProps {
   totalPosts: number
@@ -151,28 +150,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
               </h3>
 
               {/* meta */}
-              <dl className="left-0 top-0 mb-4 lg:absolute lg:left-auto lg:right-full lg:mb-5 lg:mr-[calc(6.5rem+1px)]">
-                {post.posted && (
-                  <>
-                    <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
-                    <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <MetaDateTime dateTime={post.posted} />
-                    </dd>
-                  </>
-                )}
-                {post.updated && (
-                  <>
-                    <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">
-                      Updated
-                    </dt>
-                    <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <MetaDateTime dateTime={post.updated} />
-                    </dd>
-                  </>
-                )}
-                <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Status</dt>
-                <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6"><MetaCategory {...post.category} /></dd>
-              </dl>
+              <MetaList {...post} />
 
               {/* excerpt */}
               <div className="dark:prose-dark prose prose-slate mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">

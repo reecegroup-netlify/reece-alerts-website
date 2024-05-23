@@ -1,6 +1,6 @@
-import { StructuredText, Image as DatocmsImage } from 'react-datocms'
-import MetaDateTime from './MetaDateTime'
-import MetaCategory from './MetaCategory'
+import { StructuredText, VideoPlayer as DatocmsVideoPlayer, Image as DatocmsImage } from 'react-datocms'
+import MetaList from './MetaList'
+import Image from 'next/image'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
   post: any
@@ -36,28 +36,7 @@ export function Post({ post, ...props }: PostProps) {
             </h1>
 
             {/* meta */}
-            <dl className="left-0 top-0 mb-4 lg:absolute lg:left-auto lg:right-full lg:mb-5 lg:mr-[calc(6.5rem+1px)]">
-              {post.posted && (
-                <>
-                  <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
-                  <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <MetaDateTime dateTime={post.posted} />
-                  </dd>
-                </>
-              )}
-              {post.updated && (
-                <>
-                  <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Updated</dt>
-                  <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <MetaDateTime dateTime={post.updated} />
-                  </dd>
-                </>
-              )}
-              <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Status</dt>
-              <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                <MetaCategory {...post.category} />
-              </dd>
-            </dl>
+            <MetaList {...post} />
 
             {/* content */}
             <div
@@ -67,8 +46,25 @@ export function Post({ post, ...props }: PostProps) {
               <StructuredText
                 data={post.content}
                 renderBlock={({ record }) => {
-                  if (record.__typename === 'ImageBlockRecord') {
+                  if (record.__typename === 'HtmlBlockRecord') {
+                    return <div id={record.id} dangerouslySetInnerHTML={{ __html: record.html }} />
+                  }
+
+                  if (record.__typename === 'ImageExternalBlockRecord') {
+                    return <Image src={record.url} alt={record.altText} title={record.titleCaption} />
+                  }
+
+                  if (record.__typename === 'ImageInternalBlockRecord') {
                     return <DatocmsImage data={record.image.responsiveImage} />
+                  }
+
+                  // @todo
+                  // if (record.__typename === 'VideoEmbeddedBlockRecord') {
+                  //   return <DatocmsImage data={record.image.responsiveImage} />
+                  // }
+
+                  if (record.__typename === 'VideoInternalBlockRecord') {
+                    return <><DatocmsVideoPlayer data={record.video.responsiveVideo} /></>
                   }
 
                   return (

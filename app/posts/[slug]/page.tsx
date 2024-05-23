@@ -2,7 +2,7 @@ import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
 
 import { performRequest } from '@/lib/datocms'
-import { metaTagsFragment, responsiveImageFragment } from '@/lib/fragments'
+import { metaTagsFragment } from '@/lib/fragments'
 
 import { PostLayout } from '@/layouts/PostLayout'
 
@@ -30,11 +30,48 @@ const PAGE_CONTENT_QUERY = `
         value
         blocks {
           __typename
-          ...on ImageInternalBlockRecord {
+          ... on HtmlBlockRecord {
+            id
+            html
+          }
+          ... on ImageExternalBlockRecord {
+            id
+            altText
+            titleCaption
+            url
+          }
+          ... on ImageInternalBlockRecord {
             id
             image {
-              responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
-                ...responsiveImageFragment
+              responsiveImage(imgixParams: {fit: clamp}) {
+                alt
+                base64
+                bgColor
+                title
+              }
+            }
+          }
+          ... on VideoEmbeddedBlockRecord {
+            id
+            videoUrl: url {
+              height
+              provider
+              providerUid
+              thumbnailUrl
+              title
+              url
+              width
+            }
+          }
+          ... on VideoInternalBlockRecord {
+            id
+            video {
+              responsiveVideo: video {
+                muxPlaybackId
+                title
+                width
+                height
+                blurUpThumb
               }
             }
           }
@@ -61,7 +98,6 @@ const PAGE_CONTENT_QUERY = `
     }
   }
 
-  ${responsiveImageFragment}
   ${metaTagsFragment}
 `
 

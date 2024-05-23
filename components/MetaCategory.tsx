@@ -1,6 +1,6 @@
-import { CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
+import { CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon } from '@heroicons/react/24/outline'
 
-interface Category {
+export interface Category {
   iconName: 'check-circle' | 'exclamation-triangle' | 'information-circle',
   iconColour: { hex: string },
   name: string,
@@ -12,7 +12,7 @@ interface MetaCategoryProps extends React.HTMLAttributes<HTMLDivElement>, Catego
 
 export default function MetaCategory({ iconName, iconColour, name }: MetaCategoryProps) {
 
-  const iconAttributes = { className: 'size-4', style: { color: iconColour.hex } }
+  const iconAttributes = { className: 'size-5', style: { color: iconColour.hex } }
 
   let iconHTML = <></>
   switch (iconName) {
@@ -29,7 +29,7 @@ export default function MetaCategory({ iconName, iconColour, name }: MetaCategor
 
   return (
     <div
-      className="inline-flex items-center text-sm font-normal sm:space-x-2"
+      className="inline-flex items-center space-x-1"
     >
       {iconHTML} <span>{name}</span>
     </div>
