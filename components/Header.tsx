@@ -1,4 +1,4 @@
-import BarBrand from './bar-brand'
+import BarBrand from './BarBrand'
 import Container from './Container'
 import HeaderNav from './HeaderNav.tsx'
 import Link from 'next/link'

@@ -1,5 +1,5 @@
 import { StructuredText, Image as DatocmsImage } from 'react-datocms'
-import DateTime from './date-time'
+import DateTime from './DateTime'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
   post: any

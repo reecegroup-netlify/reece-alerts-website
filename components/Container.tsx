@@ -1,5 +1,3 @@
-import { JSX } from 'react'
-
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export default function Container({ children, className, ...props }: ContainerProps) {

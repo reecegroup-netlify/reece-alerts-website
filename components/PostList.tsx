@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import DateTime from './date-time'
+import DateTime from './DateTime'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
