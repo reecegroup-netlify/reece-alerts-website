@@ -40,7 +40,7 @@ export function Post({ post, ...props }: PostProps) {
                 <>
                   <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
                   <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <DateTime dateTimeString={post.posted} />
+                    <DateTime dateTime={post.posted} />
                   </dd>
                 </>
               )}
@@ -48,7 +48,7 @@ export function Post({ post, ...props }: PostProps) {
                 <>
                   <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Updated</dt>
                   <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                    <DateTime dateTimeString={post.updated} />
+                    <DateTime dateTime={post.updated} />
                   </dd>
                 </>
               )}

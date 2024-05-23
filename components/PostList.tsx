@@ -155,7 +155,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                   <>
                     <dt className="mb-2 text-xs uppercase tracking-wide lg:mb-2.5">Posted</dt>
                     <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <DateTime dateTimeString={post.posted} />
+                      <DateTime dateTime={post.posted} />
                     </dd>
                   </>
                 )}
@@ -165,7 +165,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                       Updated
                     </dt>
                     <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
-                      <DateTime dateTimeString={post.updated} />
+                      <DateTime dateTime={post.updated} />
                     </dd>
                   </>
                 )}
