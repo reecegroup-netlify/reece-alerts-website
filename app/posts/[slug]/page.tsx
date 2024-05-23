@@ -36,9 +36,11 @@ const PAGE_CONTENT_QUERY = `
           }
           ... on ImageExternalBlockRecord {
             id
-            altText
-            titleCaption
-            url
+            alt
+            height
+            src
+            title
+            width
           }
           ... on ImageInternalBlockRecord {
             id

@@ -1,12 +1,18 @@
+'use client'
+
 import { StructuredText, VideoPlayer as DatocmsVideoPlayer, Image as DatocmsImage } from 'react-datocms'
 import MetaList from './MetaList'
 import Image from 'next/image'
+import ReactPlayer from 'react-player'
+import { usePathname } from 'next/navigation'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
   post: any
 }
 
 export function Post({ post, ...props }: PostProps) {
+  const pathname = usePathname()
+
   return (
     <article {...props}>
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">
@@ -51,7 +57,7 @@ export function Post({ post, ...props }: PostProps) {
                   }
 
                   if (record.__typename === 'ImageExternalBlockRecord') {
-                    return <Image src={record.url} alt={record.altText} title={record.titleCaption} />
+                    return <Image src={record.src} alt={record.alt} title={record.title} width={record.width} height={record.height} />
                   }
 
                   if (record.__typename === 'ImageInternalBlockRecord') {
@@ -60,11 +66,48 @@ export function Post({ post, ...props }: PostProps) {
 
                   // @todo
                   // if (record.__typename === 'VideoEmbeddedBlockRecord') {
-                  //   return <DatocmsImage data={record.image.responsiveImage} />
+
+                  //   const { height, provider, providerUid, title, url, width } = record.videoUrl
+
+                  //   return (
+                  //     <div id={record.id} className="relative" style={{ paddingTop: `${100 / (width / height)}%` }}>
+                  //       <ReactPlayer
+                  //         className="absolute t-0 l-0"
+                  //         url={url}
+                  //         title={title}
+                  //         width={'100%'}
+                  //         height={'100%'}
+                  //         config={{
+                  //           facebook: {
+                  //             // appId: '12345' @todo
+                  //           },
+                  //           vimeo: {
+                  //           },
+                  //           youtube: {
+                  //             playerVars: { rel: 0 }
+                  //           },
+                  //         }}
+                  //       /></div>)
+
+                  //   if (provider === 'youtube') {
+                  //     return <>
+                  //       <iframe width={width} height={height} src={`https://www.youtube.com/embed/${providerUid}`} title={title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                  //       <pre>{JSON.stringify(record, null, 2)}</pre>
+                  //     </>
+                  //   }
+
+                  //   if (provider === 'vimeo') {
+                  //     return <>
+                  //       <iframe src={`https://player.vimeo.com/video/${206175533}?h=0191652744`} width={width} height={height} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+                  //       <pre>{JSON.stringify(record, null, 2)}</pre>
+                  //     </>
+                  //   }
+
+                  //   return null;
                   // }
 
                   if (record.__typename === 'VideoInternalBlockRecord') {
-                    return <><DatocmsVideoPlayer data={record.video.responsiveVideo} /></>
+                    return <DatocmsVideoPlayer data={record.video.responsiveVideo} accentColor='#003057' />
                   }
 
                   return (
