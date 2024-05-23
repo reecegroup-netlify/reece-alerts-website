@@ -75,9 +75,9 @@ export default async function Page({ params }) {
   const pageRequest = getPageRequest(params.slug)
   const { post } = await performRequest(pageRequest)
 
-  console.log('params.slug', params.slug)
-  console.log('pageRequest', pageRequest)
-  console.log('post', post)
+  // console.log('params.slug', params.slug)
+  // console.log('pageRequest', pageRequest)
+  // console.log('post', post)
 
   // if (isEnabled) {
   //   return (
