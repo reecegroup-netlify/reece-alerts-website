@@ -60,10 +60,10 @@ export function Post({ post, ...props }: PostProps) {
                     return <div id={record.id} dangerouslySetInnerHTML={{ __html: record.html }} />
                   }
 
-                  // @todo
                   // if (record.__typename === 'ImageExternalBlockRecord') {
                   //   return (
                   //     <Image
+                  //       id={record.id}
                   //       src={record.src}
                   //       alt={record.alt}
                   //       title={record.title}
@@ -73,9 +73,9 @@ export function Post({ post, ...props }: PostProps) {
                   //   )
                   // }
 
-                  if (record.__typename === 'ImageInternalBlockRecord') {
-                    return <DatocmsImage data={record.image.responsiveImage} />
-                  }
+                  // if (record.__typename === 'ImageInternalBlockRecord') {
+                  //   return <DatocmsImage data={record.image.responsiveImage} />
+                  // }
 
                   // @todo
                   // if (record.__typename === 'VideoEmbeddedBlockRecord') {
@@ -119,14 +119,14 @@ export function Post({ post, ...props }: PostProps) {
                   //   return null;
                   // }
 
-                  if (record.__typename === 'VideoInternalBlockRecord') {
-                    return (
-                      <DatocmsVideoPlayer
-                        data={record.video.responsiveVideo}
-                        accentColor="#003057"
-                      />
-                    )
-                  }
+                  // if (record.__typename === 'VideoInternalBlockRecord') {
+                  //   return (
+                  //     <DatocmsVideoPlayer
+                  //       data={record.video.responsiveVideo}
+                  //       accentColor="#003057"
+                  //     />
+                  //   )
+                  // }
 
                   return (
                     <>

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import ButtonBack from './ButtonBack'
 import ButtonSort from './ButtonSort'
+import { Suspense } from 'react'
 
 export default function HeaderNav() {
   const pathname = usePathname()
@@ -18,7 +19,9 @@ export default function HeaderNav() {
         )}
         {(pathname === '/' || pathname.startsWith('/page')) && (
           <li>
-            <ButtonSort />
+            <Suspense>
+              <ButtonSort />
+            </Suspense>
           </li>
         )}
       </ul>
