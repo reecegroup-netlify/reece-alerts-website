@@ -119,7 +119,6 @@ interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function PostList({ posts, pagination, ...props }: PostListProps) {
   return (
     <section {...props}>
-
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">
         {/* timeline line */}
         <div className="absolute bottom-0 right-full top-3 mr-7 hidden w-px bg-slate-200 sm:block md:mr-[3.25rem] dark:bg-slate-800"></div>
@@ -159,10 +158,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                 </p>
               </div>
             </div>
-            <Link
-              className="flex items-center text-sm text-[#003057]"
-              href={`/posts/${post.slug}`}
-            >
+            <Link className="flex items-center text-sm text-[#003057]" href={`/posts/${post.slug}`}>
               <span className="absolute -inset-x-4 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></span>
               <span className="relative">
                 Read more<span className="sr-only">, {post.title}</span>

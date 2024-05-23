@@ -1,16 +1,11 @@
-type UnwantedKeys = "fill" | "xmlns" | 'viewBox' | 'children'
-interface LogoProps extends Omit<React.HTMLAttributes<SVGElement>, UnwantedKeys> { }
+type UnwantedKeys = 'fill' | 'xmlns' | 'viewBox' | 'children'
+interface LogoProps extends Omit<React.HTMLAttributes<SVGElement>, UnwantedKeys> {}
 
 export default function Logo({ ...props }: LogoProps) {
   return (
     <>
       <span className="sr-only">Reece</span>
-      <svg
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 110 41"
-        {...props}
-      >
+      <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 41" {...props}>
         <g clipPath="url(#a)">
           <mask
             id="b"

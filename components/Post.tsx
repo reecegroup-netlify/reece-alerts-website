@@ -1,6 +1,10 @@
 'use client'
 
-import { StructuredText, VideoPlayer as DatocmsVideoPlayer, Image as DatocmsImage } from 'react-datocms'
+import {
+  StructuredText,
+  VideoPlayer as DatocmsVideoPlayer,
+  Image as DatocmsImage,
+} from 'react-datocms'
 import MetaList from './MetaList'
 import Image from 'next/image'
 import ReactPlayer from 'react-player'
@@ -56,9 +60,18 @@ export function Post({ post, ...props }: PostProps) {
                     return <div id={record.id} dangerouslySetInnerHTML={{ __html: record.html }} />
                   }
 
-                  if (record.__typename === 'ImageExternalBlockRecord') {
-                    return <Image src={record.src} alt={record.alt} title={record.title} width={record.width} height={record.height} />
-                  }
+                  // @todo
+                  // if (record.__typename === 'ImageExternalBlockRecord') {
+                  //   return (
+                  //     <Image
+                  //       src={record.src}
+                  //       alt={record.alt}
+                  //       title={record.title}
+                  //       width={record.width}
+                  //       height={record.height}
+                  //     />
+                  //   )
+                  // }
 
                   if (record.__typename === 'ImageInternalBlockRecord') {
                     return <DatocmsImage data={record.image.responsiveImage} />
@@ -107,7 +120,12 @@ export function Post({ post, ...props }: PostProps) {
                   // }
 
                   if (record.__typename === 'VideoInternalBlockRecord') {
-                    return <DatocmsVideoPlayer data={record.video.responsiveVideo} accentColor='#003057' />
+                    return (
+                      <DatocmsVideoPlayer
+                        data={record.video.responsiveVideo}
+                        accentColor="#003057"
+                      />
+                    )
                   }
 
                   return (
