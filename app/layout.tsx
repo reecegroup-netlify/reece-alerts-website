@@ -1,8 +1,8 @@
 import './globals.css'
 
 import Alert from '@/components/alert'
-import Footer from '@/components/footer'
-import Header from '@/components/header'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 import { draftMode } from 'next/headers'
 

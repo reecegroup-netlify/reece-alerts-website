@@ -2,7 +2,7 @@ import Container from './Container'
 import IconRSS from 'media/icon-rss@2x.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from './logo'
+import Logo from './Logo'
 import BarBrand from './BarBrand'
 
 export default function Footer() {
