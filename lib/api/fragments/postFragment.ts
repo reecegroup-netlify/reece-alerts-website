@@ -32,11 +32,17 @@ export const postFragment = `
         ... on ImageInternalBlockRecord {
           id
           image {
-            responsiveImage(imgixParams: {fit: clamp}) {
+            responsiveImage(imgixParams: {maxW: "600", auto: format}) {
+              srcSet
+              webpSrcSet
+              sizes
+              src
+              width
+              height
+              aspectRatio
               alt
-              base64
-              bgColor
               title
+              base64
             }
           }
         }
