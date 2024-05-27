@@ -14,7 +14,8 @@ export default async function Page() {
       className="dark:prose-dark prose prose-slate mb-5 prose-a:relative prose-a:z-10"
       id="main-content"
     >
-      <p>Subscribe to {config.SITE_TITLE} syndicated web feed formats:</p>
+      <p>Subscribe to {config.SITE_TITLE} syndicated web feeds</p>
+      <h2>Formats:</h2>
       <ul><li><Link href={'/feed.rss'}><abbr title='Really Simple Syndication'>RSS</abbr></Link></li><li><Link href={'/feed.atom'}>Atom</Link></li><li><Link href={'/feed.json'}><abbr title='JavaScript Object Notation'>JSON</abbr> Feed</Link></li></ul>
     </div>
 

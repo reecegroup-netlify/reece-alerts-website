@@ -3,8 +3,21 @@ import './globals.css'
 import Alert from '@/components/alert'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import getSiteUrl from '@/lib/utils/getSiteUrl'
+import { Metadata } from 'next'
 
 import { draftMode } from 'next/headers'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: getSiteUrl(),
+    types: {
+      'application/rss+xml': `${getSiteUrl()}/feed.rss`,
+      "application/atom+xml": `${getSiteUrl()}/feed.atom`,
+      "application/json": `${getSiteUrl()}/feed.json`,
+    },
+  }
+}
 
 export default function RootLayout({ children }) {
   const { isEnabled } = draftMode()
