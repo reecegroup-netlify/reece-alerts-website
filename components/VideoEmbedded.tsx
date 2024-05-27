@@ -11,7 +11,7 @@ interface VideoEmbeddedProps {
 
 export default function VideoEmbedded({ height, url, width }: VideoEmbeddedProps) {
     return (
-        <div className="relative" style={{ paddingTop: `${100 / (width / height)}%` }}>
+        <figure className="relative" style={{ paddingTop: `${100 / (width / height)}%` }}>
             <ReactPlayer
                 className="absolute top-0 left-0"
                 url={url}
@@ -39,7 +39,7 @@ export default function VideoEmbedded({ height, url, width }: VideoEmbeddedProps
                         }
                     },
                 }}
-            /></div>)
+            /></figure>)
 
 
 

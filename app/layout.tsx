@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <GoogleTagManager gtmId={config.gtmId} />
-      <body className="color-[#575756] bg-[#F4F5F6]">
+      <body className="text-[#575756] bg-[#F4F5F6]">
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
           <Header />

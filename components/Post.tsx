@@ -42,8 +42,9 @@ export function Post({ post, ...props }: PostProps) {
           </svg>
 
           <div className="relative">
+
             {/* title */}
-            <h1 className="mb-4 text-2xl font-medium tracking-tight text-[#003057] lg:mb-5">
+            <h1 className="heading-2xl mb-[0.8888889em] text-[#003057]">
               {post.title}
             </h1>
 
@@ -52,32 +53,33 @@ export function Post({ post, ...props }: PostProps) {
 
             {/* content */}
             <div
-              className="prose prose-slate mb-5 prose-a:relative prose-a:z-10"
+              className="prose mb-5 prose-a:relative prose-a:z-10"
               id="main-content"
             >
               <StructuredText
                 data={post.content}
                 renderBlock={({ record }) => {
                   if (record.__typename === 'HtmlBlockRecord') {
-                    return <div id={record.id} dangerouslySetInnerHTML={{ __html: record.html }} />
+                    return <figure dangerouslySetInnerHTML={{ __html: record.html }} />
                   }
 
                   if (record.__typename === 'ImageExternalBlockRecord') {
                     const { alt, height, src, title, width } = record;
 
                     return (
-                      <Image
+                      <figure><Image
                         src={src}
                         alt={alt}
                         title={title}
                         width={width}
                         height={height}
                       />
+                      </figure>
                     )
                   }
 
                   if (record.__typename === 'ImageInternalBlockRecord') {
-                    return <DatocmsImage data={record.image.responsiveImage} />
+                    return <figure><DatocmsImage data={record.image.responsiveImage} /></figure>
                   }
 
                   if (record.__typename === 'VideoEmbeddedBlockRecord') {
@@ -89,10 +91,10 @@ export function Post({ post, ...props }: PostProps) {
 
                   if (record.__typename === 'VideoInternalBlockRecord') {
                     return (
-                      <DatocmsVideoPlayer
+                      <figure><DatocmsVideoPlayer
                         data={record.video.responsiveVideo}
                         accentColor="#003057"
-                      />
+                      /></figure>
                     )
                   }
 

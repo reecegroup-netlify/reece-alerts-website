@@ -9,8 +9,8 @@ import { getPostsAll } from '@/lib/api/queries/getPostsAll'
 import { getPostsBySlug } from '@/lib/api/queries/getPostBySlug'
 
 export async function generateStaticParams() {
-  const { posts } = await performRequest(getPostsAll())
-  return posts.map(({ slug }) => slug)
+  const { postsAll } = await performRequest(getPostsAll())
+  return postsAll.map(({ slug }) => slug)
 }
 
 // export async function generateMetadata({ params }) {
