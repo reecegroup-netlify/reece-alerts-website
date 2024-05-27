@@ -90,7 +90,12 @@ module.exports = () => {
           permanent: true,
         },
         {
-          source: '/posts/1',
+          source: '/page',
+          destination: '/',
+          permanent: true,
+        },
+        {
+          source: '/page/1',
           destination: '/',
           permanent: true,
         },
