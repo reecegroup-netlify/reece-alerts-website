@@ -1,3 +1,10 @@
 @tailwind base;
+
+@layer base {
+  :focus-visible {
+    @apply outline-none ring ring-[#0f62fe] ring-offset-2;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;

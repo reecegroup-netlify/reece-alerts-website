@@ -42,20 +42,14 @@ export function Post({ post, ...props }: PostProps) {
           </svg>
 
           <div className="relative">
-
             {/* title */}
-            <h1 className="heading-2xl mb-[0.8888889em] text-[#003057]">
-              {post.title}
-            </h1>
+            <h1 className="mb-[0.8888889em] text-[#003057] heading-2xl">{post.title}</h1>
 
             {/* meta */}
             <MetaList {...post} />
 
             {/* content */}
-            <div
-              className="prose mb-5 prose-a:relative prose-a:z-10"
-              id="main-content"
-            >
+            <div className="prose mb-5 prose-a:relative prose-a:z-10" id="main-content">
               <StructuredText
                 data={post.content}
                 renderBlock={({ record }) => {
@@ -64,37 +58,36 @@ export function Post({ post, ...props }: PostProps) {
                   }
 
                   if (record.__typename === 'ImageExternalBlockRecord') {
-                    const { alt, height, src, title, width } = record;
+                    const { alt, height, src, title, width } = record
 
                     return (
-                      <figure><Image
-                        src={src}
-                        alt={alt}
-                        title={title}
-                        width={width}
-                        height={height}
-                      />
+                      <figure>
+                        <Image src={src} alt={alt} title={title} width={width} height={height} />
                       </figure>
                     )
                   }
 
                   if (record.__typename === 'ImageInternalBlockRecord') {
-                    return <figure><DatocmsImage data={record.image.responsiveImage} /></figure>
+                    return (
+                      <figure>
+                        <DatocmsImage data={record.image.responsiveImage} />
+                      </figure>
+                    )
                   }
 
                   if (record.__typename === 'VideoEmbeddedBlockRecord') {
                     const { height, url, width } = record.videoUrl
-                    return (
-                      <VideoEmbedded height={height} url={url} width={width} />
-                    )
+                    return <VideoEmbedded height={height} url={url} width={width} />
                   }
 
                   if (record.__typename === 'VideoInternalBlockRecord') {
                     return (
-                      <figure><DatocmsVideoPlayer
-                        data={record.video.responsiveVideo}
-                        accentColor="#003057"
-                      /></figure>
+                      <figure>
+                        <DatocmsVideoPlayer
+                          data={record.video.responsiveVideo}
+                          accentColor="#003057"
+                        />
+                      </figure>
                     )
                   }
 
@@ -104,8 +97,7 @@ export function Post({ post, ...props }: PostProps) {
                       <pre>{JSON.stringify(record, null, 2)}</pre>
                     </>
                   )
-                }
-                }
+                }}
               />
             </div>
           </div>

@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { isEnabled } = draftMode()
 
   // slug from params
-  const { slug } = params;
+  const { slug } = params
 
   // query posts eq slug
   const { post } = await performRequest(getPostsBySlug(isEnabled, slug))

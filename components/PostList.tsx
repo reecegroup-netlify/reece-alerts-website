@@ -144,16 +144,14 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
 
             <div className="relative">
               {/* title */}
-              <h3 className="mb-4 heading-lg font-medium text-[#003057] lg:mb-5">
-                {post.title}
-              </h3>
+              <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">{post.title}</h3>
 
               {/* meta */}
               <MetaList {...post} />
 
               {/* excerpt */}
               <div className="prose mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">
-                <p className=''>
+                <p className="">
                   {post.excerpt} {post.excerpt} {post.excerpt} {post.excerpt}
                 </p>
               </div>

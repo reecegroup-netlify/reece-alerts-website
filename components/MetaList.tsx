@@ -22,7 +22,7 @@ export default function MetaList({
     <dl className={className ? `${classNameDefault} ${className}` : classNameDefault} {...props}>
       {posted && (
         <>
-          <dt className="mb-2 subheading-xs text-[#7C7575] lg:mb-2.5">Posted</dt>
+          <dt className="mb-2 text-[#7C7575] subheading-xs lg:mb-2.5">Posted</dt>
           <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
             <MetaDateTime dateTime={posted} />
           </dd>
@@ -30,13 +30,17 @@ export default function MetaList({
       )}
       {updated && (
         <>
-          <dt className="mb-2 subheading-xs uppercase tracking-wide text-[#7C7575] lg:mb-2.5">Updated</dt>
+          <dt className="mb-2 uppercase tracking-wide text-[#7C7575] subheading-xs lg:mb-2.5">
+            Updated
+          </dt>
           <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
             <MetaDateTime dateTime={updated} />
           </dd>
         </>
       )}
-      <dt className="mb-2 subheading-xs uppercase tracking-wide text-[#7C7575] lg:mb-2.5">Status</dt>
+      <dt className="mb-2 uppercase tracking-wide text-[#7C7575] subheading-xs lg:mb-2.5">
+        Status
+      </dt>
       <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
         <MetaCategory {...category} />
       </dd>

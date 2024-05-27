@@ -29,7 +29,9 @@ export default async function Page({ searchParams }) {
   const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
 
   // query posts paginated  + posts all
-  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage, sortDirection))
+  const { postsPaginated } = await performRequest(
+    getPostsPaginated(includeDrafts, currentPage, sortDirection)
+  )
   const { postsAll } = await performRequest(getPostsAll())
 
   // build the pagination object

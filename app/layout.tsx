@@ -9,18 +9,15 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
 import { Metadata } from 'next'
 
-
-
-
 export const metadata: Metadata = {
   alternates: {
     canonical: getSiteUrl(),
     types: {
       'application/rss+xml': `${getSiteUrl()}/feed.rss`,
-      "application/atom+xml": `${getSiteUrl()}/feed.atom`,
-      "application/json": `${getSiteUrl()}/feed.json`,
+      'application/atom+xml': `${getSiteUrl()}/feed.atom`,
+      'application/json': `${getSiteUrl()}/feed.json`,
     },
-  }
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <GoogleTagManager gtmId={config.gtmId} />
-      <body className="text-[#575756] bg-[#F4F5F6]">
+      <body className="bg-[#F4F5F6] text-[#575756]">
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
           <Header />

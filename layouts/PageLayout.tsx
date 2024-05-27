@@ -4,9 +4,7 @@ import Panel from '../components/Panel'
 export function PageLayout({ children }) {
   return (
     <Container>
-      <Panel>
-        {children}
-      </Panel>
+      <Panel>{children}</Panel>
     </Container>
   )
 }
