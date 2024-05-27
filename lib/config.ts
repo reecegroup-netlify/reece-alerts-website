@@ -32,6 +32,7 @@ const feedOptions: FeedOptions = {
 
 export const config = {
   feedOptions: feedOptions,
+  gtmId: '@todo',
 
   SITE_TITLE,
 

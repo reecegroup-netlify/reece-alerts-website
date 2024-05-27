@@ -1,12 +1,16 @@
 import './globals.css'
 
 import Alert from '@/components/alert'
+import { config } from '@/lib/config'
+import { draftMode } from 'next/headers'
 import Footer from '@/components/Footer'
-import Header from '@/components/Header'
 import getSiteUrl from '@/lib/utils/getSiteUrl'
+import { GoogleTagManager } from '@next/third-parties/google'
+import Header from '@/components/Header'
 import { Metadata } from 'next'
 
-import { draftMode } from 'next/headers'
+
+
 
 export const metadata: Metadata = {
   alternates: {
@@ -19,11 +23,12 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = draftMode()
 
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={config.gtmId} />
       <body className="color-[#575756] bg-[#F4F5F6]">
         <div className="min-h-screen">
           <Alert preview={isEnabled} />
