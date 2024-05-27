@@ -33,10 +33,7 @@ const feedOptions: FeedOptions = {
 export const config = {
   feedOptions: feedOptions,
 
-  RSS_TITLE: SITE_TITLE,
-  RSS_LINK: SITE_URL,
-  RSS_DESCRIPTION: SITE_DESCRIPTION,
-  RSS_COPYRIGHT: SITE_COPYRIGHT,
+  SITE_TITLE,
 
   POSTS_PER_PAGE: 10,
   POSTS_SORT_BY: 'firstPublishedAt',
