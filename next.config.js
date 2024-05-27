@@ -89,6 +89,11 @@ module.exports = () => {
           destination: '/',
           permanent: true,
         },
+        {
+          source: '/posts/1',
+          destination: '/',
+          permanent: true,
+        },
       ]
     },
   })
