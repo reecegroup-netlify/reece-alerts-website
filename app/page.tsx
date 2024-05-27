@@ -24,7 +24,6 @@ export default async function Page() {
   const currentPage = 1
 
   const data = await performRequest(getPostsPaginated(includeDrafts, currentPage))
-  console.log('data', data)
 
   const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage))
   const { postsAll } = await performRequest(getPostsAll())
