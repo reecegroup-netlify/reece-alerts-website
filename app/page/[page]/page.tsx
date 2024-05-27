@@ -36,12 +36,15 @@ export default async function Page({
 }) {
   const { isEnabled: includeDrafts } = draftMode()
 
+  // the current pagination page
   const { page: currentPage } = params
+
+  // sort direction from page params
   const { sort } = searchParams
   const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
-  const { postsPaginated } = await performRequest(
-    getPostsPaginated(includeDrafts, currentPage, sortDirection)
-  )
+
+  // query posts paginated  + posts all
+  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage, sortDirection))
   const { postsAll } = await performRequest(getPostsAll())
 
   const pagination: PaginationProps = {

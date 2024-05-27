@@ -18,20 +18,24 @@ const { POSTS_PER_PAGE } = config
 //   return toNextMetadata([...site.favicon, ...blog.seo]);
 // }
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
   const { isEnabled: includeDrafts } = draftMode()
 
+  // the current pagination page
   const currentPage = 1
 
-  const data = await performRequest(getPostsPaginated(includeDrafts, currentPage))
+  // sort direction from page params
+  const { sort } = searchParams
+  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
 
-  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage))
+  // query posts paginated  + posts all
+  const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage, sortDirection))
   const { postsAll } = await performRequest(getPostsAll())
 
   const pagination: PaginationProps = {
     totalPosts: postsAll.length,
     postsPerPage: POSTS_PER_PAGE,
-    currentPage: 1,
+    currentPage: currentPage,
   }
 
   // if (isEnabled) {
