@@ -58,7 +58,7 @@ export default function Footer() {
               {/* footer - top - buttons */}
               <div className="sm:row-start-2 sm:justify-self-end md:row-auto">
                 <Link
-                  href="/"
+                  href="/feeds"
                   className="inline-flex items-center space-x-2 rounded-full border border-[#D9D9D9] p-1.5 pr-4 text-sm font-medium tracking-wide sm:space-x-2.5 sm:p-2 sm:pr-5"
                 >
                   <Image
@@ -66,7 +66,7 @@ export default function Footer() {
                     alt="RSS icon"
                     className="size-[28px] md:size-[30px] lg:size-[32px]"
                   />
-                  <span>Subscribe to RSS</span>
+                  <span>Subscribe to web feed</span>
                 </Link>
               </div>
             </div>

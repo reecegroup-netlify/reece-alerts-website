@@ -1,8 +1,8 @@
 import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
 
-import { performRequest } from '@/lib/datocms'
-import { metaTagsFragment } from '@/lib/fragments'
+import { performRequest } from '@/lib/api/datocms'
+import { metaTagsFragment } from '@/lib/api/fragments/metaTagsFragment'
 
 import { PostLayout } from '@/layouts/PostLayout'
 

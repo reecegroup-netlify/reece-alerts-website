@@ -1,13 +1,14 @@
 import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
 
-import { performRequest } from '@/lib/datocms'
+import { performRequest } from '@/lib/api/datocms'
 
 import { DraftPostIndex } from '@/components/draft-post-index'
 import { PostListLayout } from 'layouts/PostListLayout'
 import { PaginationProps } from '@/components/PostList'
 import { config } from '@/lib/config'
-import { getPostsPaginated, getPostsAll } from '@/lib/queries'
+import { getPostsAll } from '@/lib/api/queries/getPostsAll'
+import { getPostsPaginated } from '@/lib/api/queries/getPostsPaginated'
 
 const { POSTS_PER_PAGE } = config
 
