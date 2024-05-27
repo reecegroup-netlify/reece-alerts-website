@@ -19,7 +19,7 @@ export default function ButtonBack({ fallback = defaultFallback }) {
   return (
     <button
       type="button"
-      className="inline-flex items-center rounded-lg border border-[#D9D9D9] px-3 py-1.5 text-sm font-normal tracking-wide sm:space-x-2 sm:px-4 sm:py-2"
+      className="inline-flex items-center rounded-lg border border-[#EDEDED] hover:border-[#003057] focus:border-[#003057] px-3 py-1.5 text-sm leading-[1.18125rem] font-normal tracking-wide text-[#003057] sm:space-x-2 sm:px-4 sm:py-2"
       onClick={handleBack}
     >
       <ArrowLeftIcon className="size-4" />
