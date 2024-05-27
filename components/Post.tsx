@@ -7,9 +7,7 @@ import {
 } from 'react-datocms'
 import MetaList from './MetaList'
 import Image from 'next/image'
-import ReactPlayer from 'react-player'
 import { usePathname } from 'next/navigation'
-import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -64,36 +62,38 @@ export function Post({ post, ...props }: PostProps) {
                     return <div id={record.id} dangerouslySetInnerHTML={{ __html: record.html }} />
                   }
 
-                  // if (record.__typename === 'ImageExternalBlockRecord') {
-                  //   return (
-                  //     <Image
-                  //       id={record.id}
-                  //       src={record.src}
-                  //       alt={record.alt}
-                  //       title={record.title}
-                  //       width={record.width}
-                  //       height={record.height}
-                  //     />
-                  //   )
-                  // }
+                  if (record.__typename === 'ImageExternalBlockRecord') {
+                    const { alt, height, src, title, width } = record;
 
-                  // if (record.__typename === 'ImageInternalBlockRecord') {
-                  //   return <DatocmsImage data={record.image.responsiveImage} />
-                  // }
+                    return (
+                      <Image
+                        src={src}
+                        alt={alt}
+                        title={title}
+                        width={width}
+                        height={height}
+                      />
+                    )
+                  }
+
+                  if (record.__typename === 'ImageInternalBlockRecord') {
+                    return <DatocmsImage data={record.image.responsiveImage} />
+                  }
 
                   if (record.__typename === 'VideoEmbeddedBlockRecord') {
                     const { height, url, width } = record.videoUrl
                     return (
                       <VideoEmbedded height={height} url={url} width={width} />
                     )
+                  }
 
-                    // if (record.__typename === 'VideoInternalBlockRecord') {
-                    //   return (
-                    //     <DatocmsVideoPlayer
-                    //       data={record.video.responsiveVideo}
-                    //       accentColor="#003057"
-                    //     />
-                    //   )
+                  if (record.__typename === 'VideoInternalBlockRecord') {
+                    return (
+                      <DatocmsVideoPlayer
+                        data={record.video.responsiveVideo}
+                        accentColor="#003057"
+                      />
+                    )
                   }
 
                   return (
