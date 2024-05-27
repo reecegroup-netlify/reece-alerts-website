@@ -23,20 +23,20 @@ export function Post({ post, ...props }: PostProps) {
     <article {...props}>
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">
         {/* timeline line */}
-        <div className="absolute bottom-0 right-full top-3 mr-7 hidden w-px bg-slate-200 sm:block md:mr-[3.25rem] dark:bg-slate-800"></div>
+        <div className="absolute bottom-0 right-full top-3 mr-7 hidden w-px bg-slate-200 sm:block md:mr-[3.25rem]"></div>
 
         <div className="group relative mb-24" key={post.slug}>
           {/* timeline circle */}
           <svg
             viewBox="0 0 9 9"
-            className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 sm:block md:mr-12 dark:text-slate-600"
+            className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 sm:block md:mr-12"
           >
             <circle
               cx="4.5"
               cy="4.5"
               r="4.5"
               stroke="currentColor"
-              className="fill-white dark:fill-slate-900"
+              className="fill-white"
               strokeWidth="2"
             ></circle>
           </svg>
@@ -52,7 +52,7 @@ export function Post({ post, ...props }: PostProps) {
 
             {/* content */}
             <div
-              className="dark:prose-dark prose prose-slate mb-5 prose-a:relative prose-a:z-10"
+              className="prose prose-slate mb-5 prose-a:relative prose-a:z-10"
               id="main-content"
             >
               <StructuredText

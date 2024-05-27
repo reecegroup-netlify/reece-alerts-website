@@ -11,7 +11,7 @@ export default async function Page() {
     </h1>
 
     <div
-      className="dark:prose-dark prose prose-slate mb-5 prose-a:relative prose-a:z-10"
+      className="prose prose-slate mb-5 prose-a:relative prose-a:z-10"
       id="main-content"
     >
       <p>Subscribe to {config.SITE_TITLE} syndicated web feeds</p>
