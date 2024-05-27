@@ -9,10 +9,14 @@ import MetaList from './MetaList'
 import Image from 'next/image'
 import ReactPlayer from 'react-player'
 import { usePathname } from 'next/navigation'
+import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
   post: any
 }
+
+const VideoEmbedded = dynamic(() => import('./VideoEmbedded'), { ssr: false })
 
 export function Post({ post, ...props }: PostProps) {
   const pathname = usePathname()
@@ -77,56 +81,20 @@ export function Post({ post, ...props }: PostProps) {
                   //   return <DatocmsImage data={record.image.responsiveImage} />
                   // }
 
-                  // @todo
-                  // if (record.__typename === 'VideoEmbeddedBlockRecord') {
+                  if (record.__typename === 'VideoEmbeddedBlockRecord') {
+                    const { height, url, width } = record.videoUrl
+                    return (
+                      <VideoEmbedded height={height} url={url} width={width} />
+                    )
 
-                  //   const { height, provider, providerUid, title, url, width } = record.videoUrl
-
-                  //   return (
-                  //     <div id={record.id} className="relative" style={{ paddingTop: `${100 / (width / height)}%` }}>
-                  //       <ReactPlayer
-                  //         className="absolute t-0 l-0"
-                  //         url={url}
-                  //         title={title}
-                  //         width={'100%'}
-                  //         height={'100%'}
-                  //         config={{
-                  //           facebook: {
-                  //             // appId: '12345' @todo
-                  //           },
-                  //           vimeo: {
-                  //           },
-                  //           youtube: {
-                  //             playerVars: { rel: 0 }
-                  //           },
-                  //         }}
-                  //       /></div>)
-
-                  //   if (provider === 'youtube') {
-                  //     return <>
-                  //       <iframe width={width} height={height} src={`https://www.youtube.com/embed/${providerUid}`} title={title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                  //       <pre>{JSON.stringify(record, null, 2)}</pre>
-                  //     </>
-                  //   }
-
-                  //   if (provider === 'vimeo') {
-                  //     return <>
-                  //       <iframe src={`https://player.vimeo.com/video/${206175533}?h=0191652744`} width={width} height={height} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-                  //       <pre>{JSON.stringify(record, null, 2)}</pre>
-                  //     </>
-                  //   }
-
-                  //   return null;
-                  // }
-
-                  // if (record.__typename === 'VideoInternalBlockRecord') {
-                  //   return (
-                  //     <DatocmsVideoPlayer
-                  //       data={record.video.responsiveVideo}
-                  //       accentColor="#003057"
-                  //     />
-                  //   )
-                  // }
+                    // if (record.__typename === 'VideoInternalBlockRecord') {
+                    //   return (
+                    //     <DatocmsVideoPlayer
+                    //       data={record.video.responsiveVideo}
+                    //       accentColor="#003057"
+                    //     />
+                    //   )
+                  }
 
                   return (
                     <>
@@ -134,7 +102,8 @@ export function Post({ post, ...props }: PostProps) {
                       <pre>{JSON.stringify(record, null, 2)}</pre>
                     </>
                   )
-                }}
+                }
+                }
               />
             </div>
           </div>
