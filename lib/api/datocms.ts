@@ -32,7 +32,7 @@ const dedupedFetch = cache(
 
     const responseBody = await response.json()
 
-    if (!response.ok) {
+    if (!response.ok || responseBody.errors) {
       throw new Error(`${response.status} ${response.statusText}: ${JSON.stringify(responseBody)}`)
     }
 

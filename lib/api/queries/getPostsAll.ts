@@ -1,5 +1,6 @@
-import { config } from "@/lib/config"
-import { metaTagsFragment } from "../fragments/metaTagsFragment"
+import { config } from '@/lib/config'
+import { metaTagsFragment } from '../fragments/metaTagsFragment'
+import { postFragment } from '../fragments/postFragment'
 
 const { POSTS_SORT_BY } = config
 
@@ -18,23 +19,12 @@ const POSTS_ALL_QUERY = `
     }
 
     postsAll: allPosts(orderBy: $orderBy ) {
-      title
-      updated: _publishedAt
-      posted: _firstPublishedAt
-      slug
-      excerpt
-      category {
-        iconName
-        iconColour {
-          hex
-        }
-        name
-        slug
-      }
+      ...postFragment
     }
   }
 
   ${metaTagsFragment}
+  ${postFragment}
 `
 
 export function getPostsAll(
