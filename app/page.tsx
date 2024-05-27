@@ -24,7 +24,7 @@ export default async function Page({ searchParams }) {
   // the current pagination page
   const currentPage = 1
 
-  // sort direction from page params
+  // sort direction from searchParams
   const { sort } = searchParams
   const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
 
@@ -32,6 +32,7 @@ export default async function Page({ searchParams }) {
   const { postsPaginated } = await performRequest(getPostsPaginated(includeDrafts, currentPage, sortDirection))
   const { postsAll } = await performRequest(getPostsAll())
 
+  // build the pagination object
   const pagination: PaginationProps = {
     totalPosts: postsAll.length,
     postsPerPage: POSTS_PER_PAGE,
