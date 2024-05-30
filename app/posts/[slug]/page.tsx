@@ -1,23 +1,45 @@
 import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
-
 import { performRequest } from '@/lib/api/datocms'
-import { metaTagsFragment } from '@/lib/api/fragments/metaTagsFragment'
-
 import { PostLayout } from '@/layouts/PostLayout'
 import { getPostsAll } from '@/lib/api/queries/getPostsAll'
-import { getPostsBySlug } from '@/lib/api/queries/getPostBySlug'
+import { getPostBySlug } from '@/lib/api/queries/getPostBySlug'
+import { getMetaTagsPostBySlug } from '@/lib/api/queries/getMetaTagsPostBySlug'
+import { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const { postsAll } = await performRequest(getPostsAll())
   return postsAll.map(({ slug }) => slug)
 }
 
-// export async function generateMetadata({ params }) {
-//   const { site, post } = await performRequest(getPostsBySlug(params.slug))
-
-//   return toNextMetadata([...site.favicon, ...post.seo])
-// }
+export async function generateMetadata({ params }) {
+  const { post } = await performRequest(getMetaTagsPostBySlug(false, params.slug))
+  const datoMetadata = toNextMetadata([...post.seo])
+  const description = (post.seoSettings && post.seoSettings.description) ? post.seoSettings.description : post.excerpt
+  return {
+    ...datoMetadata,
+    title: {
+      default: datoMetadata.title,
+      template: '%s',
+      absolute: datoMetadata.title,
+    },
+    description: description,
+    openGraph: {
+      ...datoMetadata.openGraph,
+      description: description,
+      publishedTime: post.posted,
+      modifiedTime: post.updated,
+      tags: [post.category.name]
+    },
+    twitter: {
+      ...datoMetadata.twitter,
+      description: description,
+    },
+    alternates: {
+      canonical: `/${post.slug}`
+    }
+  } as Metadata
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { isEnabled } = draftMode()
@@ -26,7 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
 
   // query posts eq slug
-  const { post } = await performRequest(getPostsBySlug(isEnabled, slug))
+  const { post } = await performRequest(getPostBySlug(isEnabled, slug))
 
   // if (isEnabled) {
   //   return (

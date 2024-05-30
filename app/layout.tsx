@@ -7,17 +7,33 @@ import Footer from '@/components/Footer'
 import getSiteUrl from '@/lib/utils/getSiteUrl'
 import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
+import { toNextMetadata } from 'react-datocms/seo'
+import { performRequest } from '@/lib/api/datocms'
+import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
+import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: getSiteUrl(),
-    types: {
-      'application/rss+xml': `${getSiteUrl()}/feed.rss`,
-      'application/atom+xml': `${getSiteUrl()}/feed.atom`,
-      'application/json': `${getSiteUrl()}/feed.json`,
+export async function generateMetadata() {
+  const { site } = await performRequest(getFaviconMetaTagsSite())
+  const { blog } = await performRequest(getMetaTagsBlog())
+  const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
+
+  return {
+    ...datoMetadata,
+    title: {
+      template: '%s | Reece Incident & Alert Communications',
+      absolute: datoMetadata.title,
     },
-  },
+    metadataBase: new URL(getSiteUrl()),
+    alternates: {
+      canonical: '/',
+      types: {
+        'application/rss+xml': `/feed.rss`,
+        'application/atom+xml': `/feed.atom`,
+        'application/json': `/feed.json`,
+      },
+    },
+  } as Metadata
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

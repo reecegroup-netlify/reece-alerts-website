@@ -4,7 +4,7 @@ import { postFragment } from '../fragments/postFragment'
 
 const { POSTS_SORT_BY } = config
 
-const POSTS_ALL_QUERY = `
+const QUERY = `
   query PostsAll($orderBy: [PostModelOrderBy]) {
     site: _site {
       favicon: faviconMetaTags {
@@ -32,7 +32,7 @@ export function getPostsAll(
   orderDirection: 'ASC' | 'DESC' = 'DESC'
 ) {
   return {
-    query: POSTS_ALL_QUERY,
+    query: QUERY,
     includeDrafts: includeDrafts,
     variables: {
       orderBy: `_${POSTS_SORT_BY}_${orderDirection}`,

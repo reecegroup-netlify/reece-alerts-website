@@ -1,27 +1,28 @@
 import { metaTagsFragment } from '../fragments/metaTagsFragment'
-import { postFragment } from '../fragments/postFragment'
 
 const QUERY = `
   query PostBySlug($slug: String) {
-    site: _site {
-      favicon: faviconMetaTags {
-        ...metaTagsFragment
-      }
-    }
-    
     post(filter: {slug: {eq: $slug}}) {
       seo: _seoMetaTags {
         ...metaTagsFragment
       }
-      ...postFragment
+      excerpt
+      seoSettings {
+        description
+      }
+      slug
+      updated: _publishedAt
+      posted: _firstPublishedAt
+      category {
+        name
+      }
     }
   }
 
   ${metaTagsFragment}
-  ${postFragment}
 `
 
-export function getPostBySlug(includeDrafts: boolean = false, slug: string) {
+export function getMetaTagsPostBySlug(includeDrafts: boolean = false, slug: string) {
   return {
     query: QUERY,
     includeDrafts: includeDrafts,

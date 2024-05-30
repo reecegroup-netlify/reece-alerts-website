@@ -9,6 +9,9 @@ import { PaginationProps } from '@/components/PostList'
 import { config } from '@/lib/config'
 import { getPostsAll } from '@/lib/api/queries/getPostsAll'
 import { getPostsPaginated } from '@/lib/api/queries/getPostsPaginated'
+import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
+import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
+import { Metadata } from 'next'
 
 const { POSTS_PER_PAGE } = config
 
@@ -21,11 +24,36 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-// export const generateMetadata = async () => {
-//   const { site, blog } = await performRequest(getPageRequest());
+export async function generateMetadata({
+  params,
+}: {
+  params: { page: number }
+}) {
+  const { site } = await performRequest(getFaviconMetaTagsSite())
+  const { blog } = await performRequest(getMetaTagsBlog())
+  const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
 
-//   return toNextMetadata([...site.favicon, ...blog.seo]);
-// }
+  // the current pagination page
+  const { page: currentPage } = params
+
+  return {
+    ...datoMetadata,
+    title: {
+      absolute: datoMetadata.title + ` — page ${currentPage}`,
+    },
+    openGraph: {
+      ...datoMetadata.openGraph,
+      title: datoMetadata.openGraph.title + ` — page ${currentPage}`,
+    },
+    twitter: {
+      ...datoMetadata.twitter,
+      title: datoMetadata.twitter.title + ` — page ${currentPage}`,
+    },
+    alternates: {
+      canonical: `/posts/${currentPage}`
+    }
+  } as Metadata
+}
 
 export default async function Page({
   params,

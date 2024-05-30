@@ -1,8 +1,5 @@
 import { draftMode } from 'next/headers'
-import { toNextMetadata } from 'react-datocms'
-
 import { performRequest } from '@/lib/api/datocms'
-
 import { DraftPostIndex } from '@/components/draft-post-index'
 import { PostListLayout } from 'layouts/PostListLayout'
 import { PaginationProps } from '@/components/PostList'
@@ -11,12 +8,6 @@ import { getPostsAll } from '@/lib/api/queries/getPostsAll'
 import { getPostsPaginated } from '@/lib/api/queries/getPostsPaginated'
 
 const { POSTS_PER_PAGE } = config
-
-// export async function generateMetadata() {
-//   const data = await performRequest(getPageRequest());
-
-//   return toNextMetadata([...site.favicon, ...blog.seo]);
-// }
 
 export default async function Page({ searchParams }) {
   const { isEnabled: includeDrafts } = draftMode()

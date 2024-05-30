@@ -4,7 +4,7 @@ import { postFragment } from '../fragments/postFragment'
 
 const { POSTS_PER_PAGE, POSTS_SORT_BY } = config
 
-const POSTS_PAGINATED_QUERY = `
+const QUERY = `
   query PostsPaginated($first: IntType, $orderBy: [PostModelOrderBy], $skip: IntType) {
     site: _site {
       favicon: faviconMetaTags {
@@ -29,11 +29,11 @@ const POSTS_PAGINATED_QUERY = `
 
 export function getPostsPaginated(
   includeDrafts: boolean = false,
-  currentPage: number,
+  currentPage: number = 1,
   orderDirection: 'ASC' | 'DESC' = 'DESC'
 ) {
   return {
-    query: POSTS_PAGINATED_QUERY,
+    query: QUERY,
     includeDrafts: includeDrafts,
     variables: {
       first: POSTS_PER_PAGE,
