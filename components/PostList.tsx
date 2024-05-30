@@ -6,6 +6,7 @@ import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
 import MetaList from './MetaList'
+import Button from './Button'
 
 export interface PaginationProps {
   totalPosts: number
@@ -125,7 +126,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
 
         {posts.map((post) => (
           <article className="group relative mb-24" key={post.slug}>
-            <div className="absolute -inset-x-4 -inset-y-2.5 group-hover:bg-slate-50/70 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
+            <div className="absolute -inset-x-4 -inset-y-2.5 group-hover:bg-[#E6EAEE] sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
 
             {/* timeline circle */}
             <svg
@@ -142,7 +143,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
               ></circle>
             </svg>
 
-            <div className="relative">
+            <div className="relative z-10">
               {/* title */}
               <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">{post.title}</h3>
 
@@ -156,13 +157,13 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
                 </p>
               </div>
             </div>
-            <Link className="flex items-center text-sm text-[#003057]" href={`/posts/${post.slug}`}>
-              <span className="absolute -inset-x-4 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></span>
-              <span className="relative">
+            <Button href={`/posts/${post.slug}`} styleVariant='text' className='font-medium hover:no-underline'>
+              <span className='relative'>
                 Read more<span className="sr-only">, {post.title}</span>
               </span>
-              <ChevronRightIcon className="relative ml-1 mt-px size-4 overflow-visible" />
-            </Link>
+              <ChevronRightIcon className="relative mt-px size-4 overflow-visible" />
+              <span className="absolute -inset-x-4 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></span>
+            </Button>
           </article>
         ))}
       </div>

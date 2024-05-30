@@ -27,6 +27,12 @@ module.exports = {
     './layouts/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontSize: {
+      xs: ['.75rem', { lineHeight: '1.0125rem', letterSpacing: '-0.0015em' }],
+      sm: ['.875rem', { lineHeight: '1.18125rem', letterSpacing: '-0.00175em' }],
+      base: ['1rem', { lineHeight: '1.35rem', letterSpacing: '-0.002em' }],
+      lg: ['1.25rem', { lineHeight: '1.6875rem', letterSpacing: '-0.0025em' }],
+    },
     headingSize: {
       xs: ['0.75rem', { lineHeight: '0.85rem', letterSpacing: '-0.005em' }],
       sm: ['0.875rem', { lineHeight: '0.96rem', letterSpacing: '-0.005em' }],

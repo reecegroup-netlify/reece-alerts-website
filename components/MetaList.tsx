@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import MetaCategory, { Category } from './MetaCategory'
 import MetaDateTime from './MetaDateTime'
 
@@ -9,7 +10,7 @@ function DescriptionTerm({ children }: React.HTMLAttributes<HTMLElement>) {
 
 function DescriptionDetails({ children }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <dd className="mb-4 whitespace-nowrap text-sm lg:mb-5">{children}</dd>
+    <dd className="mb-4 whitespace-nowrap text-sm font-medium lg:mb-5">{children}</dd>
   )
 }
 
@@ -27,11 +28,12 @@ export default function MetaList({
   className,
   ...props
 }: MetaListProps) {
-  const classNameDefault =
-    'left-0 top-0 mb-4 lg:absolute lg:left-auto lg:right-full lg:mb-5 lg:mr-[calc(6.5rem+1px)] font-medium'
+
+  const initial = 'left-0 top-0 mb-4 lg:absolute lg:left-auto lg:right-full lg:mb-5 lg:mr-[calc(6.5rem+1px)]'
+  const metaListClass = clsx(initial, className)
 
   return (
-    <dl className={className ? `${classNameDefault} ${className}` : classNameDefault} {...props}>
+    <dl className={metaListClass} {...props}>
       {posted && (
         <>
           <DescriptionTerm>Posted</DescriptionTerm>
