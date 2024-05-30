@@ -1,6 +1,18 @@
 import MetaCategory, { Category } from './MetaCategory'
 import MetaDateTime from './MetaDateTime'
 
+function DescriptionTerm({ children }: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <dt className="mb-1.5 text-[#7C7575] subheading-xs lg:mb-2">{children}</dt>
+  )
+}
+
+function DescriptionDetails({ children }: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <dd className="mb-4 whitespace-nowrap text-sm lg:mb-5">{children}</dd>
+  )
+}
+
 interface MetaListProps extends React.HTMLAttributes<HTMLDListElement> {
   category: Category
   posted?: string
@@ -22,28 +34,28 @@ export default function MetaList({
     <dl className={className ? `${classNameDefault} ${className}` : classNameDefault} {...props}>
       {posted && (
         <>
-          <dt className="mb-2 text-[#7C7575] subheading-xs lg:mb-2.5">Posted</dt>
-          <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
+          <DescriptionTerm>Posted</DescriptionTerm>
+          <DescriptionDetails>
             <MetaDateTime dateTime={posted} />
-          </dd>
+          </DescriptionDetails>
         </>
       )}
       {updated && (
         <>
-          <dt className="mb-2 uppercase tracking-wide text-[#7C7575] subheading-xs lg:mb-2.5">
+          <DescriptionTerm>
             Updated
-          </dt>
-          <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
+          </DescriptionTerm>
+          <DescriptionDetails>
             <MetaDateTime dateTime={updated} />
-          </dd>
+          </DescriptionDetails>
         </>
       )}
-      <dt className="mb-2 uppercase tracking-wide text-[#7C7575] subheading-xs lg:mb-2.5">
+      <DescriptionTerm>
         Status
-      </dt>
-      <dd className="mb-5 whitespace-nowrap text-sm lg:mb-6">
+      </DescriptionTerm>
+      <DescriptionDetails>
         <MetaCategory {...category} />
-      </dd>
+      </DescriptionDetails>
     </dl>
   )
 }

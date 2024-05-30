@@ -5,6 +5,7 @@ import { ArrowsUpDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
+import Button from './Button'
 
 const defaultFallback = '/' // Default fallback path if no history is present
 
@@ -26,10 +27,12 @@ export default function ButtonSort({ fallback = defaultFallback }) {
 
   return (
     <Menu>
-      <MenuButton className="inline-flex items-center rounded-lg border border-[#EDEDED] px-3 py-1.5 text-sm font-normal leading-[1.18125rem] tracking-wide text-[#003057] hover:border-[#003057] focus:border-[#003057] sm:space-x-2 sm:px-4 sm:py-2">
-        <span className="sr-only sm:not-sr-only">Sort</span>
-        <ArrowsUpDownIcon className="size-4" />
-      </MenuButton>
+      <MenuButton>
+        <Button>
+          <span className="sr-only sm:not-sr-only">Sort</span>
+          <ArrowsUpDownIcon className="size-4" />
+        </Button>
+      </MenuButton >
       <MenuItems
         anchor="bottom end"
         className="z-50 mt-4 rounded-lg border border-[#D9D9D9] bg-white py-2"
@@ -57,6 +60,6 @@ export default function ButtonSort({ fallback = defaultFallback }) {
           </Link>
         </MenuItem>
       </MenuItems>
-    </Menu>
+    </Menu >
   )
 }
