@@ -143,7 +143,7 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
               ></circle>
             </svg>
 
-            <div className="relative z-10">
+            <div className="relative">
               {/* title */}
               <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">{post.title}</h3>
 
@@ -153,10 +153,11 @@ export default function PostList({ posts, pagination, ...props }: PostListProps)
               {/* excerpt */}
               <div className="prose mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">
                 <p className="">
-                  {post.excerpt} {post.excerpt} {post.excerpt} {post.excerpt}
+                  {post.excerpt}
                 </p>
               </div>
             </div>
+
             <Button href={`/posts/${post.slug}`} styleVariant='text' className='font-medium hover:no-underline'>
               <span className='relative'>
                 Read more<span className="sr-only">, {post.title}</span>

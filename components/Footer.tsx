@@ -34,25 +34,10 @@ export default function Footer() {
 
               {/* footer - top - links */}
               <div className="flow-root md:col-auto">
-                <div className="-m-1 flex max-w-[344px] flex-col items-start">
-                  <Link
-                    href="https://www.datocms.com/docs/next-js"
-                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
-                  >
-                    Reece Workplace
-                  </Link>
-                  <Link
-                    href="https://github.com/datocms/nextjs-demo"
-                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
-                  >
-                    Reece Information Centre
-                  </Link>
-                  <Link
-                    href="https://github.com/datocms/nextjs-demo"
-                    className="p-1 text-sm font-medium text-[#003057] hover:underline"
-                  >
-                    Contact People Service
-                  </Link>
+                <div className='sm:-mt-2 flex max-w-[344px] flex-col items-start'>
+                  <Button href="https://reece.workplace.com/" styleVariant='text' className='!font-medium'>Reece Workplace</Button>
+                  <Button href="https://teams.microsoft.com/l/app/d2c6f111-ffad-42a0-b65e-ee00425598aa" styleVariant='text' className='!font-medium'>Reece Information Centre</Button>
+                  <Button href="mailto:People.Services@reece.com.au" styleVariant='text' className='!font-medium'>Contact People Service</Button>
                 </div>
               </div>
 
@@ -64,7 +49,7 @@ export default function Footer() {
                 >
 
                 </Link> */}
-                <Button href="/feeds" stylePill>
+                <Button href="/feeds" stylePill className='!font-medium'>
                   <Image
                     src={IconRSS}
                     alt="RSS icon"
