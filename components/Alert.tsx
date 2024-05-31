@@ -5,8 +5,8 @@ export default function Alert({ preview }) {
   return (
     <div
       className={cn('border-b', {
-        'border-accent-7 bg-accent-7 text-white': preview,
-        'border-accent-2 bg-accent-1': !preview,
+        'bg-[#6FB1C8] text-white': preview,
+        'bg-[#E6EAEE]': !preview,
       })}
     >
       <Container>
@@ -16,7 +16,7 @@ export default function Alert({ preview }) {
               This is page is showing draft content.{' '}
               <a
                 href="/api/exit-draft"
-                className="underline transition-colors duration-200 hover:text-success"
+                className="underline transition-colors duration-200"
               >
                 Click here
               </a>{' '}
@@ -27,7 +27,7 @@ export default function Alert({ preview }) {
               This is page is showing published content.{' '}
               <a
                 href={`/api/draft?secret=${process.env.NEXT_DATOCMS_PREVIEW_SECRET}`}
-                className="underline transition-colors duration-200 hover:text-success"
+                className="underline transition-colors duration-200"
               >
                 Click here
               </a>{' '}

@@ -1,6 +1,6 @@
 import './globals.css'
 
-import Alert from '@/components/alert'
+import Alert from '@/components/Alert'
 import { config } from '@/lib/config'
 import { draftMode } from 'next/headers'
 import Footer from '@/components/Footer'

@@ -52,13 +52,6 @@ module.exports = {
       lg: ['1.25rem', { lineHeight: '1.375rem', letterSpacing: '0.005em', fontWeight: 700 }],
     },
     extend: {
-      colors: {
-        'accent-1': '#FAFAFA',
-        'accent-2': '#EAEAEA',
-        'accent-7': '#333',
-        success: '#0070f3',
-        cyan: '#79FFE1',
-      },
       letterSpacing: {
         wide: '0.02em',
       },
