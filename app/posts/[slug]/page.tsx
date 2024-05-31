@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { post } = await performRequest(getMetaTagsPostBySlug(false, params.slug))
   const datoMetadata = toNextMetadata([...post.seo])
-  const description = (post.seoSettings && post.seoSettings.description) ? post.seoSettings.description : post.excerpt
+  const description =
+    post.seoSettings && post.seoSettings.description ? post.seoSettings.description : post.excerpt
   return {
     ...datoMetadata,
     title: {
@@ -30,15 +31,15 @@ export async function generateMetadata({ params }) {
       description: description,
       publishedTime: post.posted,
       modifiedTime: post.updated,
-      tags: [post.category.name]
+      tags: [post.category.name],
     },
     twitter: {
       ...datoMetadata.twitter,
       description: description,
     },
     alternates: {
-      canonical: `/${post.slug}`
-    }
+      canonical: `/${post.slug}`,
+    },
   } as Metadata
 }
 
@@ -62,7 +63,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
         }}
       />
-    );
+    )
   }
 
   return <PostLayout data={data} />

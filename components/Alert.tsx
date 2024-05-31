@@ -14,10 +14,7 @@ export default function Alert({ preview }) {
           {preview ? (
             <>
               This is page is showing draft content.{' '}
-              <a
-                href="/api/exit-draft"
-                className="underline transition-colors duration-200"
-              >
+              <a href="/api/exit-draft" className="underline transition-colors duration-200">
                 Click here
               </a>{' '}
               to exit preview mode.

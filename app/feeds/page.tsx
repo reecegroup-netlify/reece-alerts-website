@@ -33,8 +33,8 @@ export async function generateMetadata() {
       description: PAGE_DESCRIPTION,
     },
     alternates: {
-      canonical: `/feeds`
-    }
+      canonical: `/feeds`,
+    },
   } as Metadata
 }
 

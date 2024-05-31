@@ -23,11 +23,7 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { page: number }
-}) {
+export async function generateMetadata({ params }: { params: { page: number } }) {
   const { site } = await performRequest(getFaviconMetaTagsSite())
   const { blog } = await performRequest(getMetaTagsBlog())
   const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
@@ -49,8 +45,8 @@ export async function generateMetadata({
       title: datoMetadata.twitter.title + ` — page ${currentPage}`,
     },
     alternates: {
-      canonical: `/posts/${currentPage}`
-    }
+      canonical: `/posts/${currentPage}`,
+    },
   } as Metadata
 }
 
@@ -84,7 +80,7 @@ export default async function Page({
         }}
         currentPage={currentPage}
       />
-    );
+    )
   }
 
   return <PostListLayout data={data} currentPage={currentPage} />

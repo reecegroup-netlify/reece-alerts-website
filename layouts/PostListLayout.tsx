@@ -6,7 +6,6 @@ import { config } from '@/lib/config'
 const { POSTS_PER_PAGE } = config
 
 export function PostListLayout({ data, currentPage = 1 }) {
-
   // posts paginated  + posts all from queried data
   const { postsPaginated, postsAll } = data
 

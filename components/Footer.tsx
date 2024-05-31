@@ -34,10 +34,28 @@ export default function Footer() {
 
               {/* footer - top - links */}
               <div className="flow-root md:col-auto">
-                <div className='sm:-mt-2 flex max-w-[344px] flex-col items-start'>
-                  <Button href="https://reece.workplace.com/" styleVariant='text' className='!font-medium'>Reece Workplace</Button>
-                  <Button href="https://teams.microsoft.com/l/app/d2c6f111-ffad-42a0-b65e-ee00425598aa" styleVariant='text' className='!font-medium'>Reece Information Centre</Button>
-                  <Button href="mailto:People.Services@reece.com.au" styleVariant='text' className='!font-medium'>Contact People Service</Button>
+                <div className="flex max-w-[344px] flex-col items-start sm:-mt-2">
+                  <Button
+                    href="https://reece.workplace.com/"
+                    styleVariant="text"
+                    className="!font-medium"
+                  >
+                    Reece Workplace
+                  </Button>
+                  <Button
+                    href="https://teams.microsoft.com/l/app/d2c6f111-ffad-42a0-b65e-ee00425598aa"
+                    styleVariant="text"
+                    className="!font-medium"
+                  >
+                    Reece Information Centre
+                  </Button>
+                  <Button
+                    href="mailto:People.Services@reece.com.au"
+                    styleVariant="text"
+                    className="!font-medium"
+                  >
+                    Contact People Service
+                  </Button>
                 </div>
               </div>
 
@@ -49,7 +67,7 @@ export default function Footer() {
                 >
 
                 </Link> */}
-                <Button href="/feeds" stylePill className='!font-medium'>
+                <Button href="/feeds" stylePill className="!font-medium">
                   <Image
                     src={IconRSS}
                     alt="RSS icon"

@@ -14,7 +14,7 @@ export default async function generateFeed() {
   await Promise.all(
     postsAll.map(
       async ({ category, excerpt, posted, slug, title, updated }) =>
-        new Promise<void>(async (resolve) => {
+        new Promise<void>((resolve) => {
           const itemCategory: Category = { name: category.name }
           const itemUrl = `${siteURL}/posts/${slug}`
 

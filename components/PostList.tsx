@@ -152,14 +152,16 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
 
               {/* excerpt */}
               <div className="prose mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">
-                <p className="">
-                  {post.excerpt}
-                </p>
+                <p className="">{post.excerpt}</p>
               </div>
             </div>
 
-            <Button href={`/posts/${post.slug}`} styleVariant='text' className='font-medium hover:no-underline'>
-              <span className='relative'>
+            <Button
+              href={`/posts/${post.slug}`}
+              styleVariant="text"
+              className="font-medium hover:no-underline"
+            >
+              <span className="relative">
                 Read more<span className="sr-only">, {post.title}</span>
               </span>
               <ChevronRightIcon className="relative mt-px size-4 overflow-visible" />

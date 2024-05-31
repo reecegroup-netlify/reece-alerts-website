@@ -27,7 +27,7 @@ export default async function Page({ searchParams }) {
           environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
         }}
       />
-    );
+    )
   }
 
   return <PostListLayout data={data} />

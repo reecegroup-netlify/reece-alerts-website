@@ -32,7 +32,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
           <span className="sr-only sm:not-sr-only">Sort</span>
           <ArrowsUpDownIcon className="size-4" />
         </Button>
-      </MenuButton >
+      </MenuButton>
       <MenuItems
         anchor="bottom end"
         className="z-50 mt-4 rounded-lg border border-[#D9D9D9] bg-white py-2"
@@ -60,6 +60,6 @@ export default function ButtonSort({ fallback = defaultFallback }) {
           </Link>
         </MenuItem>
       </MenuItems>
-    </Menu >
+    </Menu>
   )
 }
