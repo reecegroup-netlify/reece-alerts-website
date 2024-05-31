@@ -12,6 +12,7 @@ import { performRequest } from '@/lib/api/datocms'
 import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
 import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
 import { Metadata } from 'next'
+import getDeployContext from '@/lib/utils/getDeployContext'
 
 export async function generateMetadata() {
   const { site } = await performRequest(getFaviconMetaTagsSite())
@@ -44,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <GoogleTagManager gtmId={config.gtmId} />
       <body className="bg-[#F4F5F6] text-[#575756]">
         <div className="min-h-screen">
-          <Alert preview={isEnabled} />
+          {getDeployContext() !== 'production' && <Alert preview={isEnabled} />}
           <Header />
           <main className="my-8 sm:my-9 md:my-10">{children}</main>
         </div>

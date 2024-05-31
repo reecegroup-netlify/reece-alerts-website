@@ -1,13 +1,17 @@
 // get the canonical site URL
+// https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
+// https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
+
+const { CONTEXT, URL, DEPLOY_PRIME_URL } = process.env
+
 export default function getSiteUrl() {
-  let url = process.env.URL
-  switch (process.env.CONTEXT) {
+  let url = URL
+  switch (CONTEXT) {
     case 'production':
-      url = process.env.URL
       break
     case 'deploy-preview':
     case 'branch-deploy':
-      url = process.env.DEPLOY_PRIME_URL
+      url = DEPLOY_PRIME_URL
       break
     case 'dev':
     case undefined:
