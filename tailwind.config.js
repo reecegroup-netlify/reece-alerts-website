@@ -80,7 +80,7 @@ module.exports = {
               '--tw-prose-quotes': '#575756',
               '--tw-prose-quote-borders': '#003057',
               '--tw-prose-captions': '#575756',
-              // '--tw-prose-kbd': colors.slate[900], // @todo
+              // '--tw-prose-kbd': colors.slate[900], // @todo set prose values below
               // '--tw-prose-kbd-shadows': hexToRgb(colors.slate[900]),
               // '--tw-prose-code': colors.slate[900],
               // '--tw-prose-pre-code': colors.slate[200],

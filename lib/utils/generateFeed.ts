@@ -2,7 +2,6 @@ import { Feed, FeedOptions, Item } from 'feed'
 import getSiteUrl from './getSiteUrl'
 import { getPostsAll } from '../api/queries/getPostsAll'
 import { performRequest } from '../api/datocms'
-import smartquotes from 'smartquotes'
 import { config } from '../config'
 import { Category } from 'feed/lib/typings'
 
@@ -24,7 +23,7 @@ export default async function generateFeed() {
             id: itemUrl,
             link: itemUrl,
             date: new Date(updated),
-            description: excerpt, // @todo fallback
+            description: excerpt, // @todo excerpt fallback
             // content?: string; // @todo
             category: [itemCategory],
             published: new Date(posted),
