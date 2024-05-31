@@ -26,7 +26,7 @@ export default function Alert({ preview }) {
             <>
               This is page is showing published content.{' '}
               <a
-                href="/api/draft"
+                href={`/api/draft?secret=${process.env.NEXT_DATOCMS_PREVIEW_SECRET}`}
                 className="underline transition-colors duration-200 hover:text-success"
               >
                 Click here

@@ -30,6 +30,6 @@ export const config = {
   feedOptions: feedOptions,
   gtmId: '@todo', // @todo add GTM ID
   SITE_TITLE,
-  POSTS_PER_PAGE: 10,
+  POSTS_PER_PAGE: 1,
   POSTS_SORT_BY: 'firstPublishedAt',
 }

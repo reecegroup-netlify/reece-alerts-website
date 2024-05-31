@@ -113,18 +113,18 @@ function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) 
 }
 
 interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
-  posts: any[]
+  postsPaginated: any[]
   pagination: PaginationProps
 }
 
-export default function PostList({ posts, pagination, ...props }: PostListProps) {
+export default function PostList({ postsPaginated, pagination, ...props }: PostListProps) {
   return (
     <section {...props}>
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">
         {/* timeline line */}
         <div className="absolute bottom-0 right-full top-3 mr-7 hidden w-px bg-slate-200 sm:block md:mr-[3.25rem]"></div>
 
-        {posts.map((post) => (
+        {postsPaginated.map((post) => (
           <article className="group relative mb-24" key={post.slug}>
             <div className="absolute -inset-x-4 -inset-y-2.5 group-hover:bg-[#E6EAEE] sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
 

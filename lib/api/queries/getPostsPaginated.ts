@@ -21,6 +21,10 @@ const QUERY = `
     postsPaginated: allPosts(orderBy: $orderBy, first: $first, skip: $skip ) {
       ...postFragment
     }
+
+    postsAll: _allPostsMeta {
+      count
+    }
   }
 
   ${metaTagsFragment}
