@@ -1,10 +1,10 @@
 'use client'
 
 import { useQuerySubscription } from 'react-datocms/use-query-subscription'
-import { PostPage } from './post-page'
+import { PostLayout } from '@/layouts/PostLayout'
 
-export function DraftPostPage({ subscription }) {
+export function DraftPost({ subscription }) {
   const { data } = useQuerySubscription(subscription)
 
-  return <PostPage data={data} />
+  return <PostLayout data={data} />
 }

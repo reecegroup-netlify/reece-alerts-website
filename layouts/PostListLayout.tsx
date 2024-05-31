@@ -7,7 +7,7 @@ const { POSTS_PER_PAGE } = config
 
 export function PostListLayout({ data, currentPage = 1 }) {
 
-  // query posts paginated  + posts all
+  // posts paginated  + posts all from queried data
   const { postsPaginated, postsAll } = data
 
   // build the pagination object

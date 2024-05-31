@@ -6,6 +6,7 @@ import { getPostsAll } from '@/lib/api/queries/getPostsAll'
 import { getPostBySlug } from '@/lib/api/queries/getPostBySlug'
 import { getMetaTagsPostBySlug } from '@/lib/api/queries/getMetaTagsPostBySlug'
 import { Metadata } from 'next'
+import { DraftPost } from '@/components/DraftPost'
 
 export async function generateStaticParams() {
   const { postsAll } = await performRequest(getPostsAll())
@@ -48,20 +49,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
 
   // query posts eq slug
-  const { post } = await performRequest(getPostBySlug(isEnabled, slug))
+  const pageRequest = getPostBySlug(isEnabled, slug)
+  const data = await performRequest(pageRequest)
 
-  // if (isEnabled) {
-  //   return (
-  //     <DraftPostPage
-  //       subscription={{
-  //         ...pageRequest,
-  //         initialData: data,
-  //         token: process.env.NEXT_DATOCMS_API_TOKEN,
-  //         environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-  //       }}
-  //     />
-  //   );
-  // }
+  if (isEnabled) {
+    return (
+      <DraftPost
+        subscription={{
+          ...pageRequest,
+          initialData: data,
+          token: process.env.NEXT_DATOCMS_API_TOKEN,
+          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
+        }}
+      />
+    );
+  }
 
-  return <PostLayout post={post} />
+  return <PostLayout data={data} />
 }
