@@ -7,17 +7,18 @@ import {
 } from 'react-datocms'
 import MetaList from './MetaList'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+// import { usePathname } from 'next/navigation'
 import dynamic from 'next/dynamic'
+import { PostBySlugQuery } from '@/lib/api/generated'
 
 interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
-  post: any
+  post: PostBySlugQuery['post']
 }
 
 const VideoEmbedded = dynamic(() => import('./VideoEmbedded'), { ssr: false })
 
 export function Post({ post, ...props }: PostProps) {
-  const pathname = usePathname()
+  // const pathname = usePathname()
 
   return (
     <article {...props}>
@@ -46,11 +47,13 @@ export function Post({ post, ...props }: PostProps) {
             <h1 className="mb-[0.8888889em] text-[#003057] heading-2xl">{post.title}</h1>
 
             {/* meta */}
-            <MetaList {...post} />
+            <MetaList category={post.category} posted={post.posted} updated={post.updated} />
 
             {/* content */}
             <div className="prose mb-5 prose-a:relative prose-a:z-10" id="main-content">
               <StructuredText
+                // @todo resolve this below
+                // @ts-ignore
                 data={post.content}
                 renderBlock={({ record }) => {
                   if (record.__typename === 'HtmlBlockRecord') {
@@ -68,9 +71,10 @@ export function Post({ post, ...props }: PostProps) {
                   }
 
                   if (record.__typename === 'ImageInternalBlockRecord') {
+                    const { responsiveImage } = record.image
                     return (
                       <figure>
-                        <DatocmsImage data={record.image.responsiveImage} />
+                        <DatocmsImage data={responsiveImage} />
                       </figure>
                     )
                   }

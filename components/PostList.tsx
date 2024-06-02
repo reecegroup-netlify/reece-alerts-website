@@ -7,6 +7,7 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
 import MetaList from './MetaList'
 import Button from './Button'
+import { PostsPaginatedQuery } from '@/lib/api/generated'
 
 export interface PaginationProps {
   totalPosts: number
@@ -113,7 +114,7 @@ function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) 
 }
 
 interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
-  postsPaginated: any[]
+  postsPaginated: PostsPaginatedQuery['postsPaginated']
   pagination: PaginationProps
 }
 
@@ -148,7 +149,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
               <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">{post.title}</h3>
 
               {/* meta */}
-              <MetaList {...post} />
+              <MetaList category={post.category} posted={post.posted} updated={post.updated} />
 
               {/* excerpt */}
               <div className="prose mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">
@@ -157,8 +158,9 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
             </div>
 
             <Button
+              as={'link'}
               href={`/posts/${post.slug}`}
-              styleVariant="text"
+              variant="text"
               className="font-medium hover:no-underline"
             >
               <span className="relative">

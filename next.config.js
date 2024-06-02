@@ -12,7 +12,7 @@ const ContentSecurityPolicy = `
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
   media-src blob: image.mux.com;
-  connect-src *;
+  connect-src * fresnel.vimeocdn.com;
   font-src 'self';
   frame-src player.vimeo.com www.youtube.com;
 `

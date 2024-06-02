@@ -3,8 +3,6 @@ import ReactPlayer from 'react-player'
 
 interface VideoEmbeddedProps {
   height: number
-  provider: string
-  title: string
   url: string
   width: number
 }

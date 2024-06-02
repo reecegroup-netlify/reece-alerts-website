@@ -2,17 +2,15 @@ import { PageLayout } from '@/layouts/PageLayout'
 import { config } from '@/lib/config'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { performRequest } from '@/lib/api/datocms'
-import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
-import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
+import { request } from '@/lib/api/datocms'
 import { toNextMetadata } from 'react-datocms/seo'
+import { SiteMetaTagsDocument } from '@/lib/api/generated'
 
 const PAGE_TITLE = 'Web Feed'
 const PAGE_DESCRIPTION = `Subscribe to ${config.SITE_TITLE} syndicated web feed`
 
 export async function generateMetadata() {
-  const { site } = await performRequest(getFaviconMetaTagsSite())
-  const { blog } = await performRequest(getMetaTagsBlog())
+  const { site, blog } = await request(SiteMetaTagsDocument)
   const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
 
   return {

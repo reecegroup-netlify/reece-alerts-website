@@ -8,15 +8,13 @@ import getSiteUrl from '@/lib/utils/getSiteUrl'
 import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
 import { toNextMetadata } from 'react-datocms/seo'
-import { performRequest } from '@/lib/api/datocms'
-import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
-import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
+import { request } from '@/lib/api/datocms'
 import { Metadata } from 'next'
 import getDeployContext from '@/lib/utils/getDeployContext'
+import { SiteMetaTagsDocument } from '@/lib/api/generated'
 
 export async function generateMetadata() {
-  const { site } = await performRequest(getFaviconMetaTagsSite())
-  const { blog } = await performRequest(getMetaTagsBlog())
+  const { site, blog } = await request(SiteMetaTagsDocument)
   const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
 
   return {

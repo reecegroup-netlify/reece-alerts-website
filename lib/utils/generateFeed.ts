@@ -1,12 +1,11 @@
-import { Feed, FeedOptions, Item } from 'feed'
+import { Feed, Item } from 'feed'
 import getSiteUrl from './getSiteUrl'
-import { getPostsAll } from '../api/queries/getPostsAll'
-import { performRequest } from '../api/datocms'
+import { request } from '../api/datocms'
 import { config } from '../config'
-import { Category } from 'feed/lib/typings'
+import { PostsAllDocument } from '@/lib/api/generated'
 
 export default async function generateFeed() {
-  const { postsAll } = await performRequest(getPostsAll())
+  const { postsAll } = await request(PostsAllDocument)
 
   const feed = new Feed(config.feedOptions)
   const siteURL = getSiteUrl()
@@ -15,7 +14,7 @@ export default async function generateFeed() {
     postsAll.map(
       async ({ category, excerpt, posted, slug, title, updated }) =>
         new Promise<void>((resolve) => {
-          const itemCategory: Category = { name: category.name }
+          const itemCategory = { name: category.name }
           const itemUrl = `${siteURL}/posts/${slug}`
 
           const item: Item = {

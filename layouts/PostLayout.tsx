@@ -1,11 +1,9 @@
+import { PostBySlugQuery } from '@/lib/api/generated'
 import Container from '../components/Container'
 import Panel from '../components/Panel'
 import { Post } from '@/components/Post'
 
-export function PostLayout({ data }) {
-  /// post from queried data
-  const { post } = data
-
+export function PostLayout({ post }: PostBySlugQuery) {
   return (
     <Container>
       <Panel>

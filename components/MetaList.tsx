@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import MetaCategory, { Category } from './MetaCategory'
+import MetaCategory from './MetaCategory'
 import MetaDateTime from './MetaDateTime'
+import { CategoryFragment, PostRecord } from '@/lib/api/generated'
 
 function DescriptionTerm({ children }: React.HTMLAttributes<HTMLElement>) {
   return <dt className="mb-1.5 text-[#7C7575] subheading-xs lg:mb-2">{children}</dt>
@@ -11,12 +12,12 @@ function DescriptionDetails({ children }: React.HTMLAttributes<HTMLElement>) {
 }
 
 interface MetaListProps extends React.HTMLAttributes<HTMLDListElement> {
-  category: Category
-  posted?: string
-  updated?: string
+  category: CategoryFragment
+  posted: PostRecord['_publishedAt']
+  updated?: PostRecord['_updatedAt']
 }
 
-export default function MetaList({
+export default function pathname({
   category,
   posted,
   updated,

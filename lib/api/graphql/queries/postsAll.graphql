@@ -1,0 +1,20 @@
+query postsAll($orderBy: [PostModelOrderBy]) {
+  site: _site {
+    favicon: faviconMetaTags {
+      ...metaTags
+    }
+  }
+
+  blog {
+    seo: _seoMetaTags {
+      ...metaTags
+    }
+  }
+
+  postsAll: allPosts(orderBy: $orderBy) {
+    seo: _seoMetaTags {
+      ...metaTags
+    }
+    ...post
+  }
+}

@@ -1,34 +1,32 @@
 import { draftMode } from 'next/headers'
-import { performRequest } from '@/lib/api/datocms'
-import { DraftPostList } from '@/components/DraftPostList'
+import { request } from '@/lib/api/datocms'
 import { PostListLayout } from 'layouts/PostListLayout'
-import { getPostsPaginated } from '@/lib/api/queries/getPostsPaginated'
+import { PostModelOrderBy, PostsPaginatedDocument } from '@/lib/api/generated'
+import { config } from '@/lib/config'
+
+const { POSTS_PER_PAGE } = config
 
 export default async function Page({ searchParams }) {
   const { isEnabled: includeDrafts } = draftMode()
 
-  // the current pagination page
+  // current pagination page
   const currentPage = 1
+
+  // amount to retrieve
+  const first = POSTS_PER_PAGE
 
   // sort direction from searchParams
   const { sort } = searchParams
-  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
+  const orderBy: PostModelOrderBy | PostModelOrderBy[] =
+    sort && sort === 'ASC'
+      ? PostModelOrderBy._FirstPublishedAtAsc
+      : PostModelOrderBy._FirstPublishedAtDesc
 
-  const pageRequest = getPostsPaginated(includeDrafts, currentPage, sortDirection)
-  const data = await performRequest(pageRequest)
+  // skip
+  const skip = (currentPage - 1) * POSTS_PER_PAGE
 
-  if (includeDrafts) {
-    return (
-      <DraftPostList
-        subscription={{
-          ...pageRequest,
-          initialData: data,
-          token: process.env.NEXT_DATOCMS_API_TOKEN,
-          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-        }}
-      />
-    )
-  }
+  // get the data
+  const result = await request(PostsPaginatedDocument, { first, orderBy, skip }, includeDrafts)
 
-  return <PostListLayout data={data} />
+  return <PostListLayout {...result} />
 }

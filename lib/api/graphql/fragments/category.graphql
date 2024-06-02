@@ -1,0 +1,8 @@
+fragment category on CategoryRecord {
+  iconName
+  iconColour {
+    hex
+  }
+  name
+  slug
+}

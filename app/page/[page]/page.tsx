@@ -1,31 +1,29 @@
 import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
-
-import { performRequest } from '@/lib/api/datocms'
-
-import { DraftPostList } from '@/components/DraftPostList'
+import { request } from '@/lib/api/datocms'
 import { PostListLayout } from 'layouts/PostListLayout'
 import { config } from '@/lib/config'
-import { getPostsAll } from '@/lib/api/queries/getPostsAll'
-import { getPostsPaginated } from '@/lib/api/queries/getPostsPaginated'
-import { getFaviconMetaTagsSite } from '@/lib/api/queries/getFaviconMetaTagsSite'
-import { getMetaTagsBlog } from '@/lib/api/queries/getMetaTagsBlog'
 import { Metadata } from 'next'
+import {
+  PostModelOrderBy,
+  PostsAllCountDocument,
+  PostsPaginatedDocument,
+  SiteMetaTagsDocument,
+} from '@/lib/api/generated'
 
 const { POSTS_PER_PAGE } = config
 
 export const generateStaticParams = async () => {
-  const { postsAll } = await performRequest(getPostsAll())
+  const { postsAll } = await request(PostsAllCountDocument)
 
-  const totalPages = Math.ceil(postsAll.length / POSTS_PER_PAGE)
+  const totalPages = Math.ceil(postsAll.count / POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
 
   return paths
 }
 
 export async function generateMetadata({ params }: { params: { page: number } }) {
-  const { site } = await performRequest(getFaviconMetaTagsSite())
-  const { blog } = await performRequest(getMetaTagsBlog())
+  const { site, blog } = await request(SiteMetaTagsDocument)
   const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
 
   // the current pagination page
@@ -62,26 +60,21 @@ export default async function Page({
   // the current pagination page
   const { page: currentPage } = params
 
+  // amount to retrieve
+  const first = POSTS_PER_PAGE
+
   // sort direction from searchParams
   const { sort } = searchParams
-  const sortDirection = sort && sort === 'ASC' ? 'ASC' : 'DESC'
+  const orderBy: PostModelOrderBy | PostModelOrderBy[] =
+    sort && sort === 'ASC'
+      ? PostModelOrderBy._FirstPublishedAtAsc
+      : PostModelOrderBy._FirstPublishedAtDesc
 
-  const pageRequest = getPostsPaginated(includeDrafts, currentPage, sortDirection)
-  const data = await performRequest(pageRequest)
+  // skip
+  const skip = (currentPage - 1) * POSTS_PER_PAGE
 
-  if (includeDrafts) {
-    return (
-      <DraftPostList
-        subscription={{
-          ...pageRequest,
-          initialData: data,
-          token: process.env.NEXT_DATOCMS_API_TOKEN,
-          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-        }}
-        currentPage={currentPage}
-      />
-    )
-  }
+  // get the data
+  const result = await request(PostsPaginatedDocument, { first, orderBy, skip }, includeDrafts)
 
-  return <PostListLayout data={data} currentPage={currentPage} />
+  return <PostListLayout {...result} currentPage={currentPage} />
 }

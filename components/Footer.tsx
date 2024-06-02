@@ -36,22 +36,27 @@ export default function Footer() {
               <div className="flow-root md:col-auto">
                 <div className="flex max-w-[344px] flex-col items-start sm:-mt-2">
                   <Button
+                    as="externallink"
                     href="https://reece.workplace.com/"
-                    styleVariant="text"
+                    target="_blank"
+                    variant="text"
                     className="!font-medium"
                   >
                     Reece Workplace
                   </Button>
                   <Button
+                    as="externallink"
                     href="https://teams.microsoft.com/l/app/d2c6f111-ffad-42a0-b65e-ee00425598aa"
-                    styleVariant="text"
+                    target="_blank"
+                    variant="text"
                     className="!font-medium"
                   >
                     Reece Information Centre
                   </Button>
                   <Button
+                    as="externallink"
                     href="mailto:People.Services@reece.com.au"
-                    styleVariant="text"
+                    variant="text"
                     className="!font-medium"
                   >
                     Contact People Service
@@ -67,7 +72,7 @@ export default function Footer() {
                 >
 
                 </Link> */}
-                <Button href="/feeds" stylePill className="!font-medium">
+                <Button as={'link'} href="/feeds" rounded="pill" className="!font-medium">
                   <Image
                     src={IconRSS}
                     alt="RSS icon"

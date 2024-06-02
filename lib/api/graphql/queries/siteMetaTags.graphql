@@ -1,0 +1,13 @@
+query siteMetaTags {
+  site: _site {
+    favicon: faviconMetaTags {
+      ...metaTags
+    }
+  }
+
+  blog {
+    seo: _seoMetaTags {
+      ...metaTags
+    }
+  }
+}

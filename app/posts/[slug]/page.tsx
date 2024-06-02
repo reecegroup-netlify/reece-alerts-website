@@ -1,23 +1,20 @@
 import { draftMode } from 'next/headers'
 import { toNextMetadata } from 'react-datocms'
-import { performRequest } from '@/lib/api/datocms'
+import { request } from '@/lib/api/datocms'
 import { PostLayout } from '@/layouts/PostLayout'
-import { getPostsAll } from '@/lib/api/queries/getPostsAll'
-import { getPostBySlug } from '@/lib/api/queries/getPostBySlug'
-import { getMetaTagsPostBySlug } from '@/lib/api/queries/getMetaTagsPostBySlug'
 import { Metadata } from 'next'
-import { DraftPost } from '@/components/DraftPost'
+import { PostBySlugDocument, PostsAllDocument } from '@/lib/api/generated'
 
 export async function generateStaticParams() {
-  const { postsAll } = await performRequest(getPostsAll())
+  const { postsAll } = await request(PostsAllDocument)
   return postsAll.map(({ slug }) => slug)
 }
 
-export async function generateMetadata({ params }) {
-  const { post } = await performRequest(getMetaTagsPostBySlug(false, params.slug))
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { post } = await request(PostBySlugDocument, { slug: params.slug })
   const datoMetadata = toNextMetadata([...post.seo])
-  const description =
-    post.seoSettings && post.seoSettings.description ? post.seoSettings.description : post.excerpt
+
+  const description = post.meta && post.meta.description ? post.meta.description : post.excerpt
   return {
     ...datoMetadata,
     title: {
@@ -50,21 +47,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
 
   // query posts eq slug
-  const pageRequest = getPostBySlug(isEnabled, slug)
-  const data = await performRequest(pageRequest)
+  const result = await request(PostBySlugDocument, { slug }, isEnabled)
 
-  if (isEnabled) {
-    return (
-      <DraftPost
-        subscription={{
-          ...pageRequest,
-          initialData: data,
-          token: process.env.NEXT_DATOCMS_API_TOKEN,
-          environment: process.env.NEXT_DATOCMS_ENVIRONMENT || null,
-        }}
-      />
-    )
-  }
-
-  return <PostLayout data={data} />
+  return <PostLayout {...result} />
 }

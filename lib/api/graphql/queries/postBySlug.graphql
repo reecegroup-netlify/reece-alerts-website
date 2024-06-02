@@ -1,0 +1,8 @@
+query postBySlug($slug: String) {
+  post(filter: { slug: { eq: $slug } }) {
+    seo: _seoMetaTags {
+      ...metaTags
+    }
+    ...post
+  }
+}

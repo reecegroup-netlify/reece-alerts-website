@@ -8,10 +8,16 @@
     "export": "next build && next export",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir app --dir components --dir layouts --dir lib",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate-ts-types": "graphql-codegen --config graphql.config.yml"
   },
   "dependencies": {
     "@datocms/cma-client-node": "^3.3.1",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typed-document-node": "^5.0.7",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "@graphql-codegen/typescript-operations": "^4.2.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@headlessui/react": "^2.0.3",
     "@heroicons/react": "^2.1.3",
     "@mux/mux-player-react": "^2.6.0",
@@ -21,6 +27,8 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "feed": "^4.2.2",
+    "graphql": "^16.8.1",
+    "graphql-request": "^5.2.0",
     "jsdom": "^24.0.0",
     "next": "^14.2.3",
     "react": "^18.0.0",

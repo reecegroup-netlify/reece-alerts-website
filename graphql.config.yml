@@ -1,0 +1,28 @@
+schema:
+  - https://graphql.datocms.com:
+      headers:
+        Authorization: "Bearer 99e99a055faab40b52f5a171626860"
+        X-Exclude-Invalid: "true"
+documents: "./lib/api/graphql/**/*.graphql"
+generates:
+  lib/api/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+    config:
+      strictScalars: true
+      scalars:
+        BooleanType: boolean
+        CustomData: Record<string, unknown>
+        Date: string
+        DateTime: string
+        FloatType: number
+        IntType: number
+        ItemId: string
+        JsonField: unknown
+        MetaTagAttributes: Record<string, string>
+        UploadId: string
+      # Optional, gives meta fields a leading underscore
+      namingConvention:
+        enumValues: "./lib/utils/pascalCaseWithUnderscores.js"
