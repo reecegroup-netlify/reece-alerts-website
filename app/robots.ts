@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       ...(getDeployContext() === 'production' ? { allow: '/' } : { disallow: '/' }),
     },
-    sitemap: `${getSiteUrl}/sitemap.xml`,
+    sitemap: `${getSiteUrl()}/sitemap.xml`,
   }
 }
