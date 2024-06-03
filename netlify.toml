@@ -6,8 +6,32 @@
   package = "@netlify/plugin-nextjs"
 
 [[plugins]]
+  # Installs the Lighthouse Build Plugin for all deploy contexts
   package = "@netlify/plugin-lighthouse"
 
-  # optional, deploy the lighthouse report to a path under your site
-  [plugins.inputs.audits]
-    output_path = "reports/lighthouse.html"
+# Production context: all deploys from the Production branch
+# set in your site’s Branches settings in the UI will inherit
+# these settings. You can define environment variables
+# here but we recommend using the Netlify UI for sensitive
+# values to keep them out of your source repository.
+[context.production]
+  environment = { CONTEXT = "production" }
+
+# Deploy Preview context: all deploys generated from
+# a pull/merge request will inherit these settings.
+[context.deploy-preview]
+  environment = { CONTEXT = "deploy-preview" }
+
+# Branch Deploy context: all deploys that are not from
+# a pull/merge request or from the Production branch
+# will inherit these settings.
+[context.branch-deploy]
+  environment = { CONTEXT = "branch-deploy" }
+
+# Dev context: environment variables set here
+# are available for local development environments
+# run using Netlify Dev. These values can be
+# overwritten on branches that have a more specific
+# branch context configured.
+[context.dev]
+  environment = { CONTEXT = "dev" }
