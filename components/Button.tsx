@@ -23,7 +23,12 @@ type ButtonAsLink = BaseProps &
     as: 'link'
   }
 
-type ButtonProps = ButtonAsButton | ButtonAsExternalLink | ButtonAsLink
+type ButtonAsSpan = BaseProps &
+  Omit<React.HTMLAttributes<HTMLSpanElement>, keyof BaseProps> & {
+    as: 'span'
+  }
+
+type ButtonProps = ButtonAsButton | ButtonAsExternalLink | ButtonAsLink | ButtonAsSpan
 
 export default function Button(props: ButtonProps) {
   const { className, rounded = 'default', variant = 'default', children } = props
@@ -82,6 +87,16 @@ export default function Button(props: ButtonProps) {
       >
         {children}
       </a>
+    )
+  } else if (props.as === 'span') {
+    const { ...rest } = props
+    return (
+      <span
+        {...rest}
+        className={buttonClass}
+      >
+        {children}
+      </span>
     )
   } else {
     const { ...rest } = props

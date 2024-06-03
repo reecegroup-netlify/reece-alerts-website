@@ -28,7 +28,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
   return (
     <Menu>
       <MenuButton>
-        <Button>
+        <Button as={'span'}>
           <span className="sr-only sm:not-sr-only">Sort</span>
           <ArrowsUpDownIcon className="size-4" />
         </Button>
