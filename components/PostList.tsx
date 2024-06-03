@@ -127,7 +127,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
 
         {postsPaginated.map((post) => (
           <article className="group relative mb-24" key={post.slug}>
-            <div className="absolute -inset-x-4 -inset-y-2.5 group-hover:bg-[#E6EAEE] sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
+            <div className="absolute -inset-x-3 -inset-y-2.5 group-hover:bg-[#E6EAEE] sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
 
             {/* timeline circle */}
             <svg
@@ -167,7 +167,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
                 Read more<span className="sr-only">, {post.title}</span>
               </span>
               <ChevronRightIcon className="relative mt-px size-4 overflow-visible" />
-              <span className="absolute -inset-x-4 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></span>
+              <span className="absolute -inset-x-3 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></span>
             </Button>
           </article>
         ))}
