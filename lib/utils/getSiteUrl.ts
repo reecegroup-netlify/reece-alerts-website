@@ -2,11 +2,13 @@
 // https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
 // https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
 
-const { CONTEXT, URL, DEPLOY_PRIME_URL } = process.env
+import getDeployContext from './getDeployContext'
+
+const { URL, DEPLOY_PRIME_URL } = process.env
 
 export default function getSiteUrl() {
   let url = URL
-  switch (CONTEXT) {
+  switch (getDeployContext()) {
     case 'production':
       break
     case 'deploy-preview':
