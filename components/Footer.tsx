@@ -102,10 +102,7 @@ export default function Footer() {
                 >
                   Privacy
                 </Link>
-                <Link
-                  href="/sitemap.xml"
-                  className="p-1 text-xs hover:underline"
-                >
+                <Link href="/sitemap.xml" className="p-1 text-xs hover:underline">
                   Sitemap
                 </Link>
                 <Link
