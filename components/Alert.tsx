@@ -15,9 +15,8 @@ export default function Alert({ preview }) {
             <>
               This is page is showing draft content.{' '}
               <a href="/api/exit-draft" className="underline transition-colors duration-200">
-                Click here
-              </a>{' '}
-              to exit preview mode.
+                Click here to exit preview mode.
+              </a>
             </>
           ) : (
             <>
@@ -26,9 +25,8 @@ export default function Alert({ preview }) {
                 href={`/api/draft?secret=${process.env.NEXT_DATOCMS_PREVIEW_SECRET}`}
                 className="underline transition-colors duration-200"
               >
-                Click here
-              </a>{' '}
-              to enter preview mode!
+                Click here to enter preview mode!
+              </a>
             </>
           )}
         </div>

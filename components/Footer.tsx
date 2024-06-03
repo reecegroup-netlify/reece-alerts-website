@@ -102,9 +102,6 @@ export default function Footer() {
                 >
                   Privacy
                 </Link>
-                <Link href="/sitemap.xml" className="p-1 text-xs hover:underline">
-                  Sitemap
-                </Link>
                 <Link
                   href="//help.reece.com.au"
                   className="p-1 text-xs hover:underline"
