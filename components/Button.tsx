@@ -91,10 +91,7 @@ export default function Button(props: ButtonProps) {
   } else if (props.as === 'span') {
     const { ...rest } = props
     return (
-      <span
-        {...rest}
-        className={buttonClass}
-      >
+      <span {...rest} className={buttonClass}>
         {children}
       </span>
     )
