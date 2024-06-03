@@ -16,9 +16,9 @@ export default async function Page({ searchParams }) {
   const first = POSTS_PER_PAGE
 
   // sort direction from searchParams
-  const { sort } = searchParams
+  const { order } = searchParams
   const orderBy: PostModelOrderBy | PostModelOrderBy[] =
-    sort && sort === 'ASC'
+    order && order === 'ASC'
       ? PostModelOrderBy._FirstPublishedAtAsc
       : PostModelOrderBy._FirstPublishedAtDesc
 

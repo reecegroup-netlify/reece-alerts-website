@@ -25,6 +25,9 @@ export default function ButtonSort({ fallback = defaultFallback }) {
     [searchParams]
   )
 
+  // sort direction from searchParams
+  const order = searchParams.get('order')
+
   return (
     <Menu>
       <MenuButton>
@@ -39,22 +42,24 @@ export default function ButtonSort({ fallback = defaultFallback }) {
       >
         <MenuItem>
           <Link
+            aria-selected={order !== 'ASC'}
             href={
-              // <pathname>?sort=ASC
-              pathname + '?' + createQueryString('sort', 'ASC')
+              // <pathname>
+              pathname
             }
-            className="block px-3 py-1 pr-10 text-sm data-[focus]:bg-blue-100"
+            className="block px-3 py-1 pr-10 text-sm text-[#003057] data-[focus]:bg-[#D5D5D5] aria-selected:bg-[#D5D5D5]"
           >
             Newest to oldest
           </Link>
         </MenuItem>
         <MenuItem>
           <Link
+            aria-selected={order === 'ASC'}
             href={
-              // <pathname>?sort=DESC
-              pathname + '?' + createQueryString('sort', 'DESC')
+              // <pathname>?order=ASC
+              pathname + '?' + createQueryString('order', 'ASC')
             }
-            className="block px-3 py-1 pr-10 text-sm data-[focus]:bg-blue-100"
+            className="block px-3 py-1 pr-10 text-sm text-[#003057] data-[focus]:bg-[#D5D5D5] aria-selected:bg-[#D5D5D5]"
           >
             Oldest to newest
           </Link>
