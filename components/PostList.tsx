@@ -161,7 +161,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
               as={'link'}
               href={`/posts/${post.slug}`}
               variant="text"
-              className="font-medium hover:no-underline"
+              className="!font-medium hover:no-underline"
             >
               <span className="relative">
                 Read more<span className="sr-only">, {post.title}</span>

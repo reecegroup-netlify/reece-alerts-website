@@ -66,7 +66,7 @@ export default function Button(props: ButtonProps) {
   if (props.as === 'link') {
     const { ...rest } = props
     return (
-      <Link className={buttonClass} {...rest} as={props.href}>
+      <Link {...rest} className={buttonClass} as={props.href}>
         {children}
       </Link>
     )
@@ -74,10 +74,11 @@ export default function Button(props: ButtonProps) {
     const { ...rest } = props
     return (
       <a
-        className={buttonClass} // provide good + secure defaults while still allowing them to be overwritten
+        // provide good + secure defaults while still allowing them to be overwritten
         target="_blank"
         rel="noopener noreferrer"
         {...rest}
+        className={buttonClass}
       >
         {children}
       </a>
@@ -86,10 +87,10 @@ export default function Button(props: ButtonProps) {
     const { ...rest } = props
     return (
       <button
-        className={buttonClass}
         // provide accessible defaults while still allowing them to be overwritten
         type="button"
         {...rest}
+        className={buttonClass}
       >
         {children}
       </button>
