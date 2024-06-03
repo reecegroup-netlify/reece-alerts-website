@@ -1,7 +1,7 @@
 import siteBrandBar from 'media/site-brand-bar@2x.png'
 import { getImageProps } from 'next/image'
 
-function getBackgroundImage(srcSet = "") {
+function getBackgroundImage(srcSet = '') {
   const imageSet = srcSet
     .split(', ')
     .map((str) => {
@@ -15,7 +15,13 @@ function getBackgroundImage(srcSet = "") {
 export default function BarBrand() {
   const {
     props: { srcSet },
-  } = getImageProps({ alt: '', width: siteBrandBar.width / 2, height: siteBrandBar.height / 2, src: siteBrandBar.src, quality: 100 })
+  } = getImageProps({
+    alt: '',
+    width: siteBrandBar.width / 2,
+    height: siteBrandBar.height / 2,
+    src: siteBrandBar.src,
+    quality: 100,
+  })
   const backgroundImage = getBackgroundImage(srcSet)
   const style = { backgroundImage }
 

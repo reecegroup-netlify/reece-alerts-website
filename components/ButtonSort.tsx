@@ -47,7 +47,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
               // <pathname>
               pathname
             }
-            className="block px-3 py-1 pr-10 text-sm text-[#003057] data-[focus]:bg-[#D5D5D5] aria-selected:bg-[#D5D5D5]"
+            className="block px-3 py-1 pr-10 text-sm text-[#003057] aria-selected:bg-[#D5D5D5] data-[focus]:bg-[#D5D5D5]"
           >
             Newest to oldest
           </Link>
@@ -59,7 +59,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
               // <pathname>?order=ASC
               pathname + '?' + createQueryString('order', 'ASC')
             }
-            className="block px-3 py-1 pr-10 text-sm text-[#003057] data-[focus]:bg-[#D5D5D5] aria-selected:bg-[#D5D5D5]"
+            className="block px-3 py-1 pr-10 text-sm text-[#003057] aria-selected:bg-[#D5D5D5] data-[focus]:bg-[#D5D5D5]"
           >
             Oldest to newest
           </Link>
