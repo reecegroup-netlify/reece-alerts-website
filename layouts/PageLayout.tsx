@@ -1,5 +1,5 @@
-import Container from '../components/Container'
-import Panel from '../components/Panel'
+import Container from '@/components/Container'
+import Panel from '@/components/Panel'
 
 export function PageLayout({ children }) {
   return (

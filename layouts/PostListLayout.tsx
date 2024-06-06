@@ -1,6 +1,6 @@
 import PostList, { PaginationProps } from '@/components/PostList'
-import Container from '../components/Container'
-import Panel from '../components/Panel'
+import Container from '@/components/Container'
+import Panel from '@/components/Panel'
 import { config } from '@/lib/config'
 import { PostsPaginatedQuery } from '@/lib/api/generated'
 
