@@ -2,36 +2,35 @@ import { PageLayout } from '@/layouts/PageLayout'
 import { config } from '@/lib/config'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { request } from '@/lib/api/datocms'
-import { toNextMetadata } from 'react-datocms/seo'
-import { SiteMetaTagsDocument } from '@/lib/api/generated'
 
-const PAGE_TITLE = 'Web Feed'
-const PAGE_DESCRIPTION = `Subscribe to ${config.SITE_TITLE} syndicated web feed`
+const { locale, siteNameWithReece: siteName } = config.site
+
+const title = 'Web Feed'
+const description = `Subscribe to ${siteName} syndicated web feed`
 
 export async function generateMetadata() {
-  const { site, blog } = await request(SiteMetaTagsDocument)
-  const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
-
   return {
-    ...datoMetadata,
-    description: PAGE_DESCRIPTION,
-    title: {
-      default: PAGE_TITLE,
-      template: '%s | Reece Incident & Alert Communications',
-    },
+    title,
     openGraph: {
-      ...datoMetadata.openGraph,
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title,
+      description,
+      locale,
+      type: 'website',
+      siteName,
     },
     twitter: {
-      ...datoMetadata.twitter,
-      title: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
+      title,
+      description,
+      card: 'summary',
     },
+    description,
     alternates: {
-      canonical: `/feeds`,
+      canonical: '/feeds',
+      types: {
+        'application/rss+xml': `/feed.rss`,
+        'application/atom+xml': `/feed.atom`,
+        'application/json': `/feed.json`,
+      },
     },
   } as Metadata
 }
@@ -40,8 +39,8 @@ export default async function Page() {
   return (
     <PageLayout>
       <div className="prose mb-5 prose-a:relative prose-a:z-10" id="main-content">
-        <h1>{PAGE_TITLE}</h1>
-        <p className="lead">{PAGE_DESCRIPTION}</p>
+        <h1>{title}</h1>
+        <p className="lead">{description}</p>
         {/* <h2>Formats:</h2> */}
         <ul>
           <li>

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      ...(getDeployContext() === 'production' ? { allow: '/' } : { disallow: '/' }),
+      disallow: '/', // all pages on this site should be hidden from search engines
     },
     sitemap: `${getSiteUrl()}/sitemap.xml`,
   }

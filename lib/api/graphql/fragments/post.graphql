@@ -4,9 +4,6 @@ fragment post on PostRecord {
   excerpt
   updated: _publishedAt
   posted: _firstPublishedAt
-  meta: seoSettings {
-    description
-  }
   category {
     ...category
   }
@@ -68,6 +65,10 @@ fragment post on PostRecord {
             height
             blurUpThumb
           }
+          title
+          width
+          height
+          url
         }
       }
     }

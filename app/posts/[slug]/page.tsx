@@ -1,9 +1,11 @@
 import { draftMode } from 'next/headers'
-import { toNextMetadata } from 'react-datocms'
 import { request } from '@/lib/api/datocms'
 import { PostLayout } from '@/layouts/PostLayout'
 import { Metadata } from 'next'
 import { PostBySlugDocument, PostsAllDocument } from '@/lib/api/generated'
+import { config } from '@/lib/config'
+
+const { locale, siteNameWithReece: siteName } = config.site
 
 export async function generateStaticParams() {
   const { postsAll } = await request(PostsAllDocument)
@@ -12,30 +14,33 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { post } = await request(PostBySlugDocument, { slug: params.slug })
-  const datoMetadata = toNextMetadata([...post.seo])
+  const { category, excerpt: description, posted, slug, title, updated } = post
 
-  const description = post.meta && post.meta.description ? post.meta.description : post.excerpt
   return {
-    ...datoMetadata,
-    title: {
-      default: datoMetadata.title,
-      template: '%s',
-      absolute: datoMetadata.title,
-    },
-    description: description,
+    title,
     openGraph: {
-      ...datoMetadata.openGraph,
-      description: description,
-      publishedTime: post.posted,
-      modifiedTime: post.updated,
-      tags: [post.category.name],
+      title,
+      description,
+      locale,
+      type: 'article',
+      siteName,
+      publishedTime: posted,
+      modifiedTime: updated,
+      tags: [category.name],
     },
     twitter: {
-      ...datoMetadata.twitter,
-      description: description,
+      title,
+      description,
+      card: 'summary',
     },
+    description,
     alternates: {
-      canonical: `/${post.slug}`,
+      canonical: `/posts/${slug}`,
+      types: {
+        'application/rss+xml': `/feed.rss`,
+        'application/atom+xml': `/feed.atom`,
+        'application/json': `/feed.json`,
+      },
     },
   } as Metadata
 }

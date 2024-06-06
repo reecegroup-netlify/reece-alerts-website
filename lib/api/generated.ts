@@ -3124,7 +3124,6 @@ export type PostFragment = {
   excerpt?: string | null
   updated?: string | null
   posted?: string | null
-  meta?: { __typename?: 'SeoField'; description?: string | null } | null
   category: {
     __typename?: 'CategoryRecord'
     iconName: string
@@ -3185,6 +3184,10 @@ export type PostFragment = {
           id: string
           video: {
             __typename?: 'VideoFileField'
+            title?: string | null
+            width: number
+            height: number
+            url: string
             responsiveVideo: {
               __typename?: 'UploadVideoField'
               muxPlaybackId: string
@@ -3212,13 +3215,6 @@ export type PostBySlugQuery = {
     excerpt?: string | null
     updated?: string | null
     posted?: string | null
-    seo: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-    meta?: { __typename?: 'SeoField'; description?: string | null } | null
     category: {
       __typename?: 'CategoryRecord'
       iconName: string
@@ -3279,6 +3275,10 @@ export type PostBySlugQuery = {
             id: string
             video: {
               __typename?: 'VideoFileField'
+              title?: string | null
+              width: number
+              height: number
+              url: string
               responsiveVideo: {
                 __typename?: 'UploadVideoField'
                 muxPlaybackId: string
@@ -3300,24 +3300,6 @@ export type PostsAllQueryVariables = Exact<{
 
 export type PostsAllQuery = {
   __typename?: 'Query'
-  site: {
-    __typename?: 'Site'
-    favicon: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-  }
-  blog?: {
-    __typename?: 'BlogRecord'
-    seo: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-  } | null
   postsAll: Array<{
     __typename?: 'PostRecord'
     title?: string | null
@@ -3325,13 +3307,6 @@ export type PostsAllQuery = {
     excerpt?: string | null
     updated?: string | null
     posted?: string | null
-    seo: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-    meta?: { __typename?: 'SeoField'; description?: string | null } | null
     category: {
       __typename?: 'CategoryRecord'
       iconName: string
@@ -3392,6 +3367,10 @@ export type PostsAllQuery = {
             id: string
             video: {
               __typename?: 'VideoFileField'
+              title?: string | null
+              width: number
+              height: number
+              url: string
               responsiveVideo: {
                 __typename?: 'UploadVideoField'
                 muxPlaybackId: string
@@ -3422,24 +3401,6 @@ export type PostsPaginatedQueryVariables = Exact<{
 
 export type PostsPaginatedQuery = {
   __typename?: 'Query'
-  site: {
-    __typename?: 'Site'
-    favicon: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-  }
-  blog?: {
-    __typename?: 'BlogRecord'
-    seo: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-  } | null
   postsPaginated: Array<{
     __typename?: 'PostRecord'
     title?: string | null
@@ -3447,7 +3408,6 @@ export type PostsPaginatedQuery = {
     excerpt?: string | null
     updated?: string | null
     posted?: string | null
-    meta?: { __typename?: 'SeoField'; description?: string | null } | null
     category: {
       __typename?: 'CategoryRecord'
       iconName: string
@@ -3508,6 +3468,10 @@ export type PostsPaginatedQuery = {
             id: string
             video: {
               __typename?: 'VideoFileField'
+              title?: string | null
+              width: number
+              height: number
+              url: string
               responsiveVideo: {
                 __typename?: 'UploadVideoField'
                 muxPlaybackId: string
@@ -3537,15 +3501,6 @@ export type SiteMetaTagsQuery = {
       tag: string
     }>
   }
-  blog?: {
-    __typename?: 'BlogRecord'
-    seo: Array<{
-      __typename?: 'Tag'
-      attributes?: Record<string, string> | null
-      content?: string | null
-      tag: string
-    }>
-  } | null
 }
 
 export const MetaTagsFragmentDoc = {
@@ -3614,15 +3569,6 @@ export const PostFragmentDoc = {
             kind: 'Field',
             alias: { kind: 'Name', value: 'posted' },
             name: { kind: 'Name', value: '_firstPublishedAt' },
-          },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'meta' },
-            name: { kind: 'Name', value: 'seoSettings' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'description' } }],
-            },
           },
           {
             kind: 'Field',
@@ -3828,6 +3774,10 @@ export const PostFragmentDoc = {
                                       ],
                                     },
                                   },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                                 ],
                               },
                             },
@@ -3913,20 +3863,7 @@ export const PostBySlugDocument = {
             ],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'seo' },
-                  name: { kind: 'Name', value: '_seoMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'post' } },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'post' } }],
             },
           },
         ],
@@ -3955,19 +3892,6 @@ export const PostBySlugDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'metaTags' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Tag' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'attributes' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'content' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'post' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PostRecord' } },
       selectionSet: {
@@ -3985,15 +3909,6 @@ export const PostBySlugDocument = {
             kind: 'Field',
             alias: { kind: 'Name', value: 'posted' },
             name: { kind: 'Name', value: '_firstPublishedAt' },
-          },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'meta' },
-            name: { kind: 'Name', value: 'seoSettings' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'description' } }],
-            },
           },
           {
             kind: 'Field',
@@ -4199,6 +4114,10 @@ export const PostBySlugDocument = {
                                       ],
                                     },
                                   },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                                 ],
                               },
                             },
@@ -4238,47 +4157,6 @@ export const PostsAllDocument = {
         selections: [
           {
             kind: 'Field',
-            alias: { kind: 'Name', value: 'site' },
-            name: { kind: 'Name', value: '_site' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'favicon' },
-                  name: { kind: 'Name', value: 'faviconMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'blog' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'seo' },
-                  name: { kind: 'Name', value: '_seoMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
             alias: { kind: 'Name', value: 'postsAll' },
             name: { kind: 'Name', value: 'allPosts' },
             arguments: [
@@ -4290,20 +4168,7 @@ export const PostsAllDocument = {
             ],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'seo' },
-                  name: { kind: 'Name', value: '_seoMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'post' } },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'post' } }],
             },
           },
         ],
@@ -4332,19 +4197,6 @@ export const PostsAllDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'metaTags' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Tag' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'attributes' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'content' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'post' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PostRecord' } },
       selectionSet: {
@@ -4362,15 +4214,6 @@ export const PostsAllDocument = {
             kind: 'Field',
             alias: { kind: 'Name', value: 'posted' },
             name: { kind: 'Name', value: '_firstPublishedAt' },
-          },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'meta' },
-            name: { kind: 'Name', value: 'seoSettings' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'description' } }],
-            },
           },
           {
             kind: 'Field',
@@ -4576,6 +4419,10 @@ export const PostsAllDocument = {
                                       ],
                                     },
                                   },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                                 ],
                               },
                             },
@@ -4649,47 +4496,6 @@ export const PostsPaginatedDocument = {
         selections: [
           {
             kind: 'Field',
-            alias: { kind: 'Name', value: 'site' },
-            name: { kind: 'Name', value: '_site' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'favicon' },
-                  name: { kind: 'Name', value: 'faviconMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'blog' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'seo' },
-                  name: { kind: 'Name', value: '_seoMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
             alias: { kind: 'Name', value: 'postsPaginated' },
             name: { kind: 'Name', value: 'allPosts' },
             arguments: [
@@ -4749,19 +4555,6 @@ export const PostsPaginatedDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'metaTags' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Tag' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'attributes' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'content' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'post' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'PostRecord' } },
       selectionSet: {
@@ -4779,15 +4572,6 @@ export const PostsPaginatedDocument = {
             kind: 'Field',
             alias: { kind: 'Name', value: 'posted' },
             name: { kind: 'Name', value: '_firstPublishedAt' },
-          },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'meta' },
-            name: { kind: 'Name', value: 'seoSettings' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'description' } }],
-            },
           },
           {
             kind: 'Field',
@@ -4993,6 +4777,10 @@ export const PostsPaginatedDocument = {
                                       ],
                                     },
                                   },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                                 ],
                               },
                             },
@@ -5031,26 +4819,6 @@ export const SiteMetaTagsDocument = {
                   kind: 'Field',
                   alias: { kind: 'Name', value: 'favicon' },
                   name: { kind: 'Name', value: 'faviconMetaTags' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'metaTags' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'blog' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  alias: { kind: 'Name', value: 'seo' },
-                  name: { kind: 'Name', value: '_seoMetaTags' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [

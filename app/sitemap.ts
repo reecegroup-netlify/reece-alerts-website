@@ -7,14 +7,11 @@ import { MetadataRoute } from 'next'
 const { POSTS_PER_PAGE } = config
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Google's limit is 50,000 URLs per sitemap,
-  // assuming this site will never reach that, if so split up sitemaps below
+  // Google's limit is 50,000 URLs per sitemap, assuming this site will never reach
+  // that, if it does we'll need to split up sitemaps by paging the graphql response
   const { postsAll } = await request(PostsAllDocument)
 
   const totalPages = Math.ceil(postsAll.length / POSTS_PER_PAGE)
-  const paginationPages = Array.from({ length: totalPages }, (_, i) => ({
-    page: (i + 1).toString(),
-  }))
 
   return [
     {

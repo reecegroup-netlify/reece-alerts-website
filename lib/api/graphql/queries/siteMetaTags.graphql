@@ -4,10 +4,4 @@ query siteMetaTags {
       ...metaTags
     }
   }
-
-  blog {
-    seo: _seoMetaTags {
-      ...metaTags
-    }
-  }
 }

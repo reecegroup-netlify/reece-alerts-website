@@ -3,6 +3,8 @@ import getSiteUrl from './getSiteUrl'
 import { request } from '../api/datocms'
 import { config } from '../config'
 import { PostsAllDocument } from '@/lib/api/generated'
+import postContentToPlainText from './postContentToPlainText'
+import postContentToHtmlString from './postContentToHtmlString'
 
 export default async function generateFeed() {
   const { postsAll } = await request(PostsAllDocument)
@@ -12,7 +14,7 @@ export default async function generateFeed() {
 
   await Promise.all(
     postsAll.map(
-      async ({ category, excerpt, posted, slug, title, updated }) =>
+      async ({ category, content, excerpt, posted, slug, title, updated }) =>
         new Promise<void>((resolve) => {
           const itemCategory = { name: category.name }
           const itemUrl = `${siteURL}/posts/${slug}`
@@ -22,8 +24,8 @@ export default async function generateFeed() {
             id: itemUrl,
             link: itemUrl,
             date: new Date(updated),
-            description: excerpt, // @todo excerpt fallback
-            // content?: string; // @todo
+            description: excerpt,
+            content: postContentToHtmlString(content),
             category: [itemCategory],
             published: new Date(posted),
           }

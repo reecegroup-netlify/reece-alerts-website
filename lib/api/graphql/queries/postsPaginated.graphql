@@ -1,16 +1,4 @@
 query postsPaginated($first: IntType, $orderBy: [PostModelOrderBy], $skip: IntType) {
-  site: _site {
-    favicon: faviconMetaTags {
-      ...metaTags
-    }
-  }
-
-  blog {
-    seo: _seoMetaTags {
-      ...metaTags
-    }
-  }
-
   postsPaginated: allPosts(orderBy: $orderBy, first: $first, skip: $skip) {
     ...post
   }

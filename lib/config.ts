@@ -1,21 +1,23 @@
 import { FeedOptions } from 'feed'
 import getSiteUrl from './utils/getSiteUrl'
 
-const SITE_TITLE = 'Reece Incident & Alert Communications' // @todo get config values from dato
-const SITE_URL = getSiteUrl()
-const SITE_DESCRIPTION =
-  'Incident & Alert Communications is efficitur ornare euismod. In at viverra turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc suscipit, magna sed luctus tempus.' // @todo get config values from dato
+// @todo get config values from dato
+const SITE_NAME_WITHOUT_REECE = 'Incident & Alert Communications'
+const SITE_NAME_WITH_REECE = `Reece ${SITE_NAME_WITHOUT_REECE}`
+
 const SITE_COPYRIGHT = `Copyright ${new Date().getFullYear().toString()}, Reece Ltd.`
-const SITE_LANGUAGE = 'en-AU'
+const SITE_DESCRIPTION = `${SITE_NAME_WITHOUT_REECE} is efficitur ornare euismod. In at viverra turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc suscipit, magna sed luctus tempus.`
+const SITE_LOCALE = 'en_AU'
+const SITE_URL = getSiteUrl()
 
 const feedOptions: FeedOptions = {
-  title: SITE_TITLE,
+  title: SITE_NAME_WITH_REECE,
   description: SITE_DESCRIPTION,
   id: SITE_URL,
   link: SITE_URL,
-  language: SITE_LANGUAGE, // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-  // image: 'http://example.com/image.png', // @todo get config values from dato
-  // favicon: 'http://example.com/favicon.ico', // @todo get config values from dato
+  language: SITE_LOCALE, // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
+  // image: 'http://example.com/image.png',
+  // favicon: 'http://example.com/favicon.ico',
   copyright: SITE_COPYRIGHT,
   updated: new Date(), // optional, default = now
   generator: '', // optional, default = 'Feed for Node.js'
@@ -28,8 +30,12 @@ const feedOptions: FeedOptions = {
 
 export const config = {
   feedOptions: feedOptions,
-  gtmId: '@todo', // @todo add GTM ID
-  SITE_TITLE,
+  site: {
+    siteNameWithReece: SITE_NAME_WITH_REECE,
+    siteNameWithoutReece: SITE_NAME_WITHOUT_REECE,
+    description: SITE_DESCRIPTION,
+    locale: SITE_LOCALE,
+  },
+  gtmId: 'GTM-WJ9CGDWG', // digi marketing team manage this
   POSTS_PER_PAGE: 10,
-  POSTS_SORT_BY: 'firstPublishedAt',
 }

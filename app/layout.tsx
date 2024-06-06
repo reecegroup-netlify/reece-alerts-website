@@ -13,16 +13,32 @@ import { Metadata } from 'next'
 import getDeployContext from '@/lib/utils/getDeployContext'
 import { SiteMetaTagsDocument } from '@/lib/api/generated'
 
+const { description, locale, siteNameWithReece, siteNameWithoutReece } = config.site
+
 export async function generateMetadata() {
-  const { site, blog } = await request(SiteMetaTagsDocument)
-  const datoMetadata = toNextMetadata([...site.favicon, ...blog.seo])
+  const { site } = await request(SiteMetaTagsDocument)
+  const datoMetadata = toNextMetadata([...site.favicon])
+  const title = `${siteNameWithoutReece} - Page 1`
 
   return {
     ...datoMetadata,
     title: {
-      template: '%s | Reece Incident & Alert Communications',
-      absolute: datoMetadata.title,
+      template: `%s | ${siteNameWithoutReece}`,
+      absolute: `${title} | Reece`,
     },
+    openGraph: {
+      title,
+      description,
+      locale,
+      type: 'website',
+      siteName: siteNameWithReece,
+    },
+    twitter: {
+      title,
+      description: description,
+      card: 'summary',
+    },
+    description: description,
     metadataBase: new URL(getSiteUrl()),
     alternates: {
       canonical: '/',

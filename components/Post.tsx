@@ -51,6 +51,8 @@ export function Post({ post, ...props }: PostProps) {
 
             {/* content */}
             <div className="prose mb-5 prose-a:relative prose-a:z-10" id="main-content">
+              {post.excerpt && <p className="lead">{post.excerpt}</p>}
+
               <StructuredText
                 // @todo resolve this below
                 // @ts-ignore
