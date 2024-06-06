@@ -100,31 +100,6 @@ export type AltFileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>
 }
 
-/** Record of type Blog (blog) */
-export type BlogRecord = RecordInterface & {
-  __typename?: 'BlogRecord'
-  _createdAt: Scalars['DateTime']['output']
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>
-  _isValid: Scalars['BooleanType']['output']
-  _modelApiKey: Scalars['String']['output']
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>
-  _status: ItemStatus
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>
-  _updatedAt: Scalars['DateTime']['output']
-  id: Scalars['ItemId']['output']
-  seo?: Maybe<SeoField>
-}
-
-/** Record of type Blog (blog) */
-export type BlogRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>
-}
-
 /** Specifies how to filter Boolean fields */
 export type BooleanFilter = {
   /** Search for records with an exact match */
@@ -2156,12 +2131,6 @@ export enum ItemStatus {
   Updated = 'updated',
 }
 
-/** Specifies how to filter JSON fields */
-export type JsonFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>
-}
-
 /** Specifies how to filter Single-link fields */
 export type LinkFilter = {
   /** Search for records with an exact match. The specified value must be a Record ID */
@@ -2219,8 +2188,6 @@ export type PostModelFilter = {
   content?: InputMaybe<StructuredTextFilter>
   excerpt?: InputMaybe<StringFilter>
   id?: InputMaybe<ItemIdFilter>
-  seoReadabilityAnalysis?: InputMaybe<JsonFilter>
-  seoSettings?: InputMaybe<SeoFilter>
   slug?: InputMaybe<SlugFilter>
   title?: InputMaybe<StringFilter>
 }
@@ -2270,8 +2237,6 @@ export type PostRecord = RecordInterface & {
   content?: Maybe<PostModelContentField>
   excerpt?: Maybe<Scalars['String']['output']>
   id: Scalars['ItemId']['output']
-  seoReadabilityAnalysis?: Maybe<Scalars['JsonField']['output']>
-  seoSettings?: Maybe<SeoField>
   slug: Scalars['String']['output']
   title?: Maybe<Scalars['String']['output']>
 }
@@ -2316,8 +2281,6 @@ export type Query = {
   allPosts: Array<PostRecord>
   /** Returns a collection of assets */
   allUploads: Array<FileField>
-  /** Returns the single instance record */
-  blog?: Maybe<BlogRecord>
   /** Returns a specific record */
   category?: Maybe<CategoryRecord>
   /** Returns a specific record */
@@ -2378,12 +2341,6 @@ export type QueryAllUploadsArgs = {
   locale?: InputMaybe<SiteLocale>
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>
   skip?: InputMaybe<Scalars['IntType']['input']>
-}
-
-/** The query root for this schema */
-export type QueryBlogArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>
-  locale?: InputMaybe<SiteLocale>
 }
 
 /** The query root for this schema */
@@ -2472,12 +2429,6 @@ export type SeoField = {
   noIndex?: Maybe<Scalars['BooleanType']['output']>
   title?: Maybe<Scalars['String']['output']>
   twitterCard?: Maybe<Scalars['String']['output']>
-}
-
-/** Specifies how to filter SEO meta tags fields */
-export type SeoFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>
 }
 
 export type Site = {
