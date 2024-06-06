@@ -19,19 +19,19 @@
 
 # Deploy Preview context: all deploys generated from
 # a pull/merge request will inherit these settings.
-[context.deploy-preview]
-  environment = { NEXT_DEPLOY_CONTEXT = "deploy-preview" }
+[context.deploy-preview.environment]
+  NEXT_DEPLOY_CONTEXT = "deploy-preview"
 
 # Branch Deploy context: all deploys that are not from
 # a pull/merge request or from the Production branch
 # will inherit these settings.
-[context.branch-deploy]
-  environment = { NEXT_DEPLOY_CONTEXT = "branch-deploy" }
+[context.branch-deploy.environment]
+  NEXT_DEPLOY_CONTEXT = "branch-deploy"
 
 # Dev context: environment variables set here
 # are available for local development environments
 # run using Netlify Dev. These values can be
 # overwritten on branches that have a more specific
 # branch context configured.
-[context.dev]
-  environment = { NEXT_DEPLOY_CONTEXT = "dev" }
+[context.dev.environment]
+  NEXT_DEPLOY_CONTEXT = "dev"
