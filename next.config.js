@@ -5,6 +5,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+})
+
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -54,59 +59,52 @@ const securityHeaders = [
   },
 ]
 
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-})
-
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 
 module.exports = () => {
-  const plugins = [withBundleAnalyzer]
-  return withPWA(
-    plugins.reduce((acc, next) => next(acc), {
-      reactStrictMode: true,
-      pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
-      eslint: {
-        dirs: ['app', 'components', 'layouts', 'media'],
-      },
-      images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: '*',
-          },
-        ],
-      },
-      async headers() {
-        return [
-          {
-            source: '/(.*)',
-            headers: securityHeaders,
-          },
-        ]
-      },
-      async redirects() {
-        return [
-          {
-            source: '/posts',
-            destination: '/',
-            permanent: true,
-          },
-          {
-            source: '/page',
-            destination: '/',
-            permanent: true,
-          },
-          {
-            source: '/page/1',
-            destination: '/',
-            permanent: true,
-          },
-        ]
-      },
-    })
-  )
+  const plugins = [withBundleAnalyzer, withPWA]
+  return plugins.reduce((acc, next) => next(acc), {
+    reactStrictMode: true,
+    pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+    eslint: {
+      dirs: ['app', 'components', 'layouts', 'media'],
+    },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: '*',
+        },
+      ],
+    },
+    async headers() {
+      return [
+        {
+          source: '/(.*)',
+          headers: securityHeaders,
+        },
+      ]
+    },
+    async redirects() {
+      return [
+        {
+          source: '/posts',
+          destination: '/',
+          permanent: true,
+        },
+        {
+          source: '/page',
+          destination: '/',
+          permanent: true,
+        },
+        {
+          source: '/page/1',
+          destination: '/',
+          permanent: true,
+        },
+      ]
+    },
+  })
 }
