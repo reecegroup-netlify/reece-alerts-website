@@ -1,0 +1,17 @@
+query siteFavicon {
+  site: _site {
+    favicon {
+      mimeType
+      maskable: responsiveImage(imgixParams: { w: "192", h: "192" }) {
+        height
+        width
+        src
+      }
+      default: responsiveImage(imgixParams: { w: "384", h: "384" }) {
+        height
+        width
+        src
+      }
+    }
+  }
+}

@@ -54,52 +54,59 @@ const securityHeaders = [
   },
 ]
 
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+})
+
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 
 module.exports = () => {
   const plugins = [withBundleAnalyzer]
-  return plugins.reduce((acc, next) => next(acc), {
-    reactStrictMode: true,
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'media'],
-    },
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: '*',
-        },
-      ],
-    },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
-    async redirects() {
-      return [
-        {
-          source: '/posts',
-          destination: '/',
-          permanent: true,
-        },
-        {
-          source: '/page',
-          destination: '/',
-          permanent: true,
-        },
-        {
-          source: '/page/1',
-          destination: '/',
-          permanent: true,
-        },
-      ]
-    },
-  })
+  return withPWA(
+    plugins.reduce((acc, next) => next(acc), {
+      reactStrictMode: true,
+      pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+      eslint: {
+        dirs: ['app', 'components', 'layouts', 'media'],
+      },
+      images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: '*',
+          },
+        ],
+      },
+      async headers() {
+        return [
+          {
+            source: '/(.*)',
+            headers: securityHeaders,
+          },
+        ]
+      },
+      async redirects() {
+        return [
+          {
+            source: '/posts',
+            destination: '/',
+            permanent: true,
+          },
+          {
+            source: '/page',
+            destination: '/',
+            permanent: true,
+          },
+          {
+            source: '/page/1',
+            destination: '/',
+            permanent: true,
+          },
+        ]
+      },
+    })
+  )
 }
