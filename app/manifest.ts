@@ -1,7 +1,6 @@
 import { request } from '@/lib/api/datocms'
 import { SiteFaviconDocument } from '@/lib/api/generated'
 import { config } from '@/lib/config'
-import getSiteUrl from '@/lib/utils/getSiteUrl'
 import { MetadataRoute } from 'next'
 
 const { siteNameWithReece, siteNameWithoutReece, description } = config.site
@@ -37,7 +36,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     name: siteNameWithReece,
     orientation: 'portrait',
     short_name: siteNameWithoutReece,
-    start_url: getSiteUrl(),
+    start_url: '/',
     theme_color: '#003057',
   }
 }

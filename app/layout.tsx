@@ -9,11 +9,15 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
 import { toNextMetadata } from 'react-datocms/seo'
 import { request } from '@/lib/api/datocms'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import getDeployContext from '@/lib/utils/getDeployContext'
 import { SiteMetaTagsDocument } from '@/lib/api/generated'
 
 const { description, locale, siteNameWithReece, siteNameWithoutReece } = config.site
+
+export const viewport: Viewport = {
+  themeColor: '#003057',
+}
 
 export async function generateMetadata() {
   const { site } = await request(SiteMetaTagsDocument)
@@ -47,6 +51,9 @@ export async function generateMetadata() {
         'application/atom+xml': `/feed.atom`,
         'application/json': `/feed.json`,
       },
+    },
+    formatDetection: {
+      telephone: false,
     },
   } as Metadata
 }

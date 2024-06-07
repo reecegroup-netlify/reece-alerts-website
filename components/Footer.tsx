@@ -27,9 +27,7 @@ export default function Footer() {
               {/* footer - top - site description */}
               <div className="sm:col-span-2 md:col-auto">
                 <div className="max-w-[344px]">
-                  <p className="text-sm leading-normal">
-                    {description}
-                  </p>
+                  <p className="text-sm leading-normal">{description}</p>
                 </div>
               </div>
 
