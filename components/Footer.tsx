@@ -5,6 +5,9 @@ import Link from 'next/link'
 import Logo from './Logo'
 import BarBrand from './BarBrand'
 import Button from './Button'
+import { config } from '@/lib/config'
+
+const { description } = config.site
 
 export default function Footer() {
   return (
@@ -25,9 +28,7 @@ export default function Footer() {
               <div className="sm:col-span-2 md:col-auto">
                 <div className="max-w-[344px]">
                   <p className="text-sm leading-normal">
-                    Incident & Alert Communications is efficitur ornare euismod. In at viverra
-                    turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc
-                    suscipit, magna sed luctus tempus.
+                    {description}
                   </p>
                 </div>
               </div>

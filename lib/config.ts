@@ -2,11 +2,11 @@ import { FeedOptions } from 'feed'
 import getSiteUrl from './utils/getSiteUrl'
 
 // @todo get config values from dato
-const SITE_NAME_WITHOUT_REECE = 'Incident & Alert Communications'
+const SITE_NAME_WITHOUT_REECE = 'Alerts'
 const SITE_NAME_WITH_REECE = `Reece ${SITE_NAME_WITHOUT_REECE}`
 
 const SITE_COPYRIGHT = `Copyright ${new Date().getFullYear().toString()}, Reece Ltd.`
-const SITE_DESCRIPTION = `${SITE_NAME_WITHOUT_REECE} is efficitur ornare euismod. In at viverra turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc suscipit, magna sed luctus tempus.`
+const SITE_DESCRIPTION = `${SITE_NAME_WITH_REECE} is efficitur ornare euismod. In at viverra turpis. Morbi cursus sapien nisi. Sed vitae rutrum massa, vitae semper est. Nunc suscipit, magna sed luctus tempus.`
 const SITE_LOCALE = 'en_AU'
 const SITE_URL = getSiteUrl()
 

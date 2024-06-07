@@ -3,6 +3,9 @@ import Container from './Container'
 import HeaderNav from './HeaderNav'
 import Link from 'next/link'
 import Logo from './Logo'
+import { config } from '@/lib/config'
+
+const { siteNameWithoutReece } = config.site
 
 export default function Header() {
   return (
@@ -24,7 +27,7 @@ export default function Header() {
                 {/* border divider added here as text has variable height when stacked */}
                 <div className="border-l border-[#D9D9D9] py-1 pl-3 sm:py-2.5 sm:pl-6">
                   <span className="md:text-xl text-base font-medium leading-4 tracking-wide sm:text-lg sm:leading-6 md:leading-7">
-                    Incident & Alert Communications
+                    {siteNameWithoutReece}
                   </span>
                 </div>
               </div>
