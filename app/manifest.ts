@@ -8,7 +8,7 @@ const { siteNameWithReece, siteNameWithoutReece, description } = config.site
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const result = await request(SiteFaviconDocument)
 
-  const { maskable: maskableFavicon, default: defaultFavicon, mimeType } = result.site.favicon
+  const { responsiveImage, mimeType } = result.site.favicon
 
   return {
     background_color: '#F4F5F6',
@@ -16,21 +16,16 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     display: 'standalone',
     icons: [
       {
-        src: maskableFavicon.src,
-        sizes: `${maskableFavicon.width}x${maskableFavicon.height}`,
+        src: responsiveImage.src,
+        sizes: `${responsiveImage.width}x${responsiveImage.height}`,
         type: mimeType,
         purpose: 'any',
       },
       {
-        src: maskableFavicon.src,
-        sizes: `${maskableFavicon.width}x${maskableFavicon.height}`,
+        src: responsiveImage.src,
+        sizes: `${responsiveImage.width}x${responsiveImage.height}`,
         type: mimeType,
         purpose: 'maskable',
-      },
-      {
-        src: defaultFavicon.src,
-        sizes: `${defaultFavicon.width}x${defaultFavicon.height}`,
-        type: mimeType,
       },
     ],
     name: siteNameWithReece,
