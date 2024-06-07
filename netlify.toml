@@ -20,3 +20,12 @@
 
 [context.dev.environment]
   NEXT_PUBLIC_DEPLOY_CONTEXT = "dev"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow, noarchive"
+    # set robots here so that all pages, including any files have this directive
+    # noindex = instructs search engines not to index the page
+    # follow = allows crawling all links on the page, and backlinks to them
+    # noarchive = prevents Google from showing a cached copy of the page in the SERP.

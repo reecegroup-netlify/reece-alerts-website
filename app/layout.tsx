@@ -55,6 +55,12 @@ export async function generateMetadata() {
     formatDetection: {
       telephone: false,
     },
+    // note robots are also set in netlify headers
+    robots: {
+      index: false, // instructs search engines not to index the page
+      follow: true, // allows crawling all links on the page, and backlinks to them
+      noarchive: true, // Prevents Google from showing a cached copy of the page in the SERP.
+    },
   } as Metadata
 }
 
