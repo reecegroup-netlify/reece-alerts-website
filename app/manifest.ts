@@ -31,7 +31,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     name: siteNameWithReece,
     orientation: 'portrait',
     short_name: siteNameWithoutReece,
-    start_url: getSiteUrl(),
+    start_url: '/',
     theme_color: '#003057',
   }
 }
