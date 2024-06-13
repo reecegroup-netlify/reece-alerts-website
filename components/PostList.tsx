@@ -1,6 +1,3 @@
-'use client'
-
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
@@ -16,8 +13,6 @@ export interface PaginationProps {
 }
 
 function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) {
-  const pathname = usePathname()
-  const basePath = pathname.split('/')[1]
   const totalPages = Math.ceil(totalPosts / postsPerPage)
   const shownPostsStart = currentPage * postsPerPage - postsPerPage + 1
   const shownPostsEnd =

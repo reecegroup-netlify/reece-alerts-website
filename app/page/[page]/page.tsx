@@ -18,7 +18,7 @@ export const generateStaticParams = async () => {
   return Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
 }
 
-export async function generateMetadata({ params }: { params: { page: number } }) {
+export async function generateMetadata({ params }: { params: { page: number } }): Promise<Metadata> {
   // the current pagination page
   const { page: currentPage } = params
   const title = `${siteNameWithoutReece} - Page ${currentPage}`
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: { page: number } })
         'application/json': `/feed.json`,
       },
     },
-  } as Metadata
+  }
 }
 
 export default async function Page({

@@ -13,7 +13,9 @@ export default function HeaderNav() {
       <ul className="flex space-x-4">
         {!(pathname === '/' || pathname.startsWith('/page')) && (
           <li>
-            <ButtonBack />
+            <Suspense>
+              <ButtonBack />
+            </Suspense>
           </li>
         )}
         {(pathname === '/' || pathname.startsWith('/page')) && (

@@ -7,7 +7,6 @@ import Footer from '@/components/Footer'
 import getSiteUrl from '@/lib/utils/getSiteUrl'
 import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
-import { toNextMetadata } from 'react-datocms/seo'
 import { request } from '@/lib/api/datocms'
 import { Metadata, Viewport } from 'next'
 import getDeployContext from '@/lib/utils/getDeployContext'
@@ -19,7 +18,7 @@ export const viewport: Viewport = {
   themeColor: '#003057',
 }
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const { site } = await request(SiteFaviconsDocument)
   const title = `${siteNameWithoutReece} - Page 1`
 
@@ -72,7 +71,7 @@ export async function generateMetadata() {
       follow: true, // allows crawling all links on the page, and backlinks to them
       noarchive: true, // Prevents Google from showing a cached copy of the page in the SERP.
     },
-  } as Metadata
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

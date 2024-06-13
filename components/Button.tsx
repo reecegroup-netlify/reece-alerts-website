@@ -108,6 +108,4 @@ export default function Button(props: ButtonProps) {
       </button>
     )
   }
-
-  throw new Error('could not determine the correct button type')
 }

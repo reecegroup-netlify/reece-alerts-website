@@ -1,5 +1,3 @@
-'use client'
-
 import {
   StructuredText,
   VideoPlayer as DatocmsVideoPlayer,
@@ -7,7 +5,6 @@ import {
 } from 'react-datocms'
 import MetaList from './MetaList'
 import Image from 'next/image'
-// import { usePathname } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { PostBySlugQuery } from '@/lib/api/generated'
 
@@ -18,8 +15,6 @@ interface PostProps extends React.HTMLAttributes<HTMLDivElement> {
 const VideoEmbedded = dynamic(() => import('./VideoEmbedded'), { ssr: false })
 
 export function Post({ post, ...props }: PostProps) {
-  // const pathname = usePathname()
-
   return (
     <article {...props}>
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">

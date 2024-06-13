@@ -16,9 +16,6 @@ export default function VideoEmbedded({ height, url, width }: VideoEmbeddedProps
         width={'100%'}
         height={'100%'}
         config={{
-          facebook: {
-            // appId: '12345' @todo
-          },
           vimeo: {
             playerOptions: {
               autopause: true,

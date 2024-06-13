@@ -1,5 +1,4 @@
 import { parseISO, format, ParseISOOptions } from 'date-fns'
-import { TimeHTMLAttributes } from 'react'
 
 interface MetaDateTimeProps extends React.TimeHTMLAttributes<HTMLTimeElement> {
   dateTime: string // make datetime required

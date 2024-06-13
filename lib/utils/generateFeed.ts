@@ -3,7 +3,6 @@ import getSiteUrl from './getSiteUrl'
 import { request } from '@/lib/api/datocms'
 import { config } from '@/lib/config'
 import { PostsAllDocument } from '@/lib/api/generated'
-import postContentToPlainText from './postContentToPlainText'
 import postContentToHtmlString from './postContentToHtmlString'
 
 export default async function generateFeed() {

@@ -6,7 +6,7 @@ import {
 import { CategoryFragment } from '@/lib/api/generated'
 import clsx from 'clsx'
 
-interface MetaCategoryProps extends React.HTMLAttributes<HTMLDivElement>, CategoryFragment {}
+interface MetaCategoryProps extends React.HTMLAttributes<HTMLDivElement>, CategoryFragment { }
 
 export default function MetaCategory({
   iconName,

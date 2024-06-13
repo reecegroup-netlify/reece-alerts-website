@@ -8,7 +8,7 @@ const { locale, siteNameWithReece: siteName } = config.site
 const title = 'Web Feed'
 const description = `Subscribe to ${siteName} syndicated web feed`
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     openGraph: {
@@ -32,7 +32,7 @@ export async function generateMetadata() {
         'application/json': `/feed.json`,
       },
     },
-  } as Metadata
+  }
 }
 
 export default async function Page() {
