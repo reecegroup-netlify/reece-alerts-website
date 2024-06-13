@@ -12,7 +12,11 @@ export async function generateStaticParams() {
   return postsAll.map(({ slug }) => slug)
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
   const { post } = await request(PostBySlugDocument, { slug: params.slug })
   const { category, excerpt: description, posted, slug, title, updated } = post
 

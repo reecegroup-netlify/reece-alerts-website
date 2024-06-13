@@ -1,4 +1,4 @@
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function Container({ children, className, ...props }: ContainerProps) {
   const classNameDefault =

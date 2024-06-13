@@ -1,5 +1,5 @@
 type UnwantedKeys = 'fill' | 'xmlns' | 'viewBox' | 'children'
-interface LogoProps extends Omit<React.HTMLAttributes<SVGElement>, UnwantedKeys> { }
+interface LogoProps extends Omit<React.HTMLAttributes<SVGElement>, UnwantedKeys> {}
 
 export default function Logo({ ...props }: LogoProps) {
   return (
