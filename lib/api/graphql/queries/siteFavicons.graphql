@@ -1,0 +1,10 @@
+query siteFavicons {
+  site: _site {
+    appleTouchIcons: faviconMetaTags(variants: appleTouchIcon) {
+      attributes
+    }
+    icons: faviconMetaTags(variants: icon) {
+      attributes
+    }
+  }
+}

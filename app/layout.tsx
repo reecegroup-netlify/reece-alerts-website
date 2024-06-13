@@ -11,7 +11,7 @@ import { toNextMetadata } from 'react-datocms/seo'
 import { request } from '@/lib/api/datocms'
 import { Metadata, Viewport } from 'next'
 import getDeployContext from '@/lib/utils/getDeployContext'
-import { SiteMetaTagsDocument } from '@/lib/api/generated'
+import { SiteFaviconsDocument } from '@/lib/api/generated'
 
 const { description, locale, siteNameWithReece, siteNameWithoutReece } = config.site
 
@@ -20,12 +20,10 @@ export const viewport: Viewport = {
 }
 
 export async function generateMetadata() {
-  const { site } = await request(SiteMetaTagsDocument)
-  const datoMetadata = toNextMetadata([...site.favicon])
+  const { site } = await request(SiteFaviconsDocument)
   const title = `${siteNameWithoutReece} - Page 1`
 
   return {
-    ...datoMetadata,
     title: {
       template: `%s | ${siteNameWithoutReece}`,
       absolute: `${title} | Reece`,
@@ -54,6 +52,19 @@ export async function generateMetadata() {
     },
     formatDetection: {
       telephone: false,
+    },
+    icons: {
+      icon: site.icons.slice(1).map(({ attributes }) => ({
+        url: attributes.href,
+        type: attributes.type,
+        sizes: attributes.sizes,
+        rel: attributes.rel,
+      })),
+      shortcut: [site.icons[0].attributes.href],
+      apple: site.appleTouchIcons.map(({ attributes }) => ({
+        url: attributes.href,
+        sizes: attributes.sizes,
+      })),
     },
     // note robots are also set in netlify headers
     robots: {

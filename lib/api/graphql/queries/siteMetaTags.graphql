@@ -1,7 +1,0 @@
-query siteMetaTags {
-  site: _site {
-    favicon: faviconMetaTags {
-      ...metaTags
-    }
-  }
-}
