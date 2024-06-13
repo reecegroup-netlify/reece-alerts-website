@@ -3443,6 +3443,25 @@ export type SiteFaviconsQuery = {
   }
 }
 
+export type SiteManifestIconQueryVariables = Exact<{ [key: string]: never }>
+
+export type SiteManifestIconQuery = {
+  __typename?: 'Query'
+  site: {
+    __typename?: 'Site'
+    manifestIcon?: {
+      __typename?: 'FileField'
+      mimeType: string
+      responsiveImage?: {
+        __typename?: 'ResponsiveImage'
+        height: number
+        width: number
+        src: string
+      } | null
+    } | null
+  }
+}
+
 export const CategoryFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -4777,3 +4796,72 @@ export const SiteFaviconsDocument = {
     },
   ],
 } as unknown as DocumentNode<SiteFaviconsQuery, SiteFaviconsQueryVariables>
+export const SiteManifestIconDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'siteManifestIcon' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            alias: { kind: 'Name', value: 'site' },
+            name: { kind: 'Name', value: '_site' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  alias: { kind: 'Name', value: 'manifestIcon' },
+                  name: { kind: 'Name', value: 'favicon' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'responsiveImage' },
+                        arguments: [
+                          {
+                            kind: 'Argument',
+                            name: { kind: 'Name', value: 'imgixParams' },
+                            value: {
+                              kind: 'ObjectValue',
+                              fields: [
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'w' },
+                                  value: { kind: 'StringValue', value: '512', block: false },
+                                },
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'h' },
+                                  value: { kind: 'StringValue', value: '512', block: false },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'src' } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SiteManifestIconQuery, SiteManifestIconQueryVariables>
