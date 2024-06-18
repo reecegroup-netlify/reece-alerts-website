@@ -1,4 +1,3 @@
-import getDeployContext from '@/lib/utils/getDeployContext'
 import Container from './Container'
 import cn from 'classnames'
 
@@ -14,14 +13,14 @@ export default function Alert({ preview }) {
         <div className="py-2 text-center text-sm">
           {preview ? (
             <>
-              This <code>{getDeployContext()}</code> build is showing draft content.{' '}
+              Showing draft content.{' '}
               <a href="/api/exit-draft" className="underline transition-colors duration-200">
                 Click here to exit preview mode.
               </a>
             </>
           ) : (
             <>
-              This <code>{getDeployContext()}</code> build is showing published content.{' '}
+              Showing published content.{' '}
               <a
                 href={`/api/draft?secret=${process.env.NEXT_DATOCMS_PREVIEW_SECRET}`}
                 className="underline transition-colors duration-200"

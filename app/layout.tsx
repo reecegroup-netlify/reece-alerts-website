@@ -9,7 +9,6 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import Header from '@/components/Header'
 import { request } from '@/lib/api/datocms'
 import { Metadata, Viewport } from 'next'
-import getDeployContext from '@/lib/utils/getDeployContext'
 import { SiteFaviconsDocument } from '@/lib/api/generated'
 
 const { description, locale, siteNameWithReece, siteNameWithoutReece } = config.site
@@ -82,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <GoogleTagManager gtmId={config.gtmId} />
       <body className="bg-[#F4F5F6] text-[#575756]">
         <div className="min-h-screen">
-          {getDeployContext() !== 'production' && <Alert preview={isEnabled} />}
+          {isEnabled && <Alert preview={isEnabled} />}
           <Header />
           <main className="my-8 sm:my-9 md:my-10">{children}</main>
         </div>

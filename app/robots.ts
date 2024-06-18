@@ -1,4 +1,3 @@
-import getDeployContext from '@/lib/utils/getDeployContext'
 import getSiteUrl from '@/lib/utils/getSiteUrl'
 import { MetadataRoute } from 'next'
 
