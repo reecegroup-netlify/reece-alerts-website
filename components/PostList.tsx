@@ -120,6 +120,41 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
         {/* timeline line */}
         <div className="absolute bottom-0 right-full top-3 mr-7 hidden w-px bg-slate-200 sm:block md:mr-[3.25rem]"></div>
 
+        {postsPaginated.length === 0 && (
+          <article className="group relative mb-24">
+            <div className="absolute -inset-x-3 -inset-y-2.5 sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
+
+            {/* timeline circle */}
+            <svg
+              viewBox="0 0 9 9"
+              className="absolute right-full top-2 mr-6 hidden h-[calc(0.5rem+1px)] w-[calc(0.5rem+1px)] overflow-visible text-slate-200 sm:block md:mr-12"
+            >
+              <circle
+                cx="4.5"
+                cy="4.5"
+                r="4.5"
+                stroke="currentColor"
+                className="fill-white"
+                strokeWidth="2"
+              ></circle>
+            </svg>
+
+            <div className="relative">
+              {/* title */}
+              <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">0 alerts posted</h3>
+
+              {/* meta */}
+              {/* <MetaList category={post.category} posted={post.posted} updated={post.updated} /> */}
+
+              {/* excerpt */}
+              <div className="prose mb-5 line-clamp-5 prose-a:relative prose-a:z-10 sm:line-clamp-4 md:line-clamp-3">
+                <p className=""></p>
+              </div>
+            </div>
+
+          </article>
+        )}
+
         {postsPaginated.map((post) => (
           <article className="group relative mb-24" key={post.slug}>
             <div className="absolute -inset-x-3 -inset-y-2.5 group-hover:bg-[#E6EAEE] sm:rounded-2xl md:-inset-x-6 md:-inset-y-4"></div>
@@ -167,7 +202,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
           </article>
         ))}
       </div>
-      <Pagination {...pagination} />
+      {postsPaginated.length > 0 && (<Pagination {...pagination} />)}
     </section>
   )
 }
