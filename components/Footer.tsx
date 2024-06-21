@@ -36,7 +36,7 @@ export default function Footer() {
                 <div className="flex max-w-[344px] flex-col items-start sm:-mt-2">
                   <Button
                     as="externallink"
-                    href="https://reece.workplace.com/"
+                    href="https://reece.workplace.com/groups/128165734486431"
                     target="_blank"
                     variant="text"
                     className="!font-medium"
@@ -50,7 +50,7 @@ export default function Footer() {
                     variant="text"
                     className="!font-medium"
                   >
-                    Reece Information Centre
+                    Reece Information Centre (RIC)
                   </Button>
                   <Button
                     as="externallink"
@@ -58,7 +58,7 @@ export default function Footer() {
                     variant="text"
                     className="!font-medium"
                   >
-                    Contact People Service
+                    Contact People Services
                   </Button>
                 </div>
               </div>
@@ -93,22 +93,22 @@ export default function Footer() {
 
             <div className="flow-root">
               <div className="-m-1 flex flex-row space-x-1.5">
-                <Link
+                <a
                   href="//www.reece.com.au/privacy"
                   className="p-1 text-xs hover:underline"
                   target="_blank"
                   title="Reece Privacy Policy (opens in new tab)"
                 >
                   Privacy
-                </Link>
-                <Link
+                </a>
+                <a
                   href="//help.reece.com.au"
                   className="p-1 text-xs hover:underline"
                   target="_blank"
                   title="Reece Help Centre (opens in new tab)"
                 >
                   Help
-                </Link>
+                </a>
               </div>
             </div>
           </div>
