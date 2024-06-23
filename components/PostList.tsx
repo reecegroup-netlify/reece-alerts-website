@@ -141,7 +141,9 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
 
             <div className="relative">
               {/* title */}
-              <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">0 alerts posted</h3>
+              <h3 className="mb-4 font-medium text-[#003057] heading-lg lg:mb-5">
+                0 alerts posted
+              </h3>
 
               {/* meta */}
               {/* <MetaList category={post.category} posted={post.posted} updated={post.updated} /> */}
@@ -151,7 +153,6 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
                 <p className=""></p>
               </div>
             </div>
-
           </article>
         )}
 
@@ -202,7 +203,7 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
           </article>
         ))}
       </div>
-      {postsPaginated.length > 0 && (<Pagination {...pagination} />)}
+      {postsPaginated.length > 0 && <Pagination {...pagination} />}
     </section>
   )
 }
