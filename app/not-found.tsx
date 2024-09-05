@@ -1,12 +1,12 @@
-import { PageLayout } from '@/layouts/PageLayout'
 import { config } from '@/lib/config'
-import Link from 'next/link'
+import { PageLayout } from '@/layouts/PageLayout'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 const { locale, siteNameWithReece: siteName } = config.site
 
-const title = 'Web Feed'
-const description = `Subscribe to ${siteName} syndicated web feed`
+const title = '404'
+const description = `This page could not be found.`
 
 export function generateMetadata(): Metadata {
   return {
@@ -35,26 +35,15 @@ export function generateMetadata(): Metadata {
   }
 }
 
-export default function Page() {
+export default function NotFound() {
   return (
     <PageLayout>
       <div className="prose mb-5 prose-a:relative prose-a:z-10" id="main-content">
         <h1>{title}</h1>
         <p className="lead">{description}</p>
-        {/* <h2>Formats:</h2> */}
         <ul>
           <li>
-            <Link href={'/feed.rss'}>
-              <abbr title="Really Simple Syndication">RSS</abbr>
-            </Link>
-          </li>
-          <li>
-            <Link href={'/feed.atom'}>Atom</Link>
-          </li>
-          <li>
-            <Link href={'/feed.json'}>
-              <abbr title="JavaScript Object Notation">JSON</abbr> Feed
-            </Link>
+            <Link href={'/'}>Return to homepage</Link>
           </li>
         </ul>
       </div>

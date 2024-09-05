@@ -53,100 +53,86 @@ export function metadata(): Metadata {
         {
           sizes: '32x32',
           rel: 'icon', // @todo move these to the public directory
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=32&w=32'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=32&w=32',
         },
         {
           sizes: '96x96',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=96&w=96'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=96&w=96',
         },
         {
-
           sizes: '192x192',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=192&w=192'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=192&w=192',
         },
         {
           sizes: '16x16',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=16&w=16'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=16&w=16',
         },
         {
           sizes: '32x32',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=32&w=32'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=32&w=32',
         },
         {
           sizes: '96x96',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=96&w=96'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=96&w=96',
         },
         {
-
           sizes: '192x192',
           rel: 'icon',
           type: 'image/png',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=192&w=192'
-
-        }
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=192&w=192',
+        },
       ],
       shortcut: [
-        'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=16&w=16'],
+        'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=16&w=16',
+      ],
       apple: [
         {
           sizes: '57x57',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=57&w=57'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=57&w=57',
         },
         {
           sizes: '60x60',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=60&w=60'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=60&w=60',
         },
         {
-
           sizes: '72x72',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=72&w=72'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=72&w=72',
         },
         {
-
           sizes: '76x76',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=76&w=76'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=76&w=76',
         },
         {
-
           sizes: '114x114',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=114&w=114'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=114&w=114',
         },
         {
-
           sizes: '120x120',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=120&w=120'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=120&w=120',
         },
         {
-
           sizes: '144x144',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=144&w=144'
-
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=144&w=144',
         },
         {
-
           sizes: '152x152',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=152&w=152'
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=152&w=152',
         },
         {
-
           sizes: '180x180',
-          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=180&w=180'
-        }],
+          url: 'https://www.datocms-assets.com/132344/1717408725-android-chrome-384x384.png?auto=format&h=180&w=180',
+        },
+      ],
     },
     // note robots are also set in netlify headers
     robots: {

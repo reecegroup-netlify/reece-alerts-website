@@ -4,7 +4,6 @@ import { MetadataRoute } from 'next'
 const { siteNameWithReece, siteNameWithoutReece, description } = config.site
 
 export default function manifest(): MetadataRoute.Manifest {
-
   return {
     background_color: '#F4F5F6',
     description: description,

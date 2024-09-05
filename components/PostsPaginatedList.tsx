@@ -12,7 +12,7 @@ export interface PaginationProps {
   currentPage: number
 }
 
-function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) {
+const Pagination = ({ totalPosts, postsPerPage, currentPage }: PaginationProps) => {
   const totalPages = Math.ceil(totalPosts / postsPerPage)
   const shownPostsStart = currentPage * postsPerPage - postsPerPage + 1
   const shownPostsEnd =
@@ -108,12 +108,12 @@ function Pagination({ totalPosts, postsPerPage, currentPage }: PaginationProps) 
   )
 }
 
-interface PostListProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PostsPaginatedListProps extends React.HTMLAttributes<HTMLDivElement> {
   postsPaginated: PostsPaginatedQuery['postsPaginated']
   pagination: PaginationProps
 }
 
-export default function PostList({ postsPaginated, pagination, ...props }: PostListProps) {
+const PostsPaginatedList = ({ postsPaginated, pagination, ...props }: PostsPaginatedListProps) => {
   return (
     <section {...props}>
       <div className="relative py-2.5 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] md:py-4 lg:ml-[max(calc(16.5rem+1px),calc(100%-48rem))]">
@@ -207,3 +207,5 @@ export default function PostList({ postsPaginated, pagination, ...props }: PostL
     </section>
   )
 }
+
+export { PostsPaginatedList }

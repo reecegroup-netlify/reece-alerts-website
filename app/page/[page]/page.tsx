@@ -1,13 +1,8 @@
-import { draftMode } from 'next/headers'
 import { request } from '@/lib/api/datocms'
-import { PostListLayout } from 'layouts/PostListLayout'
 import { config } from '@/lib/config'
 import { Metadata } from 'next'
-import {
-  PostModelOrderBy,
-  PostsAllCountDocument,
-  PostsPaginatedDocument,
-} from '@/lib/api/generated'
+import { PostModelOrderBy, PostsAllCountDocument } from '@/lib/api/generated'
+import { PostsPaginated } from '@/components/server/PostsPaginated'
 
 const { POSTS_PER_PAGE } = config
 const { siteNameWithReece: siteName, siteNameWithoutReece, description, locale } = config.site
@@ -21,7 +16,7 @@ export const generateStaticParams = async () => {
 export async function generateMetadata({
   params,
 }: {
-  params: { page: number }
+  params: { page: string }
 }): Promise<Metadata> {
   // the current pagination page
   const { page: currentPage } = params
@@ -46,7 +41,7 @@ export async function generateMetadata({
     },
     description,
     alternates: {
-      canonical: `/page/${currentPage}`,
+      canonical: currentPage === '1' ? '/' : `/page/${currentPage}`,
       types: {
         'application/rss+xml': `/feed.rss`,
         'application/atom+xml': `/feed.atom`,
@@ -63,26 +58,23 @@ export default async function Page({
   params: { page: number }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const { isEnabled: includeDrafts } = draftMode()
-
   // the current pagination page
   const { page: currentPage } = params
 
-  // amount to retrieve
-  const first = POSTS_PER_PAGE
-
   // sort direction from searchParams
   const { order } = searchParams
-  const orderBy: PostModelOrderBy | PostModelOrderBy[] =
-    order && order === 'ASC'
-      ? PostModelOrderBy._FirstPublishedAtAsc
-      : PostModelOrderBy._FirstPublishedAtDesc
 
   // skip
   const skip = (currentPage - 1) * POSTS_PER_PAGE
 
-  // get the data
-  const result = await request(PostsPaginatedDocument, { first, orderBy, skip }, includeDrafts)
+  const variables = {
+    ...(order && order === 'ASC' && { orderBy: PostModelOrderBy._FirstPublishedAtAsc }),
+    ...(skip && { skip: skip }),
+  }
 
-  return <PostListLayout {...result} currentPage={currentPage} />
+  if (variables) {
+    return <PostsPaginated {...variables} currentPage={currentPage} />
+  }
+
+  return <PostsPaginated />
 }

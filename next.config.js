@@ -91,17 +91,7 @@ module.exports = () => {
       return [
         {
           source: '/posts',
-          destination: '/',
-          permanent: true,
-        },
-        {
-          source: '/page',
-          destination: '/',
-          permanent: true,
-        },
-        {
-          source: '/page/1',
-          destination: '/',
+          destination: '/page/1',
           permanent: true,
         },
       ]

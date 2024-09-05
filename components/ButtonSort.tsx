@@ -28,6 +28,9 @@ export default function ButtonSort({ fallback = defaultFallback }) {
   // sort direction from searchParams
   const order = searchParams.get('order')
 
+  // if homepage, redirect to first posts page
+  const path = pathname === '/' ? '/page/1' : pathname
+
   return (
     <Menu>
       <MenuButton>
@@ -45,7 +48,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
             aria-selected={order !== 'ASC'}
             href={
               // <pathname>
-              pathname
+              path
             }
             className="block px-3 py-1 pr-10 text-sm text-[#003057] aria-selected:bg-[#D5D5D5] data-[focus]:bg-[#D5D5D5]"
           >
@@ -57,7 +60,7 @@ export default function ButtonSort({ fallback = defaultFallback }) {
             aria-selected={order === 'ASC'}
             href={
               // <pathname>?order=ASC
-              pathname + '?' + createQueryString('order', 'ASC')
+              path + '?' + createQueryString('order', 'ASC')
             }
             className="block px-3 py-1 pr-10 text-sm text-[#003057] aria-selected:bg-[#D5D5D5] data-[focus]:bg-[#D5D5D5]"
           >
