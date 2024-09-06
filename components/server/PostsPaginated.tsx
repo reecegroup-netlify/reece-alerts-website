@@ -8,7 +8,6 @@ import {
 } from '@/lib/api/generated'
 import { request } from '@/lib/api/datocms'
 import { config } from '@/lib/config'
-import { draftMode } from 'next/headers'
 
 interface PostsPaginatedProps {
   currentPage?: number
@@ -27,14 +26,8 @@ const PostsPaginated = async ({
   currentPage = 1,
   variables = defaultVariables,
 }: PostsPaginatedProps) => {
-  const { isEnabled: includeDrafts } = draftMode()
-
   // query the posts data
-  const { postsAll, postsPaginated } = await request(
-    PostsPaginatedDocument,
-    variables,
-    includeDrafts
-  )
+  const { postsAll, postsPaginated } = await request(PostsPaginatedDocument, variables)
 
   // build the pagination object
   const pagination: PaginationProps = {

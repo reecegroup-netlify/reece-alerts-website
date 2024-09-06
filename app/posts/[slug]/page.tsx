@@ -1,4 +1,3 @@
-import { draftMode } from 'next/headers'
 import { request } from '@/lib/api/datocms'
 import { PostLayout } from '@/layouts/PostLayout'
 import { Metadata } from 'next'
@@ -50,13 +49,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { isEnabled } = draftMode()
-
   // slug from params
   const { slug } = params
 
   // query posts eq slug
-  const result = await request(PostBySlugDocument, { slug }, isEnabled)
+  const result = await request(PostBySlugDocument, { slug })
 
   return <PostLayout {...result} />
 }
