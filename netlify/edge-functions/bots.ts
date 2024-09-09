@@ -30,5 +30,5 @@ export default async (request: Request) => {
 
 // This edge function is executed for all requests across the site
 export const config: Config = {
-  path: "*",
+  path: "/*",
 };
