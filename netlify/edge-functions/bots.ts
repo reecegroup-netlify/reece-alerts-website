@@ -36,6 +36,7 @@ export default async (request: Request) => {
 
   // If the request is a known bot path, disallow with a 401
   if (isBotPath) {
+    console.log('requester uses a bot path, disallow with a 401')
     return new Response(null, { status: 401 })
   }
 
@@ -45,7 +46,7 @@ export default async (request: Request) => {
   // Check against our list of known bot agent
   let isBot = false
   agents.forEach((agent) => {
-    if (userAgent.toLowerCase().includes(agent.toLowerCase())) {
+    if (userAgent && userAgent.toLowerCase().includes(agent.toLowerCase())) {
       isBot = true
       return
     }
@@ -53,13 +54,12 @@ export default async (request: Request) => {
 
   // If the requester is an bot agent, disallow with a 401
   if (isBot) {
+    console.log('requester is an bot agent, disallow with a 401')
     return new Response(null, { status: 401 })
   }
 
   // Otherwise, continue with the request as normal
-  else {
-    return
-  }
+  return
 }
 
 // This edge function is executed for all requests across the site
