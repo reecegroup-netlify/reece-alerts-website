@@ -29,3 +29,7 @@
     # noindex = instructs search engines not to index the page
     # follow = allows crawling all links on the page, and backlinks to them
     # noarchive = prevents Google from showing a cached copy of the page in the SERP.
+
+[[edge_functions]]
+  function = "bots"
+  path = "/*"
