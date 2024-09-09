@@ -19,7 +19,7 @@ const ContentSecurityPolicy = `
   media-src blob: image.mux.com;
   connect-src * fresnel.vimeocdn.com;
   font-src 'self';
-  frame-src player.vimeo.com www.youtube.com;
+  frame-src player.vimeo.com www.youtube.com app.netlify.com;
 `
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
