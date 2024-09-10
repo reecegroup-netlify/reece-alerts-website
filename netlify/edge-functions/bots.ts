@@ -5,22 +5,52 @@ import { Config } from '@netlify/edge-functions'
 import agents from '../../agents.json' with { type: 'json' }
 
 const paths = [
-  '/abc/..CFIDE/wizards/common/utils.cfc',
+  '/.aws',
+  '/abc',
+  '/actuator',
   '/admin',
   '/api',
-  '/api/v1/database/1',
+  '/api/v1/database',
+  '/assets/elFinder',
   '/autodiscover/autodiscover.json',
-  '/carbon/admin/login.jsp',
-  '/eam/vib',
+  '/aws.yml',
+  '/carbon/admin',
+  '/crx/de/index.jsp',
+  '/debug-kit',
+  '/docker-compose',
+  '/cgi',
+  '/configuration.php',
+  '/eam',
+  '/gespage',
+  '/gradle',
   '/graphql',
   '/index.action',
+  '/index.do',
   '/index.php',
-  '/invoke/sample.xslt/transformToString',
+  '/install',
+  '/invoke',
+  '/jira',
   '/login',
-  '/login.action',
-  '/resin-doc/viewfile',
-  '/wls-wsat/CoordinatorPortType11',
-  '/wp-admin/admin-ajax.php',
+  '/menu/stapp',
+  '/mod',
+  '/nagios',
+  '/ocp.php',
+  '/rdPage.aspx',
+  '/resin-doc',
+  '/rest',
+  '/server-status',
+  '/site/vendor',
+  '/smb.conf',
+  '/startPage',
+  '/system',
+  '/telescope',
+  '/vendor',
+  '/WEB-INF',
+  '/webjars',
+  '/wls-wsat',
+  '/wp-admin',
+  '/wp-config',
+  '/wp-content',
 ]
 
 export default async (request: Request) => {
@@ -40,7 +70,7 @@ export default async (request: Request) => {
 
   // If the request is a known bot path, disallow with a 401
   if (isBotPath !== '') {
-    console.log(`401: disallow bot path [${isBotPath}] - ${userAgent} request ${url}`)
+    console.log(`401 disallow - bot path [${isBotPath}]: ${url} request ${userAgent}`)
     return new Response(null, { status: 401 })
   }
 
@@ -55,7 +85,7 @@ export default async (request: Request) => {
 
   // If the requester is an bot agent, disallow with a 401
   if (isBotAgent !== '') {
-    console.log(`401: disallow bot user-agent [${isBotAgent}] - ${userAgent}: ${url}` )
+    console.log(`401 disallow - user-agent [${isBotAgent}]: ${url} | ${userAgent}` )
     return new Response(null, { status: 401 })
   }
 
