@@ -97,7 +97,6 @@ const paths = [
   '/site/vendor',
   '/smb.conf',
   '/startPage',
-  '/static',
   '/swagger',
   '/swaggerui',
   '/sync.sh',
