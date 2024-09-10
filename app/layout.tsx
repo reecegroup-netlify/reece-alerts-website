@@ -9,6 +9,8 @@ import { Metadata, Viewport } from 'next'
 
 const { description, locale, siteNameWithReece, siteNameWithoutReece } = config.site
 
+export const dynamic = 'force-static'
+
 export const viewport: Viewport = {
   themeColor: '#003057',
 }
