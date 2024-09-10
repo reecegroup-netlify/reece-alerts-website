@@ -26,6 +26,9 @@ const paths = [
 export default async (request: Request) => {
   const { url, headers } = request
 
+  // Get the user agent string of the requester
+  const userAgent = headers.get('user-agent')
+
   // Check against our list of known AI bots
   let isBotPath = ''
   paths.forEach((path) => {
@@ -37,12 +40,9 @@ export default async (request: Request) => {
 
   // If the request is a known bot path, disallow with a 401
   if (isBotPath !== '') {
-    console.log(`requester url [${url}] is a known bot path [${isBotPath}], disallow with 401`)
+    console.log(`401: disallow bot path [${isBotPath}] - request ${url} by ${userAgent}`)
     return new Response(null, { status: 401 })
   }
-
-  // Get the user agent string of the requester
-  const userAgent = headers.get('user-agent')
 
   // Check against our list of known bot agent
   let isBotAgent = ''
@@ -55,9 +55,11 @@ export default async (request: Request) => {
 
   // If the requester is an bot agent, disallow with a 401
   if (isBotAgent !== '') {
-    console.log(`requester user-agent [${userAgent}] is known bot agent [${isBotAgent}], disallow with 401`)
+    console.log(`401: disallow bot user-agent [${isBotAgent}] - request ${url} by ${userAgent}`)
     return new Response(null, { status: 401 })
   }
+
+  console.log(`200: allow - request ${url} by ${userAgent}`)
 
   // Otherwise, continue with the request as normal
   return
