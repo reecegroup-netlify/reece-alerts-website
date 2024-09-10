@@ -89,7 +89,7 @@ export default async (request: Request) => {
     return new Response(null, { status: 401 })
   }
 
-  console.log(`200: allow - ${userAgent}: ${url}`)
+  console.log(`200: allow - ${url}: ${userAgent}`)
 
   // Otherwise, continue with the request as normal
   return
