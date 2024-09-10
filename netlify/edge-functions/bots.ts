@@ -108,7 +108,6 @@ const paths = [
   '/unsafe',
   '/v1.',
   '/vendor',
-  '/web',
   '/WEB-INF',
   '/webjars',
   '/wls-wsat',
