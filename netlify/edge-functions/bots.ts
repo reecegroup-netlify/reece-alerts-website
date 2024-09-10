@@ -123,7 +123,7 @@ export default async (request: Request) => {
 
   // If the request is a known bot path, disallow with a 401
   if (isBotPath !== '') {
-    console.log(`401 disallow - bot path [${isBotPath}]: ${url} request ${userAgent}`)
+    console.log(`401 - ${url} request ${userAgent} (matches path [${isBotPath}])`)
     return new Response(null, { status: 401 })
   }
 
@@ -138,11 +138,11 @@ export default async (request: Request) => {
 
   // If the requester is an bot agent, disallow with a 401
   if (isBotAgent !== '') {
-    console.log(`401 disallow - user-agent [${isBotAgent}]: ${url} | ${userAgent}` )
+    console.log(`401 - ${url} | ${userAgent} (matches agent [${isBotAgent}])` )
     return new Response(null, { status: 401 })
   }
 
-  console.log(`200: allow - ${url}: ${userAgent}`)
+  console.log(`200 - ${url} | ${userAgent}`)
 
   // Otherwise, continue with the request as normal
   return
