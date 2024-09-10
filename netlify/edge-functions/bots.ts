@@ -5,21 +5,22 @@ import { Config } from '@netlify/edge-functions'
 import agents from '../../agents.json' with { type: 'json' }
 
 const paths = [
-  '/index.php',
-  '/wp-admin/admin-ajax.php',
-  '/login',
-  '/invoke/sample.xslt/transformToString',
-  '/wls-wsat/CoordinatorPortType11',
-  '/api',
-  '/login.action',
-  '/api/v1/database/1',
+  '/abc/..CFIDE/wizards/common/utils.cfc',
   '/admin',
+  '/api',
+  '/api/v1/database/1',
+  '/autodiscover/autodiscover.json',
+  '/carbon/admin/login.jsp',
   '/eam/vib',
   '/graphql',
-  '/abc/..CFIDE/wizards/common/utils.cfc',
-  '/carbon/admin/login.jsp',
-  '/autodiscover/autodiscover.json',
   '/index.action',
+  '/index.php',
+  '/invoke/sample.xslt/transformToString',
+  '/login',
+  '/login.action',
+  '/resin-doc/viewfile',
+  '/wls-wsat/CoordinatorPortType11',
+  '/wp-admin/admin-ajax.php',
 ]
 
 export default async (request: Request) => {
@@ -36,7 +37,7 @@ export default async (request: Request) => {
 
   // If the request is a known bot path, disallow with a 401
   if (isBotPath !== '') {
-    console.log(`requester uses a bot path [${isBotPath}], disallow with 401`)
+    console.log(`requester url [${url}] is a known bot path [${isBotPath}], disallow with 401`)
     return new Response(null, { status: 401 })
   }
 
@@ -54,7 +55,7 @@ export default async (request: Request) => {
 
   // If the requester is an bot agent, disallow with a 401
   if (isBotAgent !== '') {
-    console.log(`requester is a bot agent [${isBotAgent}], disallow with 401`)
+    console.log(`requester user-agent [${userAgent}] is known bot agent [${isBotAgent}], disallow with 401`)
     return new Response(null, { status: 401 })
   }
 
